@@ -65,7 +65,7 @@ func NewPrinter(ctx context.Context, out console.File, mode string) (Writer, err
 		done:   doneCh,
 	}
 
-	if v := os.Getenv("BUILDKIT_PROGRESS"); v != "" && mode == "auto" {
+	if v := os.Getenv("DEVKIT_PROGRESS"); v != "" && mode == "auto" {
 		mode = v
 	}
 

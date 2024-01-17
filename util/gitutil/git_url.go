@@ -74,7 +74,7 @@ func splitGitFragment(fragment string) *GitURLFragment {
 	return &GitURLFragment{Ref: ref, Subdir: subdir}
 }
 
-// ParseURL parses a BuildKit-style Git URL (that may contain additional
+// ParseURL parses a DevKit-style Git URL (that may contain additional
 // fragment metadata) and returns a parsed GitURL object.
 func ParseURL(remote string) (*GitURL, error) {
 	if proto := protoRegexp.FindString(remote); proto != "" {

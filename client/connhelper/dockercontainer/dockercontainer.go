@@ -16,7 +16,7 @@ func init() {
 }
 
 // Helper returns helper for connecting to a Docker container.
-// Requires BuildKit v0.5.0 or later in the container.
+// Requires DevKit v0.5.0 or later in the container.
 func Helper(u *url.URL) (*connhelper.ConnectionHelper, error) {
 	sp, err := SpecFromURL(u)
 	if err != nil {

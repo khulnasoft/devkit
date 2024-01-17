@@ -21,7 +21,7 @@ on:
 env:
   GO_VERSION: "1.21"
   SETUP_BUILDX_VERSION: "latest"
-  SETUP_BUILDKIT_TAG: "khulnasoft/devkit:latest"
+  SETUP_DEVKIT_TAG: "khulnasoft/devkit:latest"
   IMAGE_NAME: "docker/dockerfile-upstream"
   PLATFORMS: "linux/386,linux/amd64,linux/arm/v7,linux/arm64,linux/mips,linux/mipsle,linux/mips64,linux/mips64le,linux/s390x,linux/ppc64le,linux/riscv64"
 
@@ -102,7 +102,7 @@ jobs:
         uses: docker/setup-buildx-action@v3
         with:
           version: ${{ env.SETUP_BUILDX_VERSION }}
-          driver-opts: image=${{ env.SETUP_BUILDKIT_TAG }}
+          driver-opts: image=${{ env.SETUP_DEVKIT_TAG }}
           devkitd-flags: --debug
       -
         name: Login to DockerHub

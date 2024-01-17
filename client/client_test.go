@@ -310,7 +310,7 @@ func testCacheExportCacheKeyLoop(t *testing.T, sb integration.Sandbox) {
 }
 
 func testBridgeNetworking(t *testing.T, sb integration.Sandbox) {
-	if os.Getenv("BUILDKIT_RUN_NETWORK_INTEGRATION_TESTS") == "" {
+	if os.Getenv("DEVKIT_RUN_NETWORK_INTEGRATION_TESTS") == "" {
 		t.SkipNow()
 	}
 	if sb.Rootless() {
@@ -334,7 +334,7 @@ func testBridgeNetworking(t *testing.T, sb integration.Sandbox) {
 func testBridgeNetworkingDNSNoRootless(t *testing.T, sb integration.Sandbox) {
 	integration.SkipOnPlatform(t, "windows")
 	workers.CheckFeatureCompat(t, sb, workers.FeatureCNINetwork)
-	if os.Getenv("BUILDKIT_RUN_NETWORK_INTEGRATION_TESTS") == "" {
+	if os.Getenv("DEVKIT_RUN_NETWORK_INTEGRATION_TESTS") == "" {
 		t.SkipNow()
 	}
 
@@ -372,7 +372,7 @@ func testBridgeNetworkingDNSNoRootless(t *testing.T, sb integration.Sandbox) {
 }
 
 func testHostNetworking(t *testing.T, sb integration.Sandbox) {
-	if os.Getenv("BUILDKIT_RUN_NETWORK_INTEGRATION_TESTS") == "" {
+	if os.Getenv("DEVKIT_RUN_NETWORK_INTEGRATION_TESTS") == "" {
 		t.SkipNow()
 	}
 	netMode := sb.Value("netmode")
@@ -8904,7 +8904,7 @@ func testSBOMScan(t *testing.T, sb integration.Sandbox) {
 
 		var img ocispecs.Image
 		cmd := `
-cat <<EOF > $BUILDKIT_SCAN_DESTINATION/spdx.json
+cat <<EOF > $DEVKIT_SCAN_DESTINATION/spdx.json
 {
   "_type": "https://in-toto.io/Statement/v0.1",
   "predicateType": "https://spdx.dev/Document",
@@ -9182,7 +9182,7 @@ func testSBOMScanSingleRef(t *testing.T, sb integration.Sandbox) {
 
 		var img ocispecs.Image
 		cmd := `
-cat <<EOF > $BUILDKIT_SCAN_DESTINATION/spdx.json
+cat <<EOF > $DEVKIT_SCAN_DESTINATION/spdx.json
 {
   "_type": "https://in-toto.io/Statement/v0.1",
   "predicateType": "https://spdx.dev/Document",

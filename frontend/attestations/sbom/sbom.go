@@ -58,10 +58,10 @@ func CreateSBOMScanner(ctx context.Context, resolver llb.ImageMetaResolver, scan
 	return func(ctx context.Context, name string, ref llb.State, extras map[string]llb.State, opts ...llb.ConstraintsOpt) (result.Attestation[*llb.State], error) {
 		var env []string
 		env = append(env, cfg.Config.Env...)
-		env = append(env, "BUILDKIT_SCAN_DESTINATION="+outDir)
-		env = append(env, "BUILDKIT_SCAN_SOURCE="+path.Join(srcDir, "core", CoreSBOMName))
+		env = append(env, "DEVKIT_SCAN_DESTINATION="+outDir)
+		env = append(env, "DEVKIT_SCAN_SOURCE="+path.Join(srcDir, "core", CoreSBOMName))
 		if len(extras) > 0 {
-			env = append(env, "BUILDKIT_SCAN_SOURCE_EXTRAS="+path.Join(srcDir, "extras/"))
+			env = append(env, "DEVKIT_SCAN_SOURCE_EXTRAS="+path.Join(srcDir, "extras/"))
 		}
 
 		runOpts := []llb.RunOption{

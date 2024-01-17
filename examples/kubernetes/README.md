@@ -1,4 +1,4 @@
-# Kubernetes manifests for BuildKit
+# Kubernetes manifests for DevKit
 
 This directory contains Kubernetes manifests for `Pod`, `Deployment` (with `Service`), `StatefulSet`, and `Job`.
 * `Pod`: good for quick-start
@@ -9,7 +9,7 @@ This directory contains Kubernetes manifests for `Pod`, `Deployment` (with `Serv
 Using Rootless mode (`*.rootless.yaml`) is recommended because Rootless mode image is executed as non-root user (UID 1000) and doesn't need `securityContext.privileged`.
 See [`../../docs/rootless.md`](../../docs/rootless.md).
 
-See also ["Building Images Efficiently And Securely On Kubernetes With BuildKit" (KubeCon EU 2019)](https://kccnceu19.sched.com/event/MPX5).
+See also ["Building Images Efficiently And Securely On Kubernetes With DevKit" (KubeCon EU 2019)](https://kccnceu19.sched.com/event/MPX5).
 
 ## `Pod`
 

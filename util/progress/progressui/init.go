@@ -33,13 +33,13 @@ func init() {
 	}
 
 	// Loosely based on the standard set by Linux LS_COLORS.
-	if _, ok := os.LookupEnv("BUILDKIT_COLORS"); ok {
-		envColorString := os.Getenv("BUILDKIT_COLORS")
+	if _, ok := os.LookupEnv("DEVKIT_COLORS"); ok {
+		envColorString := os.Getenv("DEVKIT_COLORS")
 		setUserDefinedTermColors(envColorString)
 	}
 
 	// Make the terminal height configurable at runtime.
-	termHeightStr := os.Getenv("BUILDKIT_TTY_LOG_LINES")
+	termHeightStr := os.Getenv("DEVKIT_TTY_LOG_LINES")
 	if termHeightStr != "" {
 		termHeightVal, err := strconv.Atoi(termHeightStr)
 		if err == nil && termHeightVal > 0 {

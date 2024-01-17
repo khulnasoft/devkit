@@ -240,19 +240,19 @@ func (gf *gatewayFrontend) Solve(ctx context.Context, llbBridge frontend.Fronten
 	}
 	i := 0
 	for k, v := range opts {
-		env = append(env, fmt.Sprintf("BUILDKIT_FRONTEND_OPT_%d", i)+"="+k+"="+v)
+		env = append(env, fmt.Sprintf("DEVKIT_FRONTEND_OPT_%d", i)+"="+k+"="+v)
 		i++
 	}
 
-	env = append(env, "BUILDKIT_SESSION_ID="+sid)
+	env = append(env, "DEVKIT_SESSION_ID="+sid)
 
 	dt, err := json.Marshal(gf.workers.WorkerInfos())
 	if err != nil {
 		return nil, errors.Wrap(err, "failed to marshal workers array")
 	}
-	env = append(env, "BUILDKIT_WORKERS="+string(dt))
+	env = append(env, "DEVKIT_WORKERS="+string(dt))
 
-	env = append(env, "BUILDKIT_EXPORTEDPRODUCT="+apicaps.ExportedProduct)
+	env = append(env, "DEVKIT_EXPORTEDPRODUCT="+apicaps.ExportedProduct)
 
 	meta := executor.Meta{
 		Env:                       env,

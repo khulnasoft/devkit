@@ -44,8 +44,8 @@ const (
 	emptyImageName = "scratch"
 	historyComment = "devkit.dockerfile.v0"
 
-	sbomScanContext = "BUILDKIT_SBOM_SCAN_CONTEXT"
-	sbomScanStage   = "BUILDKIT_SBOM_SCAN_STAGE"
+	sbomScanContext = "DEVKIT_SBOM_SCAN_CONTEXT"
+	sbomScanStage   = "DEVKIT_SBOM_SCAN_STAGE"
 )
 
 var nonEnvArgs = map[string]struct{}{

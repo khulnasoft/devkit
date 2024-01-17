@@ -43,6 +43,6 @@ func info(clicontext *cli.Context) error {
 	}
 
 	w := tabwriter.NewWriter(os.Stdout, 0, 0, 1, ' ', 0)
-	_, _ = fmt.Fprintf(w, "BuildKit:\t%s %s %s\n", res.BuildkitVersion.Package, res.BuildkitVersion.Version, res.BuildkitVersion.Revision)
+	_, _ = fmt.Fprintf(w, "DevKit:\t%s %s %s\n", res.BuildkitVersion.Package, res.BuildkitVersion.Version, res.BuildkitVersion.Revision)
 	return w.Flush()
 }

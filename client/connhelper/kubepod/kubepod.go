@@ -17,7 +17,7 @@ func init() {
 }
 
 // Helper returns helper for connecting to a Kubernetes pod.
-// Requires BuildKit v0.5.0 or later in the pod.
+// Requires DevKit v0.5.0 or later in the pod.
 func Helper(u *url.URL) (*connhelper.ConnectionHelper, error) {
 	sp, err := SpecFromURL(u)
 	if err != nil {

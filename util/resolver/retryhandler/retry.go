@@ -15,7 +15,7 @@ import (
 )
 
 // MaxRetryBackoff is the maximum backoff time before giving up. This is a
-// variable so that code which embeds BuildKit can override the default value.
+// variable so that code which embeds DevKit can override the default value.
 var MaxRetryBackoff = 8 * time.Second
 
 func New(f images.HandlerFunc, logger func([]byte)) images.HandlerFunc {

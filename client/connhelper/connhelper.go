@@ -16,7 +16,7 @@ type ConnectionHelper struct {
 	ContextDialer func(ctx context.Context, addr string) (net.Conn, error)
 }
 
-// GetConnectionHelper returns BuildKit-specific connection helper for the given URL.
+// GetConnectionHelper returns DevKit-specific connection helper for the given URL.
 // GetConnectionHelper returns nil without error when no helper is registered for the scheme.
 func GetConnectionHelper(daemonURL string) (*ConnectionHelper, error) {
 	u, err := url.Parse(daemonURL)

@@ -24,12 +24,12 @@ func InitContainerdWorker() {
 	})
 	// defined in Dockerfile
 	// e.g. `containerd-1.1=/opt/containerd-1.1/bin,containerd-42.0=/opt/containerd-42.0/bin`
-	if s := os.Getenv("BUILDKIT_INTEGRATION_CONTAINERD_EXTRA"); s != "" {
+	if s := os.Getenv("DEVKIT_INTEGRATION_CONTAINERD_EXTRA"); s != "" {
 		entries := strings.Split(s, ",")
 		for _, entry := range entries {
 			pair := strings.Split(strings.TrimSpace(entry), "=")
 			if len(pair) != 2 {
-				panic(errors.Errorf("unexpected BUILDKIT_INTEGRATION_CONTAINERD_EXTRA: %q", s))
+				panic(errors.Errorf("unexpected DEVKIT_INTEGRATION_CONTAINERD_EXTRA: %q", s))
 			}
 			name, bin := pair[0], pair[1]
 			integration.Register(&Containerd{
@@ -42,10 +42,10 @@ func InitContainerdWorker() {
 	}
 
 	// the rootless uid is defined in Dockerfile
-	if s := os.Getenv("BUILDKIT_INTEGRATION_ROOTLESS_IDPAIR"); s != "" {
+	if s := os.Getenv("DEVKIT_INTEGRATION_ROOTLESS_IDPAIR"); s != "" {
 		var uid, gid int
 		if _, err := fmt.Sscanf(s, "%d:%d", &uid, &gid); err != nil {
-			bklog.L.Fatalf("unexpected BUILDKIT_INTEGRATION_ROOTLESS_IDPAIR: %q", s)
+			bklog.L.Fatalf("unexpected DEVKIT_INTEGRATION_ROOTLESS_IDPAIR: %q", s)
 		}
 		if integration.RootlessSupported(uid) {
 			integration.Register(&Containerd{
@@ -58,7 +58,7 @@ func InitContainerdWorker() {
 		}
 	}
 
-	if s := os.Getenv("BUILDKIT_INTEGRATION_SNAPSHOTTER"); s != "" {
+	if s := os.Getenv("DEVKIT_INTEGRATION_SNAPSHOTTER"); s != "" {
 		integration.Register(&Containerd{
 			ID:          fmt.Sprintf("containerd-snapshotter-%s", s),
 			Containerd:  "containerd",
@@ -210,7 +210,7 @@ disabled_plugins = ["cri"]
 	devkitdArgs = append(devkitdArgs, snBuildkitdArgs...)
 
 	if runtime.GOOS != "windows" && c.Snapshotter != "native" {
-		c.ExtraEnv = append(c.ExtraEnv, "BUILDKIT_DEBUG_FORCE_OVERLAY_DIFF=true")
+		c.ExtraEnv = append(c.ExtraEnv, "DEVKIT_DEBUG_FORCE_OVERLAY_DIFF=true")
 	}
 	if rootless {
 		pidStr, err := os.ReadFile(filepath.Join(rootlessKitState, "child_pid"))

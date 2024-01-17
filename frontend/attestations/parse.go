@@ -23,7 +23,7 @@ func Filter(v map[string]string) map[string]string {
 			attests[k] = v
 			continue
 		}
-		if strings.HasPrefix(k, "build-arg:BUILDKIT_ATTEST_") {
+		if strings.HasPrefix(k, "build-arg:DEVKIT_ATTEST_") {
 			attests[k] = v
 			continue
 		}
@@ -47,8 +47,8 @@ func Parse(values map[string]string) (map[string]map[string]string, error) {
 			attests[strings.ToLower(strings.TrimPrefix(k, "attest:"))] = v
 			continue
 		}
-		if strings.HasPrefix(k, "build-arg:BUILDKIT_ATTEST_") {
-			attests[strings.ToLower(strings.TrimPrefix(k, "build-arg:BUILDKIT_ATTEST_"))] = v
+		if strings.HasPrefix(k, "build-arg:DEVKIT_ATTEST_") {
+			attests[strings.ToLower(strings.TrimPrefix(k, "build-arg:DEVKIT_ATTEST_"))] = v
 			continue
 		}
 	}

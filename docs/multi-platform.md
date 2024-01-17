@@ -5,7 +5,7 @@
 
 
 
-BuildKit provides built-in support for building multi-platform by setting a comma-separated list of
+DevKit provides built-in support for building multi-platform by setting a comma-separated list of
 [platform specifiers](https://github.com/containerd/containerd/blob/v1.5.7/platforms/platforms.go#L63) as `platform` option.
 
 ```bash
@@ -23,10 +23,10 @@ You do not need to set up QEMU manually in most cases.
 
 ### Error `exec user process caused: exec format error`
 
-You may face an error like `exec user process caused: exec format error`, mostly when you are using a third-party package of BuildKit that lacks
+You may face an error like `exec user process caused: exec format error`, mostly when you are using a third-party package of DevKit that lacks
 `devkit-qemu-*` binaries.
 
-In such a case, you have to download the official binary release of BuildKit from https://github.com/khulnasoft/devkit/releases , and install
+In such a case, you have to download the official binary release of DevKit from https://github.com/khulnasoft/devkit/releases , and install
 the `devkit-qemu-*` binaries in the release archive into the `$PATH` of the host.
 
 You may also face `exec format error` when the container contains mix of binaries for multiple architectures.

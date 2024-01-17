@@ -246,7 +246,7 @@ func NewMonitor() (*Monitor, error) {
 }
 
 func prepareCgroupControllers() error {
-	v, ok := os.LookupEnv("BUILDKIT_SETUP_CGROUPV2_ROOT")
+	v, ok := os.LookupEnv("DEVKIT_SETUP_CGROUPV2_ROOT")
 	if !ok {
 		return nil
 	}

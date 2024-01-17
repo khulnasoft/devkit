@@ -285,7 +285,7 @@ func ociWorkerInitializer(c *cli.Context, common workerInitializerOpt) ([]worker
 
 	processMode := oci.ProcessSandbox
 	if cfg.NoProcessSandbox {
-		bklog.L.Warn("NoProcessSandbox is enabled. Note that NoProcessSandbox allows build containers to kill (and potentially ptrace) an arbitrary process in the BuildKit host namespace. NoProcessSandbox should be enabled only when the BuildKit is running in a container as an unprivileged user.")
+		bklog.L.Warn("NoProcessSandbox is enabled. Note that NoProcessSandbox allows build containers to kill (and potentially ptrace) an arbitrary process in the DevKit host namespace. NoProcessSandbox should be enabled only when the DevKit is running in a container as an unprivileged user.")
 		if !cfg.Rootless {
 			return nil, errors.New("can't enable NoProcessSandbox without Rootless")
 		}
@@ -401,7 +401,7 @@ func snapshotterFactory(commonRoot string, cfg config.OCIConfig, sm *session.Man
 		sgzCfg := sgzconf.Config{}
 		if cfg.StargzSnapshotterConfig != nil {
 			// In order to keep the stargz Config type (and dependency) out of
-			// the main BuildKit config, the main config Unmarshalls it into a
+			// the main DevKit config, the main config Unmarshalls it into a
 			// generic map[string]interface{}. Here we convert it back into TOML
 			// tree, and unmarshal it to the actual type.
 			t, err := toml.TreeFromMap(cfg.StargzSnapshotterConfig)

@@ -64,7 +64,7 @@ func (sb *sandbox) Cmd(args ...string) *exec.Cmd {
 	}
 	cmd := exec.Command("buildctl", args...)
 	cmd.Env = append(cmd.Env, os.Environ()...)
-	cmd.Env = append(cmd.Env, "BUILDKIT_HOST="+sb.Address())
+	cmd.Env = append(cmd.Env, "DEVKIT_HOST="+sb.Address())
 	return cmd
 }
 

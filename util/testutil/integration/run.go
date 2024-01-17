@@ -166,7 +166,7 @@ func Run(t *testing.T, testCases []Test, opt ...TestOpt) {
 	matrix := prepareValueMatrix(tc)
 
 	list := List()
-	if os.Getenv("BUILDKIT_WORKER_RANDOM") == "1" && len(list) > 0 {
+	if os.Getenv("DEVKIT_WORKER_RANDOM") == "1" && len(list) > 0 {
 		rng := rand.New(rand.NewSource(time.Now().UnixNano())) //nolint:gosec // using math/rand is fine in a test utility
 		list = []Worker{list[rng.Intn(len(list))]}
 	}
@@ -324,7 +324,7 @@ func WriteConfig(updaters []ConfigUpdater) (string, error) {
 }
 
 func runMirror(t *testing.T, mirroredImages map[string]string) (host string, _ func() error, err error) {
-	mirrorDir := os.Getenv("BUILDKIT_REGISTRY_MIRROR_DIR")
+	mirrorDir := os.Getenv("DEVKIT_REGISTRY_MIRROR_DIR")
 
 	var lock *flock.Flock
 	if mirrorDir != "" {

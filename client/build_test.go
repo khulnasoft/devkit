@@ -2025,7 +2025,7 @@ func testClientGatewayContainerExtraHosts(t *testing.T, sb integration.Sandbox) 
 }
 
 func testClientGatewayContainerHostNetworking(t *testing.T, sb integration.Sandbox) {
-	if os.Getenv("BUILDKIT_RUN_NETWORK_INTEGRATION_TESTS") == "" {
+	if os.Getenv("DEVKIT_RUN_NETWORK_INTEGRATION_TESTS") == "" {
 		t.SkipNow()
 	}
 

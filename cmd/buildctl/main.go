@@ -43,7 +43,7 @@ func main() {
 	app.Usage = "build utility"
 	app.Version = version.Version
 
-	defaultAddress := os.Getenv("BUILDKIT_HOST")
+	defaultAddress := os.Getenv("DEVKIT_HOST")
 	if defaultAddress == "" {
 		defaultAddress = appdefaults.Address
 	}

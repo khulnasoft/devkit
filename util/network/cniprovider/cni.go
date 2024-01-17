@@ -101,7 +101,7 @@ func (c *cniProvider) Close() error {
 }
 
 func initLock() (func() error, error) {
-	if v := os.Getenv("BUILDKIT_CNI_INIT_LOCK_PATH"); v != "" {
+	if v := os.Getenv("DEVKIT_CNI_INIT_LOCK_PATH"); v != "" {
 		l := flock.New(v)
 		if err := l.Lock(); err != nil {
 			return nil, err

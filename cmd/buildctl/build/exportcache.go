@@ -50,7 +50,7 @@ func ParseExportCache(exportCaches []string) ([]client.CacheOptionsEntry, error)
 	for _, exportCache := range exportCaches {
 		legacy := !strings.Contains(exportCache, "type=")
 		if legacy {
-			// Deprecated since BuildKit v0.4.0, but no plan to remove: https://github.com/khulnasoft/devkit/pull/2783#issuecomment-1093449772
+			// Deprecated since DevKit v0.4.0, but no plan to remove: https://github.com/khulnasoft/devkit/pull/2783#issuecomment-1093449772
 			bklog.L.Warnf("--export-cache <ref> is deprecated. Please use --export-cache type=registry,ref=<ref>,<opt>=<optval>[,<opt>=<optval>] instead")
 			exports = append(exports, client.CacheOptionsEntry{
 				Type: "registry",

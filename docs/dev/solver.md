@@ -1,6 +1,6 @@
 # Buildkit solver design
 
-The solver is a component in BuildKit responsible for parsing the build
+The solver is a component in DevKit responsible for parsing the build
 definition and scheduling the operations to the workers for execution.
 
 Solver package is heavily optimized for deduplication of work, concurrent

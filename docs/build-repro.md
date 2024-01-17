@@ -2,7 +2,7 @@
 
 ## Reproducing the pinned dependencies
 
-Reproducing the pinned dependencies is supported since BuildKit v0.11.
+Reproducing the pinned dependencies is supported since DevKit v0.11.
 
 e.g.,
 ```bash
@@ -40,8 +40,8 @@ Any source type is supported, but how to pin a source depends on the type.
 ## `SOURCE_DATE_EPOCH`
 [`SOURCE_DATE_EPOCH`](https://reproducible-builds.org/docs/source-date-epoch/) is the convention for pinning timestamps to a specific value.
 
-The Dockerfile frontend supports consuming the `SOURCE_DATE_EPOCH` value as a special build arg, since BuildKit 0.11.
-Minimal support is also available on older BuildKit when using Dockerfile 1.5 frontend.
+The Dockerfile frontend supports consuming the `SOURCE_DATE_EPOCH` value as a special build arg, since DevKit 0.11.
+Minimal support is also available on older DevKit when using Dockerfile 1.5 frontend.
 
 ```console
 buildctl build --frontend dockerfile.v0 --opt build-arg:SOURCE_DATE_EPOCH=$(git log -1 --pretty=%ct) ...
@@ -49,7 +49,7 @@ buildctl build --frontend dockerfile.v0 --opt build-arg:SOURCE_DATE_EPOCH=$(git 
 
 The `buildctl` CLI (<= 0.12) does not automatically propagate the `$SOURCE_DATE_EPOCH` environment value from the client host to the `SOURCE_DATE_EPOCH` build arg.
 <!-- TODO: s/master/v0.13/ -->
-In the `master` branch of BuildKit, the `buildctl` CLI is updated to automatically capture the environment value.
+In the `master` branch of DevKit, the `buildctl` CLI is updated to automatically capture the environment value.
 Docker Buildx (>= 0.10) automatically captures the environment value too.
 
 The build arg value is used for:
@@ -65,8 +65,8 @@ To apply the build arg value to the timestamps of the files inside the image, sp
 ```
 
 <!-- TODO: s/master/v0.13/ -->
-The `rewrite-timestamp` option is only available in the `master` branch of BuildKit.
+The `rewrite-timestamp` option is only available in the `master` branch of DevKit.
 See [v0.12 documentation](https://github.com/khulnasoft/devkit/blob/v0.12/docs/build-repro.md#caveats) for dealing with timestamps
-in BuildKit v0.12 and v0.11.
+in DevKit v0.12 and v0.11.
 
 See also the [documentation](/frontend/dockerfile/docs/reference.md#devkit-built-in-build-args) of the Dockerfile frontend.

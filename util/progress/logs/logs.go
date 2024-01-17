@@ -60,11 +60,11 @@ type streamWriter struct {
 
 func (sw *streamWriter) checkLimit(n int) int {
 	configCheckOnce.Do(func() {
-		maxLogSize, err := strconv.ParseInt(os.Getenv("BUILDKIT_STEP_LOG_MAX_SIZE"), 10, 32)
+		maxLogSize, err := strconv.ParseInt(os.Getenv("DEVKIT_STEP_LOG_MAX_SIZE"), 10, 32)
 		if err == nil {
 			defaultMaxLogSize = int(maxLogSize)
 		}
-		maxLogSpeed, err := strconv.ParseInt(os.Getenv("BUILDKIT_STEP_LOG_MAX_SPEED"), 10, 32)
+		maxLogSpeed, err := strconv.ParseInt(os.Getenv("DEVKIT_STEP_LOG_MAX_SPEED"), 10, 32)
 		if err == nil {
 			defaultMaxLogSpeed = int(maxLogSpeed)
 		}

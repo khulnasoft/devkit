@@ -18,7 +18,7 @@ var debugSchedulerSteps []string
 var debugSchedulerStepsParseOnce sync.Once
 
 func init() {
-	if os.Getenv("BUILDKIT_SCHEDULER_DEBUG") == "1" {
+	if os.Getenv("DEVKIT_SCHEDULER_DEBUG") == "1" {
 		debugScheduler = true
 	}
 }
@@ -73,7 +73,7 @@ func (s *scheduler) Stop() {
 
 func (s *scheduler) loop() {
 	debugSchedulerStepsParseOnce.Do(func() {
-		if s := os.Getenv("BUILDKIT_SCHEDULER_DEBUG_STEPS"); s != "" {
+		if s := os.Getenv("DEVKIT_SCHEDULER_DEBUG_STEPS"); s != "" {
 			fields, err := csv.NewReader(strings.NewReader(s)).Read()
 			if err != nil {
 				return
@@ -201,10 +201,10 @@ func (s *scheduler) dispatch(e *edge) {
 	// to error the edge instead. They can only appear from algorithm bugs in
 	// unpark(), not for any external input.
 	if len(openIncoming) > 0 && len(openOutgoing) == 0 {
-		e.markFailed(pf, errors.New("devkit scheduler error: return leaving incoming open. Please report this with BUILDKIT_SCHEDULER_DEBUG=1"))
+		e.markFailed(pf, errors.New("devkit scheduler error: return leaving incoming open. Please report this with DEVKIT_SCHEDULER_DEBUG=1"))
 	}
 	if len(openIncoming) == 0 && len(openOutgoing) > 0 {
-		e.markFailed(pf, errors.New("devkit scheduler error: return leaving outgoing open. Please report this with BUILDKIT_SCHEDULER_DEBUG=1"))
+		e.markFailed(pf, errors.New("devkit scheduler error: return leaving outgoing open. Please report this with DEVKIT_SCHEDULER_DEBUG=1"))
 	}
 }
 

@@ -506,22 +506,22 @@ func (m *SolveRequest) GetExporters() []*Exporter {
 }
 
 type CacheOptions struct {
-	// ExportRefDeprecated is deprecated in favor or the new Exports since BuildKit v0.4.0.
+	// ExportRefDeprecated is deprecated in favor or the new Exports since DevKit v0.4.0.
 	// When ExportRefDeprecated is set, the solver appends
 	// {.Type = "registry", .Attrs = ExportAttrs.add("ref", ExportRef)}
 	// to Exports for compatibility. (planned to be removed)
 	ExportRefDeprecated string `protobuf:"bytes,1,opt,name=ExportRefDeprecated,proto3" json:"ExportRefDeprecated,omitempty"`
-	// ImportRefsDeprecated is deprecated in favor or the new Imports since BuildKit v0.4.0.
+	// ImportRefsDeprecated is deprecated in favor or the new Imports since DevKit v0.4.0.
 	// When ImportRefsDeprecated is set, the solver appends
 	// {.Type = "registry", .Attrs = {"ref": importRef}}
 	// for each of the ImportRefs entry to Imports for compatibility. (planned to be removed)
 	ImportRefsDeprecated []string `protobuf:"bytes,2,rep,name=ImportRefsDeprecated,proto3" json:"ImportRefsDeprecated,omitempty"`
-	// ExportAttrsDeprecated is deprecated since BuildKit v0.4.0.
+	// ExportAttrsDeprecated is deprecated since DevKit v0.4.0.
 	// See the description of ExportRefDeprecated.
 	ExportAttrsDeprecated map[string]string `protobuf:"bytes,3,rep,name=ExportAttrsDeprecated,proto3" json:"ExportAttrsDeprecated,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
-	// Exports was introduced in BuildKit v0.4.0.
+	// Exports was introduced in DevKit v0.4.0.
 	Exports []*CacheOptionsEntry `protobuf:"bytes,4,rep,name=Exports,proto3" json:"Exports,omitempty"`
-	// Imports was introduced in BuildKit v0.4.0.
+	// Imports was introduced in DevKit v0.4.0.
 	Imports              []*CacheOptionsEntry `protobuf:"bytes,5,rep,name=Imports,proto3" json:"Imports,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
 	XXX_unrecognized     []byte               `json:"-"`

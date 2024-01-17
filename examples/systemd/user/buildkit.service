@@ -1,5 +1,5 @@
 [Unit]
-Description=BuildKit
+Description=DevKit
 Documentation=https://github.com/khulnasoft/devkit
 
 [Service]

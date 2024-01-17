@@ -1,4 +1,4 @@
 generate:
-	DOCKER_BUILDKIT=1 docker build -o . .
+	DOCKER_DEVKIT=1 docker build -o . .
 
 .PHONY: generate

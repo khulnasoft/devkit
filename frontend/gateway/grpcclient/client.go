@@ -35,7 +35,7 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-const frontendPrefix = "BUILDKIT_FRONTEND_OPT_"
+const frontendPrefix = "DEVKIT_FRONTEND_OPT_"
 
 type GrpcClient interface {
 	client.Client
@@ -1213,19 +1213,19 @@ func opts() map[string]string {
 }
 
 func sessionID() string {
-	return os.Getenv("BUILDKIT_SESSION_ID")
+	return os.Getenv("DEVKIT_SESSION_ID")
 }
 
 func workers() []client.WorkerInfo {
 	var c []client.WorkerInfo
-	if err := json.Unmarshal([]byte(os.Getenv("BUILDKIT_WORKERS")), &c); err != nil {
+	if err := json.Unmarshal([]byte(os.Getenv("DEVKIT_WORKERS")), &c); err != nil {
 		return nil
 	}
 	return c
 }
 
 func product() string {
-	return os.Getenv("BUILDKIT_EXPORTEDPRODUCT")
+	return os.Getenv("DEVKIT_EXPORTEDPRODUCT")
 }
 
 func convertGogoAny(in []*gogotypes.Any) []*any.Any {

@@ -13,4 +13,4 @@ These dependencies can be installed from the ports tree, or using the `pkg` comm
 % pkg install containerd runj
 ```
 
-For BuildKit build instructions see [`..github/CONTRIBUTING.md`](../.github/CONTRIBUTING.md).
+For DevKit build instructions see [`..github/CONTRIBUTING.md`](../.github/CONTRIBUTING.md).

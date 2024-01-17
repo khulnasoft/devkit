@@ -898,13 +898,13 @@ type SolveRequest struct {
 	Definition  *pb.Definition    `protobuf:"bytes,1,opt,name=Definition,proto3" json:"Definition,omitempty"`
 	Frontend    string            `protobuf:"bytes,2,opt,name=Frontend,proto3" json:"Frontend,omitempty"`
 	FrontendOpt map[string]string `protobuf:"bytes,3,rep,name=FrontendOpt,proto3" json:"FrontendOpt,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
-	// 4 was removed in BuildKit v0.11.0.
+	// 4 was removed in DevKit v0.11.0.
 	AllowResultReturn   bool `protobuf:"varint,5,opt,name=allowResultReturn,proto3" json:"allowResultReturn,omitempty"`
 	AllowResultArrayRef bool `protobuf:"varint,6,opt,name=allowResultArrayRef,proto3" json:"allowResultArrayRef,omitempty"`
 	// apicaps.CapSolveInlineReturn deprecated
 	Final        bool   `protobuf:"varint,10,opt,name=Final,proto3" json:"Final,omitempty"`
 	ExporterAttr []byte `protobuf:"bytes,11,opt,name=ExporterAttr,proto3" json:"ExporterAttr,omitempty"`
-	// CacheImports was added in BuildKit v0.4.0.
+	// CacheImports was added in DevKit v0.4.0.
 	// apicaps:CapImportCaches
 	CacheImports []*CacheOptionsEntry `protobuf:"bytes,12,rep,name=CacheImports,proto3" json:"CacheImports,omitempty"`
 	// apicaps:CapFrontendInputs

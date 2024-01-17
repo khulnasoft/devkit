@@ -27,7 +27,7 @@ import (
 const (
 	// Don't forget to update frontend documentation if you add
 	// a new build-arg: frontend/dockerfile/docs/reference.md
-	keySyntaxArg = "build-arg:BUILDKIT_SYNTAX"
+	keySyntaxArg = "build-arg:DEVKIT_SYNTAX"
 )
 
 func Build(ctx context.Context, c client.Client) (_ *client.Result, err error) {

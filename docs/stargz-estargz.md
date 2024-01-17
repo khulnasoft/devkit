@@ -19,7 +19,7 @@ Buildkit supports two ways to enable lazy pulling of stargz/eStargz images.
 ### Using builtin support (recommended)
 
 - Requirements
-  - Rootless execution requires kernel >= 5.11 or Ubuntu kernel. BuildKit >= v0.11 is recommended.
+  - Rootless execution requires kernel >= 5.11 or Ubuntu kernel. DevKit >= v0.11 is recommended.
 
 OCI worker has builtin support for stargz/eStargz.
 You can enable this feature by running `devkitd` with an option `--oci-worker-snapshotter=stargz`.
@@ -101,9 +101,9 @@ This configuration is for users of containerd worker.
 
 - Requirements
   - [Stargz Snapshotter (`containerd-stargz-grpc`)](https://github.com/containerd/stargz-snapshotter) needs to be installed. stargz-snapshotter >= v0.13 is recommended.
-  - Rootless execution requires kernel >= 5.11 or Ubuntu kernel. BuildKit >= v0.11 is recommended.
+  - Rootless execution requires kernel >= 5.11 or Ubuntu kernel. DevKit >= v0.11 is recommended.
 
-> NOTE: BuildKit's registry configuration isn't propagated to the proxy stargz snapshotter so it needs to be configured separately when you use private/mirror registries. If you use OCI worker + builtin stargz snapshotter, the separated configurations isn't needed.
+> NOTE: DevKit's registry configuration isn't propagated to the proxy stargz snapshotter so it needs to be configured separately when you use private/mirror registries. If you use OCI worker + builtin stargz snapshotter, the separated configurations isn't needed.
 
 #### Proxy snapshotter with containerd worker
 
@@ -151,7 +151,7 @@ $ systemctl --user restart containerd.service
 
 [`install-devkit-containerd` subcommand](https://github.com/containerd/nerdctl/blob/v1.0.0/docs/build.md#setting-up-devkit-with-containerd-worker) installs rootless devkitd with containerd worker.
 `CONTAINERD_SNAPSHOTTER=stargz` enables stargz-snapshotter.
-`CONTAINERD_NAMESPACE` specifies containerd namespace used by BuildKit.
+`CONTAINERD_NAMESPACE` specifies containerd namespace used by DevKit.
 
 ```
 $ CONTAINERD_NAMESPACE=default CONTAINERD_SNAPSHOTTER=stargz containerd-rootless-setuptool.sh install-devkit-containerd
@@ -232,9 +232,9 @@ For more details about lazy pulling with stargz/eStargz images, please refer to 
 
 ## Creating stargz/eStargz images
 
-### Building eStargz image with BuildKit
+### Building eStargz image with DevKit
 
-BuildKit supports creating eStargz as one of the compression types.
+DevKit supports creating eStargz as one of the compression types.
 
 :information_source: Creating eStargz image does NOT require [stargz-snapshotter setup](#enabling-lazy-pulling-of-stargzeStargz-images).
 
@@ -250,7 +250,7 @@ buildctl build ... \
 
 :information_source: `compression` option isn't applied to layers that already exist in the cache (including the base images). Thus if you create eStargz image using non-eStargz base images, you need to specify `force-compression=true` option as well for applying the `compression` config to all existing layers.
 
-:information_source: BuildKit doesn't support [prefetch-based optimization of eStargz](https://github.com/containerd/stargz-snapshotter/blob/v0.6.4/docs/stargz-estargz.md#example-use-case-of-prioritized-files-workload-based-image-optimization-in-stargz-snapshotter). To enable full feature of eStargz, you can also use other tools as described in the next section.
+:information_source: DevKit doesn't support [prefetch-based optimization of eStargz](https://github.com/containerd/stargz-snapshotter/blob/v0.6.4/docs/stargz-estargz.md#example-use-case-of-prioritized-files-workload-based-image-optimization-in-stargz-snapshotter). To enable full feature of eStargz, you can also use other tools as described in the next section.
 
 ### Other methods to obtain stargz/eStargz images
 
@@ -258,9 +258,9 @@ Pre-converted stargz/eStargz images are available at [`ghcr.io/stargz-containers
 
 You can also create any stargz/eStargz image using the variety of tools including the following.
 
-- [Docker Buildx](https://github.com/containerd/stargz-snapshotter/tree/v0.13.0#building-estargz-images-using-devkit): Docker CLI plugin for BuildKit.
+- [Docker Buildx](https://github.com/containerd/stargz-snapshotter/tree/v0.13.0#building-estargz-images-using-devkit): Docker CLI plugin for DevKit.
 - [Kaniko](https://github.com/containerd/stargz-snapshotter/tree/v0.13.0#building-estargz-images-using-kaniko): An image builder runnable in containers and Kubernetes.
-- [nerdctl](https://github.com/containerd/nerdctl/blob/v1.0.0/docs/stargz.md#building-stargz-images-using-nerdctl-build): Docker-compatible CLI for containerd and BuildKit. This supports `convert` subcommand to convert an OCI/Docker image into eStargz.
+- [nerdctl](https://github.com/containerd/nerdctl/blob/v1.0.0/docs/stargz.md#building-stargz-images-using-nerdctl-build): Docker-compatible CLI for containerd and DevKit. This supports `convert` subcommand to convert an OCI/Docker image into eStargz.
 - [`ctr-remote`](https://github.com/containerd/stargz-snapshotter/blob/v0.13.0/docs/ctr-remote.md): containerd CLI developed in stargz snapshotter project. This supports converting an OCI/Docker image into eStargz and [optimizing](https://github.com/containerd/stargz-snapshotter/blob/v0.13.0/docs/estargz.md#example-use-case-of-prioritized-files-workload-based-image-optimization-in-stargz-snapshotter) it.
 - [`stargzify`](https://github.com/google/crfs/tree/master/stargz/stargzify): CLI tool to convert an OCI/Docker image to stargz. This is developed in CRFS project. Creating eStargz is unsupported.
 

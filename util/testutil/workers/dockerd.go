@@ -149,7 +149,7 @@ func (c Moby) New(ctx context.Context, cfg *integration.BackendConfig) (b integr
 		"--tls=false",
 		"--debug",
 	}
-	if s := os.Getenv("BUILDKIT_INTEGRATION_DOCKERD_FLAGS"); s != "" {
+	if s := os.Getenv("DEVKIT_INTEGRATION_DOCKERD_FLAGS"); s != "" {
 		dockerdFlags = append(dockerdFlags, strings.Split(strings.TrimSpace(s), "\n")...)
 	}
 

@@ -50,7 +50,7 @@ image](https://docs.docker.com/glossary/#parent-image) from which you are
 building. `FROM` may only be preceded by one or more `ARG` instructions, which
 declare arguments that are used in `FROM` lines in the Dockerfile.
 
-BuildKit treats lines that begin with `#` as a comment, unless the line is
+DevKit treats lines that begin with `#` as a comment, unless the line is
 a valid [parser directive](#parser-directives). A `#` marker anywhere
 else in a line is treated as an argument. This allows statements like:
 
@@ -115,7 +115,7 @@ and don't show up as build steps. Parser directives are written as a
 special type of comment in the form `# directive=value`. A single directive
 may only be used once.
 
-Once a comment, empty line or builder instruction has been processed, BuildKit
+Once a comment, empty line or builder instruction has been processed, DevKit
 no longer looks for parser directives. Instead it treats anything formatted
 as a parser directive as a comment and doesn't attempt to validate if it might
 be a parser directive. Therefore, all parser directives must be at the
@@ -189,13 +189,13 @@ The following parser directives are supported:
 <a name="external-implementation-features"><!-- included for deep-links to old section --></a>
 
 Use the `syntax` parser directive to declare the Dockerfile syntax version to
-use for the build. If unspecified, BuildKit uses a bundled version of the
+use for the build. If unspecified, DevKit uses a bundled version of the
 Dockerfile frontend. Declaring a syntax version lets you automatically use the
-latest Dockerfile version without having to upgrade BuildKit or Docker Engine,
+latest Dockerfile version without having to upgrade DevKit or Docker Engine,
 or even use a custom Dockerfile implementation.
 
 Most users will want to set this parser directive to `docker/dockerfile:1`,
-which causes BuildKit to pull the latest stable version of the Dockerfile
+which causes DevKit to pull the latest stable version of the Dockerfile
 syntax before the build.
 
 ```dockerfile
@@ -1547,14 +1547,14 @@ causing the need to rebuild the intermediate stages again. With `--link` the
 layer the previous build generated is reused and merged on top of the new
 layers. This also means you can easily rebase your images when the base images
 receive updates, without having to execute the whole build again. In backends
-that support it, BuildKit can do this rebase action without the need to push or
-pull any layers between the client and the registry. BuildKit will detect this
+that support it, DevKit can do this rebase action without the need to push or
+pull any layers between the client and the registry. DevKit will detect this
 case and only create new image manifest that contains the new layers and old
 layers in correct order.
 
-The same behavior where BuildKit can avoid pulling down the base image can also
+The same behavior where DevKit can avoid pulling down the base image can also
 happen when using `--link` and no other commands that would require access to
-the files in the base image. In that case BuildKit will only build the layers
+the files in the base image. In that case DevKit will only build the layers
 for the `COPY` commands and push them to the registry directly on top of the
 layers of the base image.
 
@@ -2218,10 +2218,10 @@ When building this Dockerfile, the `HTTP_PROXY` is preserved in the
 
 ### Automatic platform ARGs in the global scope
 
-This feature is only available when using the [BuildKit](https://docs.docker.com/build/devkit/)
+This feature is only available when using the [DevKit](https://docs.docker.com/build/devkit/)
 backend.
 
-BuildKit supports a predefined set of `ARG` variables with information on the platform of
+DevKit supports a predefined set of `ARG` variables with information on the platform of
 the node performing the build (build platform) and on the platform of the
 resulting image (target platform). The target platform can be specified with
 the `--platform` flag on `docker build`.
@@ -2249,17 +2249,17 @@ ARG TARGETPLATFORM
 RUN echo "I'm building for $TARGETPLATFORM"
 ```
 
-### BuildKit built-in build args
+### DevKit built-in build args
 
 | Arg                             | Type   | Description                                                                                                                                                                                       |
 | ------------------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `BUILDKIT_CACHE_MOUNT_NS`       | String | Set optional cache ID namespace.                                                                                                                                                                  |
-| `BUILDKIT_CONTEXT_KEEP_GIT_DIR` | Bool   | Trigger Git context to keep the `.git` directory.                                                                                                                                                 |
-| `BUILDKIT_INLINE_CACHE`[^2]     | Bool   | Inline cache metadata to image config or not.                                                                                                                                                     |
-| `BUILDKIT_MULTI_PLATFORM`       | Bool   | Opt into deterministic output regardless of multi-platform output or not.                                                                                                                         |
-| `BUILDKIT_SANDBOX_HOSTNAME`     | String | Set the hostname (default `devkitsandbox`)                                                                                                                                                      |
-| `BUILDKIT_SYNTAX`               | String | Set frontend image                                                                                                                                                                                |
-| `SOURCE_DATE_EPOCH`             | Int    | Set the Unix timestamp for created image and layers. More info from [reproducible builds](https://reproducible-builds.org/docs/source-date-epoch/). Supported since Dockerfile 1.5, BuildKit 0.11 |
+| `DEVKIT_CACHE_MOUNT_NS`       | String | Set optional cache ID namespace.                                                                                                                                                                  |
+| `DEVKIT_CONTEXT_KEEP_GIT_DIR` | Bool   | Trigger Git context to keep the `.git` directory.                                                                                                                                                 |
+| `DEVKIT_INLINE_CACHE`[^2]     | Bool   | Inline cache metadata to image config or not.                                                                                                                                                     |
+| `DEVKIT_MULTI_PLATFORM`       | Bool   | Opt into deterministic output regardless of multi-platform output or not.                                                                                                                         |
+| `DEVKIT_SANDBOX_HOSTNAME`     | String | Set the hostname (default `devkitsandbox`)                                                                                                                                                      |
+| `DEVKIT_SYNTAX`               | String | Set frontend image                                                                                                                                                                                |
+| `SOURCE_DATE_EPOCH`             | Int    | Set the Unix timestamp for created image and layers. More info from [reproducible builds](https://reproducible-builds.org/docs/source-date-epoch/). Supported since Dockerfile 1.5, DevKit 0.11 |
 
 #### Example: keep `.git` dir
 
@@ -2276,7 +2276,7 @@ RUN --mount=target=. \
 ```
 
 ```console
-$ docker build --build-arg BUILDKIT_CONTEXT_KEEP_GIT_DIR=1 https://github.com/user/repo.git#main
+$ docker build --build-arg DEVKIT_CONTEXT_KEEP_GIT_DIR=1 https://github.com/user/repo.git#main
 ```
 
 ### Impact on build caching
@@ -2744,4 +2744,4 @@ For examples of Dockerfiles, refer to:
 - The [build guide](https://docs.docker.com/build/guide/)
 
 [^1]: Value required
-[^2]: For Docker-integrated [BuildKit](https://docs.docker.com/build/devkit/#getting-started) and `docker buildx build`
+[^2]: For Docker-integrated [DevKit](https://docs.docker.com/build/devkit/#getting-started) and `docker buildx build`

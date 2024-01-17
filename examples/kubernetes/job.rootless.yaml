@@ -27,7 +27,7 @@ spec:
         - name: devkit
           image: khulnasoft/devkit:master-rootless
           env:
-            - name: BUILDKITD_FLAGS
+            - name: DEVKITD_FLAGS
               value: --oci-worker-no-process-sandbox
           command:
             - buildctl-daemonless.sh

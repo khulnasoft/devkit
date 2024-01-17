@@ -1,15 +1,15 @@
 [![asciicinema example](https://asciinema.org/a/gPEIEo1NzmDTUu2bEPsUboqmU.png)](https://asciinema.org/a/gPEIEo1NzmDTUu2bEPsUboqmU)
 
-# BuildKit <!-- omit in toc -->
+# DevKit <!-- omit in toc -->
 
 [![GitHub Release](https://img.shields.io/github/release/khulnasoft/devkit.svg?style=flat-square)](https://github.com/khulnasoft/devkit/releases/latest)
 [![PkgGoDev](https://img.shields.io/badge/go.dev-docs-007d9c?style=flat-square&logo=go&logoColor=white)](https://pkg.go.dev/github.com/khulnasoft/devkit/client/llb)
-[![CI BuildKit Status](https://img.shields.io/github/actions/workflow/status/khulnasoft/devkit/devkit.yml?label=devkit&logo=github&style=flat-square)](https://github.com/khulnasoft/devkit/actions?query=workflow%3Adevkit)
+[![CI DevKit Status](https://img.shields.io/github/actions/workflow/status/khulnasoft/devkit/devkit.yml?label=devkit&logo=github&style=flat-square)](https://github.com/khulnasoft/devkit/actions?query=workflow%3Adevkit)
 [![CI Frontend Status](https://img.shields.io/github/actions/workflow/status/khulnasoft/devkit/frontend.yml?label=frontend&logo=github&style=flat-square)](https://github.com/khulnasoft/devkit/actions?query=workflow%3Afrontend)
 [![Go Report Card](https://goreportcard.com/badge/github.com/khulnasoft/devkit?style=flat-square)](https://goreportcard.com/report/github.com/khulnasoft/devkit)
 [![Codecov](https://img.shields.io/codecov/c/github/khulnasoft/devkit?logo=codecov&style=flat-square)](https://codecov.io/gh/khulnasoft/devkit)
 
-BuildKit is a toolkit for converting source code to build artifacts in an efficient, expressive and repeatable manner.
+DevKit is a toolkit for converting source code to build artifacts in an efficient, expressive and repeatable manner.
 
 Key features:
 
@@ -32,15 +32,15 @@ Join `#devkit` channel on [Docker Community Slack](https://dockr.ly/comm-slack)
 
 > **Note**
 >
-> If you are visiting this repo for the usage of BuildKit-only Dockerfile features
+> If you are visiting this repo for the usage of DevKit-only Dockerfile features
 > like `RUN --mount=type=(bind|cache|tmpfs|secret|ssh)`, please refer to the
 > [Dockerfile reference](https://docs.docker.com/engine/reference/builder/).
 
 > **Note**
 >
-> `docker build` [uses Buildx and BuildKit by default](https://docs.docker.com/build/architecture/) since Docker Engine 23.0.
+> `docker build` [uses Buildx and DevKit by default](https://docs.docker.com/build/architecture/) since Docker Engine 23.0.
 > You don't need to read this document unless you want to use the full-featured
-> standalone version of BuildKit.
+> standalone version of DevKit.
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -70,15 +70,15 @@ Join `#devkit` channel on [Docker Community Slack](https://dockr.ly/comm-slack)
   - [Consistent hashing](#consistent-hashing)
 - [Metadata](#metadata)
 - [Systemd socket activation](#systemd-socket-activation)
-- [Expose BuildKit as a TCP service](#expose-devkit-as-a-tcp-service)
+- [Expose DevKit as a TCP service](#expose-devkit-as-a-tcp-service)
   - [Load balancing](#load-balancing)
-- [Containerizing BuildKit](#containerizing-devkit)
+- [Containerizing DevKit](#containerizing-devkit)
   - [Podman](#podman)
   - [Nerdctl](#nerdctl)
   - [Kubernetes](#kubernetes)
   - [Daemonless](#daemonless)
 - [OpenTelemetry support](#opentelemetry-support)
-- [Running BuildKit without root privileges](#running-devkit-without-root-privileges)
+- [Running DevKit without root privileges](#running-devkit-without-root-privileges)
 - [Building multi-platform images](#building-multi-platform-images)
   - [Configuring `buildctl`](#configuring-buildctl)
     - [Color Output Controls](#color-output-controls)
@@ -89,9 +89,9 @@ Join `#devkit` channel on [Docker Community Slack](https://dockr.ly/comm-slack)
 
 ## Used by
 
-BuildKit is used by the following projects:
+DevKit is used by the following projects:
 
--   [Moby & Docker](https://github.com/moby/moby/pull/37151) (`DOCKER_BUILDKIT=1 docker build`)
+-   [Moby & Docker](https://github.com/moby/moby/pull/37151) (`DOCKER_DEVKIT=1 docker build`)
 -   [img](https://github.com/genuinetools/img)
 -   [OpenFaaS Cloud](https://github.com/openfaas/openfaas-cloud)
 -   [container build interface](https://github.com/containerbuilding/cbi)
@@ -115,21 +115,21 @@ BuildKit is used by the following projects:
 
 :information_source: For Kubernetes deployments, see [`examples/kubernetes`](./examples/kubernetes).
 
-BuildKit is composed of the `devkitd` daemon and the `buildctl` client.
+DevKit is composed of the `devkitd` daemon and the `buildctl` client.
 While the `buildctl` client is available for Linux, macOS, and Windows, the `devkitd` daemon is only available for Linux currently.
 
 The `devkitd` daemon requires the following components to be installed:
 -   [runc](https://github.com/opencontainers/runc) or [crun](https://github.com/containers/crun)
 -   [containerd](https://github.com/containerd/containerd) (if you want to use containerd worker)
 
-The latest binaries of BuildKit are available [here](https://github.com/khulnasoft/devkit/releases) for Linux, macOS, and Windows.
+The latest binaries of DevKit are available [here](https://github.com/khulnasoft/devkit/releases) for Linux, macOS, and Windows.
 
 [Homebrew package](https://formulae.brew.sh/formula/devkit) (unofficial) is available for macOS.
 ```console
 $ brew install devkit
 ```
 
-To build BuildKit from source, see [`.github/CONTRIBUTING.md`](./.github/CONTRIBUTING.md).
+To build DevKit from source, see [`.github/CONTRIBUTING.md`](./.github/CONTRIBUTING.md).
 
 For a `buildctl` reference, see [this document](./docs/reference/buildctl.md).
 
@@ -153,11 +153,11 @@ To start the devkitd daemon using systemd socket activation, you can install the
 See [Systemd socket activation](#systemd-socket-activation)
 
 The devkitd daemon listens gRPC API on `/run/devkit/devkitd.sock` by default, but you can also use TCP sockets.
-See [Expose BuildKit as a TCP service](#expose-devkit-as-a-tcp-service).
+See [Expose DevKit as a TCP service](#expose-devkit-as-a-tcp-service).
 
 ### Exploring LLB
 
-BuildKit builds are based on a binary intermediate format called LLB that is used for defining the dependency graph for processes running part of your build. tl;dr: LLB is to Dockerfile what LLVM IR is to C.
+DevKit builds are based on a binary intermediate format called LLB that is used for defining the dependency graph for processes running part of your build. tl;dr: LLB is to Dockerfile what LLVM IR is to C.
 
 -   Marshaled as Protobuf messages
 -   Concurrently executable
@@ -186,9 +186,9 @@ Currently, the following high-level languages have been implemented for LLB:
 
 ### Exploring Dockerfiles
 
-Frontends are components that run inside BuildKit and convert any build definition to LLB. There is a special frontend called gateway (`gateway.v0`) that allows using any image as a frontend.
+Frontends are components that run inside DevKit and convert any build definition to LLB. There is a special frontend called gateway (`gateway.v0`) that allows using any image as a frontend.
 
-During development, Dockerfile frontend (`dockerfile.v0`) is also part of the BuildKit repo. In the future, this will be moved out, and Dockerfiles can be built using an external image.
+During development, Dockerfile frontend (`dockerfile.v0`) is also part of the DevKit repo. In the future, this will be moved out, and Dockerfiles can be built using an external image.
 
 #### Building a Dockerfile with `buildctl`
 
@@ -229,7 +229,7 @@ buildctl build \
 
 ### Output
 
-By default, the build result and intermediate cache will only remain internally in BuildKit. An output needs to be specified to retrieve the result.
+By default, the build result and intermediate cache will only remain internally in DevKit. An output needs to be specified to retrieve the result.
 
 #### Image/Registry
 
@@ -279,7 +279,7 @@ If credentials are required, `buildctl` will attempt to read Docker configuratio
 
 #### Local directory
 
-The local client will copy the files directly to the client. This is useful if BuildKit is being used for building something else than container images.
+The local client will copy the files directly to the client. This is useful if DevKit is being used for building something else than container images.
 
 ```bash
 buildctl build ... --output type=local,dest=path/to/output-dir
@@ -394,7 +394,7 @@ See [`./docs/devkitd.toml.md`](./docs/devkitd.toml.md).
 
 ### Export cache
 
-BuildKit supports the following cache exporters:
+DevKit supports the following cache exporters:
 * `inline`: embed the cache into the image, and push them to the registry together
 * `registry`: push the image and the cache separately
 * `local`: export to a local directory
@@ -419,9 +419,9 @@ Note that the inline cache is not imported unless [`--import-cache type=registry
 
 Inline cache embeds cache metadata into the image config. The layers in the image will be left untouched compared to the image with no cache information.
 
-:information_source: Docker-integrated BuildKit (`DOCKER_BUILDKIT=1 docker build`) and `docker buildx`requires 
-`--build-arg BUILDKIT_INLINE_CACHE=1` to be specified to enable the `inline` cache exporter.
-However, the standalone `buildctl` does NOT require `--opt build-arg:BUILDKIT_INLINE_CACHE=1` and the build-arg is simply ignored.
+:information_source: Docker-integrated DevKit (`DOCKER_DEVKIT=1 docker build`) and `docker buildx`requires 
+`--build-arg DEVKIT_INLINE_CACHE=1` to be specified to enable the `inline` cache exporter.
+However, the standalone `buildctl` does NOT require `--opt build-arg:DEVKIT_INLINE_CACHE=1` and the build-arg is simply ignored.
 
 #### Registry (push image and cache separately)
 
@@ -439,7 +439,7 @@ buildctl build ... \
   * `max`: export all the layers of all intermediate steps
 * `ref=<ref>`: specify repository reference to store cache, e.g. `docker.io/user/image:tag`
 * `image-manifest=<true|false>`: whether to export cache manifest as an OCI-compatible image manifest rather than a manifest list/index (default: `false`, must be used with `oci-mediatypes=true`)
-* `oci-mediatypes=<true|false>`: whether to use OCI mediatypes in exported manifests (default: `true`, since BuildKit `v0.8`)
+* `oci-mediatypes=<true|false>`: whether to use OCI mediatypes in exported manifests (default: `true`, since DevKit `v0.8`)
 * `compression=<uncompressed|gzip|estargz|zstd>`: choose compression type for layers newly created and cached, gzip is default value. estargz and zstd should be used with `oci-mediatypes=true`
 * `compression-level=<value>`: choose compression level for gzip, estargz (0-9) and zstd (0-22)
 * `force-compression=true`: forcibly apply `compression` option to all layers
@@ -466,7 +466,7 @@ The directory layout conforms to OCI Image Spec v1.0.
 * `dest=<path>`: destination directory for cache exporter
 * `tag=<tag>`: specify custom tag of image to write to local index (default: `latest`)
 * `image-manifest=<true|false>`: whether to export cache manifest as an OCI-compatible image manifest rather than a manifest list/index (default: `false`, must be used with `oci-mediatypes=true`)
-* `oci-mediatypes=<true|false>`: whether to use OCI mediatypes in exported manifests (default `true`, since BuildKit `v0.8`)
+* `oci-mediatypes=<true|false>`: whether to use OCI mediatypes in exported manifests (default `true`, since DevKit `v0.8`)
 * `compression=<uncompressed|gzip|estargz|zstd>`: choose compression type for layers newly created and cached, gzip is default value. estargz and zstd should be used with `oci-mediatypes=true`.
 * `compression-level=<value>`: compression level for gzip, estargz (0-9) and zstd (0-22)
 * `force-compression=true`: forcibly apply `compression` option to all layers
@@ -572,14 +572,14 @@ buildctl build ... \
 ```
 
 The following attributes are required:
-* `account_url`: The Azure Blob Storage account URL (default: `$BUILDKIT_AZURE_STORAGE_ACCOUNT_URL`)
+* `account_url`: The Azure Blob Storage account URL (default: `$DEVKIT_AZURE_STORAGE_ACCOUNT_URL`)
 
 Storage locations:
 * blobs: `<account_url>/<container>/<prefix><blobs_prefix>/<sha256>`, default: `<account_url>/<container>/blobs/<sha256>`
 * manifests: `<account_url>/<container>/<prefix><manifests_prefix>/<name>`, default: `<account_url>/<container>/manifests/<name>`
 
 Azure Blob Storage configuration:
-* `container`: The Azure Blob Storage container name (default: `devkit-cache` or `$BUILDKIT_AZURE_STORAGE_CONTAINER` if set)
+* `container`: The Azure Blob Storage container name (default: `devkit-cache` or `$DEVKIT_AZURE_STORAGE_CONTAINER` if set)
 * `blobs_prefix`: Global prefix to store / read blobs on the Azure Blob Storage container (`<container>`) (default: `blobs/`)
 * `manifests_prefix`: Global prefix to store / read blobs on the Azure Blob Storage container (`<container>`) (default: `manifests/`)
 
@@ -592,7 +592,7 @@ There are 2 options supported for Azure Blob Storage authentication:
 
 > **Note**
 >
-> Account name can also be specified with `account_name` attribute (or `$BUILDKIT_AZURE_STORAGE_ACCOUNT_NAME`)
+> Account name can also be specified with `account_name` attribute (or `$DEVKIT_AZURE_STORAGE_ACCOUNT_NAME`)
 > if it is not part of the account URL host.
 
 `--export-cache` options:
@@ -614,7 +614,7 @@ There are 2 options supported for Azure Blob Storage authentication:
 
 ### Consistent hashing
 
-If you have multiple BuildKit daemon instances, but you don't want to use registry for sharing cache across the cluster,
+If you have multiple DevKit daemon instances, but you don't want to use registry for sharing cache across the cluster,
 consider client-side load balancing using consistent hashing.
 
 See [`./examples/kubernetes/consistenthash`](./examples/kubernetes/consistenthash).
@@ -651,13 +651,13 @@ jq '.' metadata.json
 ## Systemd socket activation
 
 On Systemd based systems, you can communicate with the daemon via [Systemd socket activation](http://0pointer.de/blog/projects/socket-activation.html), use `devkitd --addr fd://`.
-You can find examples of using Systemd socket activation with BuildKit and Systemd in [`./examples/systemd`](./examples/systemd).
-## Expose BuildKit as a TCP service
+You can find examples of using Systemd socket activation with DevKit and Systemd in [`./examples/systemd`](./examples/systemd).
+## Expose DevKit as a TCP service
 
 The `devkitd` daemon can listen the gRPC API on a TCP socket.
 
 It is highly recommended to create TLS certificates for both the daemon and the client (mTLS).
-Enabling TCP without mTLS is dangerous because the executor containers (aka Dockerfile `RUN` containers) can call BuildKit API as well.
+Enabling TCP without mTLS is dangerous because the executor containers (aka Dockerfile `RUN` containers) can call DevKit API as well.
 
 ```bash
 devkitd \
@@ -682,9 +682,9 @@ buildctl \
 
 See also [Consistent hashing](#consistent-hashing) for client-side load balancing.
 
-## Containerizing BuildKit
+## Containerizing DevKit
 
-BuildKit can also be used by running the `devkitd` daemon inside a Docker container and accessing it remotely.
+DevKit can also be used by running the `devkitd` daemon inside a Docker container and accessing it remotely.
 
 We provide the container images as [`khulnasoft/devkit`](https://hub.docker.com/r/khulnasoft/devkit/tags/):
 
@@ -697,12 +697,12 @@ To run daemon in a container:
 
 ```bash
 docker run -d --name devkitd --privileged khulnasoft/devkit:latest
-export BUILDKIT_HOST=docker-container://devkitd
+export DEVKIT_HOST=docker-container://devkitd
 buildctl build --help
 ```
 
 ### Podman
-To connect to a BuildKit daemon running in a Podman container, use `podman-container://` instead of `docker-container://` .
+To connect to a DevKit daemon running in a Podman container, use `podman-container://` instead of `docker-container://` .
 
 ```bash
 podman run -d --name devkitd --privileged khulnasoft/devkit:latest
@@ -712,7 +712,7 @@ buildctl --addr=podman-container://devkitd build --frontend dockerfile.v0 --loca
 `sudo` is not required.
 
 ### Nerdctl
-To connect to a BuildKit daemon running in a Nerdctl container, use `nerdctl-container://` instead of `docker-container://`.
+To connect to a DevKit daemon running in a Nerdctl container, use `nerdctl-container://` instead of `docker-container://`.
 
 ```bash
 nerdctl run -d --name devkitd --privileged khulnasoft/devkit:latest
@@ -751,7 +751,7 @@ docker run \
     --rm \
     --security-opt seccomp=unconfined \
     --security-opt apparmor=unconfined \
-    -e BUILDKITD_FLAGS=--oci-worker-no-process-sandbox \
+    -e DEVKITD_FLAGS=--oci-worker-no-process-sandbox \
     -v /path/to/dir:/tmp/work \
     --entrypoint buildctl-daemonless.sh \
     khulnasoft/devkit:master-rootless \
@@ -764,7 +764,7 @@ docker run \
 
 ## OpenTelemetry support
 
-BuildKit supports [OpenTelemetry](https://opentelemetry.io/) for devkitd gRPC
+DevKit supports [OpenTelemetry](https://opentelemetry.io/) for devkitd gRPC
 API and buildctl commands. To capture the trace to
 [Jaeger](https://github.com/jaegertracing/jaeger), set `JAEGER_TRACE`
 environment variable to the collection address.
@@ -776,7 +776,7 @@ export JAEGER_TRACE=0.0.0.0:6831
 # any buildctl command should be traced to http://127.0.0.1:16686/
 ```
 
-## Running BuildKit without root privileges
+## Running DevKit without root privileges
 
 Please refer to [`docs/rootless.md`](docs/rootless.md).
 
@@ -788,15 +788,15 @@ Please refer to [`docs/multi-platform.md`](docs/multi-platform.md).
 
 #### Color Output Controls
 
-`buildctl` has support for modifying the colors that are used to output information to the terminal. You can set the environment variable `BUILDKIT_COLORS` to something like `run=green:warning=yellow:error=red:cancel=255,165,0` to set the colors that you would like to use. Setting `NO_COLOR` to anything will disable any colorized output as recommended by [no-color.org](https://no-color.org/).
+`buildctl` has support for modifying the colors that are used to output information to the terminal. You can set the environment variable `DEVKIT_COLORS` to something like `run=green:warning=yellow:error=red:cancel=255,165,0` to set the colors that you would like to use. Setting `NO_COLOR` to anything will disable any colorized output as recommended by [no-color.org](https://no-color.org/).
 
 Parsing errors will be reported but ignored. This will result in default color values being used where needed.
 
 - [The list of pre-defined colors](https://github.com/khulnasoft/devkit/blob/master/util/progress/progressui/colors.go).
 
 #### Number of log lines (for active steps in tty mode)
-You can change how many log lines are visible for active steps in tty mode by setting `BUILDKIT_TTY_LOG_LINES` to a number (default: 6).
+You can change how many log lines are visible for active steps in tty mode by setting `DEVKIT_TTY_LOG_LINES` to a number (default: 6).
 
 ## Contributing
 
-Want to contribute to BuildKit? Awesome! You can find information about contributing to this project in the [CONTRIBUTING.md](/.github/CONTRIBUTING.md)
+Want to contribute to DevKit? Awesome! You can find information about contributing to this project in the [CONTRIBUTING.md](/.github/CONTRIBUTING.md)

@@ -1,13 +1,13 @@
 # SBOM Scanning Protocol
 
-BuildKit supports automatic creation of [SBOMs](https://en.wikipedia.org/wiki/Software_supply_chain)
+DevKit supports automatic creation of [SBOMs](https://en.wikipedia.org/wiki/Software_supply_chain)
 for builds, attaching them as [image attestations](./attestation-storage.md).
 
 To scan the filesystem contents, a user can specify an SBOM generator image.
 When run, this image is passed the rootfs of the build stage as a read-only
 mount, writes its SBOM scan data to a specified directory.
 
-The SBOM generator image is expected to follow the rules of the BuildKit SBOM
+The SBOM generator image is expected to follow the rules of the DevKit SBOM
 generator protocol, defined in this document.
 
 > **Note**
@@ -33,37 +33,37 @@ target. A generator may produce any number of scans for the available targets -
 though ideally it should aim to produce a single scan per target.
 
 These parameters will be passed to the generator image as environment variables
-by BuildKit:
+by DevKit:
 
-- `BUILDKIT_SCAN_DESTINATION` (required)
+- `DEVKIT_SCAN_DESTINATION` (required)
 
   This variable specifies the directory where the scanner should write its
-  SBOM data. Scanners should write their SBOMs to `$BUILDKIT_SCAN_DESTINATION/<scan>.spdx.json`
+  SBOM data. Scanners should write their SBOMs to `$DEVKIT_SCAN_DESTINATION/<scan>.spdx.json`
   where `<scan>` is the name of an arbitrary scan. A scanner may produce
   multiple scans for a single target - scan names must be unique within a
   target, but should not be considered significant by producers or consumers.
 
-- `BUILDKIT_SCAN_SOURCE` (required)
+- `DEVKIT_SCAN_SOURCE` (required)
 
   This variable specifies the main target, passing the path to the root
   filesystem of the final build result.
 
   The scanner should scan this filesystem, and write its SBOM result to
-  `$BUILDKIT_SCAN_DESTINATION/$(basename $BUILDKIT_SCAN_SOURCE).spdx.json`.
+  `$DEVKIT_SCAN_DESTINATION/$(basename $DEVKIT_SCAN_SOURCE).spdx.json`.
 
-- `BUILDKIT_SCAN_SOURCE_EXTRAS` (optional)
+- `DEVKIT_SCAN_SOURCE_EXTRAS` (optional)
 
   This variable specifies additional targets, passing the path to a directory
   of other root filesystems. If the variable is not set, is empty, or contains
   a directory that does not exist, then no extras should be scanned.
 
   The scanner should iterate through this directory, and write its SBOM scans
-  to `$BUILDKIT_SCAN_DESTINATION/<scan>.spdx.json`, similar to above.
+  to `$DEVKIT_SCAN_DESTINATION/<scan>.spdx.json`, similar to above.
 
 A scanner must not error if optional parameters are not set.
 
 The scanner should produce SBOM results for all filesystems specified in
-`BUILDKIT_SCAN_SOURCE` or `BUILDKIT_SCAN_SOURCE_EXTRAS` but must not produce
+`DEVKIT_SCAN_SOURCE` or `DEVKIT_SCAN_SOURCE_EXTRAS` but must not produce
 SBOM results for any other filesystems.
 
 ## Further reading

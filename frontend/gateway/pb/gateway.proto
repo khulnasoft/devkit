@@ -136,14 +136,14 @@ message SolveRequest {
 	pb.Definition Definition = 1;
 	string Frontend = 2;
 	map<string, string> FrontendOpt = 3;
-	// 4 was removed in BuildKit v0.11.0.
+	// 4 was removed in DevKit v0.11.0.
 	bool allowResultReturn = 5;
 	bool allowResultArrayRef = 6;
 
 	// apicaps.CapSolveInlineReturn deprecated
 	bool Final = 10;
 	bytes ExporterAttr = 11;
-	// CacheImports was added in BuildKit v0.4.0.
+	// CacheImports was added in DevKit v0.4.0.
 	// apicaps:CapImportCaches
 	repeated CacheOptionsEntry CacheImports = 12;
 

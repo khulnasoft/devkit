@@ -44,10 +44,10 @@ const (
 
 	// Don't forget to update frontend documentation if you add
 	// a new build-arg: frontend/dockerfile/docs/reference.md
-	keyCacheNSArg           = "build-arg:BUILDKIT_CACHE_MOUNT_NS"
-	keyMultiPlatformArg     = "build-arg:BUILDKIT_MULTI_PLATFORM"
-	keyHostnameArg          = "build-arg:BUILDKIT_SANDBOX_HOSTNAME"
-	keyContextKeepGitDirArg = "build-arg:BUILDKIT_CONTEXT_KEEP_GIT_DIR"
+	keyCacheNSArg           = "build-arg:DEVKIT_CACHE_MOUNT_NS"
+	keyMultiPlatformArg     = "build-arg:DEVKIT_MULTI_PLATFORM"
+	keyHostnameArg          = "build-arg:DEVKIT_SANDBOX_HOSTNAME"
+	keyContextKeepGitDirArg = "build-arg:DEVKIT_CONTEXT_KEEP_GIT_DIR"
 	keySourceDateEpoch      = "build-arg:SOURCE_DATE_EPOCH"
 )
 
@@ -106,14 +106,14 @@ func validateMinCaps(c client.Client) error {
 	caps := c.BuildOpts().LLBCaps
 
 	if err := caps.Supports(pb.CapFileBase); err != nil {
-		return errors.Wrap(err, "needs BuildKit 0.5 or later")
+		return errors.Wrap(err, "needs DevKit 0.5 or later")
 	}
 	if opts["override-copy-image"] != "" {
-		return errors.New("support for \"override-copy-image\" was removed in BuildKit 0.11")
+		return errors.New("support for \"override-copy-image\" was removed in DevKit 0.11")
 	}
-	if v, ok := opts["build-arg:BUILDKIT_DISABLE_FILEOP"]; ok {
+	if v, ok := opts["build-arg:DEVKIT_DISABLE_FILEOP"]; ok {
 		if b, err := strconv.ParseBool(v); err == nil && b {
-			return errors.New("support for \"BUILDKIT_DISABLE_FILEOP\" build-arg was removed in BuildKit 0.11")
+			return errors.New("support for \"DEVKIT_DISABLE_FILEOP\" build-arg was removed in DevKit 0.11")
 		}
 	}
 	return nil

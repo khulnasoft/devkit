@@ -1,6 +1,6 @@
 # Attestations
 
-BuildKit supports creating and attaching attestations to build artifacts.
+DevKit supports creating and attaching attestations to build artifacts.
 Generated attestations use the [in-toto attestation format](https://github.com/in-toto/attestation).
 
 The currently supported attestation types are:

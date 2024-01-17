@@ -1,6 +1,6 @@
 # Distributed Build with Consistent Hashing
 
-Demo for efficiently using BuildKit daemon-local cache with multi-node cluster
+Demo for efficiently using DevKit daemon-local cache with multi-node cluster
 
 ## Deploy
 
@@ -23,4 +23,4 @@ $ go build -o consistenthash .
 $ pod=$(./show-running-pods.sh | consistenthash $key)
 ```
 
-You can connect to the pod using `export BUILDKIT_HOST=kube-pod://$pod`.
+You can connect to the pod using `export DEVKIT_HOST=kube-pod://$pod`.

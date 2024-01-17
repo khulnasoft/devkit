@@ -1768,7 +1768,7 @@ func (sm *sharableMountable) Mount() (_ []mount.Mount, _ func() error, retErr er
 
 		sm.count--
 		if sm.count < 0 {
-			if v := os.Getenv("BUILDKIT_DEBUG_PANIC_ON_ERROR"); v == "1" {
+			if v := os.Getenv("DEVKIT_DEBUG_PANIC_ON_ERROR"); v == "1" {
 				panic("release of released mount")
 			}
 		} else if sm.count > 0 {

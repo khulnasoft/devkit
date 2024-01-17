@@ -7,7 +7,7 @@ function clean() {
 }
 
 iidfile=$(mktemp -t docker-iidfile.XXXXXXXXXX)
-DOCKER_BUILDKIT=1 docker build --iidfile $iidfile --build-arg BUILDKIT_DEBUG --target dev-env .
+DOCKER_DEVKIT=1 docker build --iidfile $iidfile --build-arg DEVKIT_DEBUG --target dev-env .
 
 trap clean EXIT
 SSH=
@@ -16,9 +16,9 @@ if [ -n "$MOUNT_SSH_AUTH_SOCK" ]; then
 fi
 
 volumes=
-if [ -n "$MOUNT_BUILDKIT_SOURCE" ]; then
+if [ -n "$MOUNT_DEVKIT_SOURCE" ]; then
   volumes="-v $(pwd):/src"
 fi
 
 set -x
-docker run $SSH $volumes -it --privileged -v /tmp -e BUILDKIT_REGISTRY_MIRROR_DIR=/root/.cache/registry --rm $(cat $iidfile) ash
+docker run $SSH $volumes -it --privileged -v /tmp -e DEVKIT_REGISTRY_MIRROR_DIR=/root/.cache/registry --rm $(cat $iidfile) ash

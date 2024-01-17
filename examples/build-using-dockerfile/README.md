@@ -1,8 +1,8 @@
 # `build-using-dockerfile` example
 
-The `build-using-dockerfile` CLI is just provided as an example for writing a BuildKit client application.
+The `build-using-dockerfile` CLI is just provided as an example for writing a DevKit client application.
 
-For people familiar with `docker build` command, `build-using-dockerfile` is provided as an example for building Dockerfiles with BuildKit using a syntax similar to `docker build`.
+For people familiar with `docker build` command, `build-using-dockerfile` is provided as an example for building Dockerfiles with DevKit using a syntax similar to `docker build`.
 
 ```bash
 go get .

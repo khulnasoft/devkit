@@ -42,7 +42,7 @@ output=$(mktemp -d -t devkit-output.XXXXXXXXXX)
 
 (
   set -x
-  ${BUILDX_CMD} bake "${setFlags[@]}" --set "*.args.BUILDKIT_MULTI_PLATFORM=true" --set "*.output=$output" release
+  ${BUILDX_CMD} bake "${setFlags[@]}" --set "*.args.DEVKIT_MULTI_PLATFORM=true" --set "*.output=$output" release
 )
 
 for pdir in "${output}"/*/; do

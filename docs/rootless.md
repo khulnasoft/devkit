@@ -1,6 +1,6 @@
 # Rootless mode
 
-Rootless mode allows running BuildKit daemon as a non-root user.
+Rootless mode allows running DevKit daemon as a non-root user.
 
 ## Distribution-specific hint
 Using Ubuntu kernel is recommended.
@@ -49,7 +49,7 @@ Add `user.max_user_namespaces=28633` to `/etc/sysctl.conf` (or `/etc/sysctl.d`) 
 This step is not needed for RHEL/CentOS 8 and later.
 
 ### Fedora, before kernel 5.13
-You may have to disable SELinux, or run BuildKit with `--oci-worker-snapshotter=fuse-overlayfs`.
+You may have to disable SELinux, or run DevKit with `--oci-worker-snapshotter=fuse-overlayfs`.
 
 </p>
 </details>
@@ -60,7 +60,7 @@ You may have to disable SELinux, or run BuildKit with `--oci-worker-snapshotter=
   On kernel < 4.18, the `native` snapshotter is used.
 * Network mode is always set to `network.host`.
 
-## Running BuildKit in Rootless mode (OCI worker)
+## Running DevKit in Rootless mode (OCI worker)
 
 [RootlessKit](https://github.com/rootless-containers/rootlesskit/) needs to be installed.
 
@@ -72,12 +72,12 @@ $ rootlesskit devkitd
 $ buildctl --addr unix:///run/user/$UID/devkit/devkitd.sock build ...
 ```
 
-To isolate BuildKit daemon's network namespace from the host (recommended):
+To isolate DevKit daemon's network namespace from the host (recommended):
 ```console
 $ rootlesskit --net=slirp4netns --copy-up=/etc --disable-host-loopback devkitd
 ```
 
-## Running BuildKit in Rootless mode (containerd worker)
+## Running DevKit in Rootless mode (containerd worker)
 
 [RootlessKit](https://github.com/rootless-containers/rootlesskit/) needs to be installed.
 
@@ -121,7 +121,7 @@ Run `sysctl -w user.max_user_namespaces=N` (N=positive integer, like 63359) on t
 See [`../examples/kubernetes/sysctl-userns.privileged.yaml`](../examples/kubernetes/sysctl-userns.privileged.yaml).
 
 ### Error `mount proc:/proc (via /proc/self/fd/6), flags: 0xe: operation not permitted`
-This error is known to happen when BuildKit is executed in a container without the `--oci-worker-no-sandbox` flag.
+This error is known to happen when DevKit is executed in a container without the `--oci-worker-no-sandbox` flag.
 Make sure that `--oci-worker-no-process-sandbox` is specified (See [below](#docker)).
 
 ## Containerized deployment
@@ -153,10 +153,10 @@ Adding `--device /dev/fuse` to the `docker run` arguments is required only if yo
 
 #### About `--oci-worker-no-process-sandbox`
 
-By adding `--oci-worker-no-process-sandbox` to the `devkitd` arguments, BuildKit can be executed in a container without adding `--privileged` to `docker run` arguments.
+By adding `--oci-worker-no-process-sandbox` to the `devkitd` arguments, DevKit can be executed in a container without adding `--privileged` to `docker run` arguments.
 However, you still need to pass `--security-opt seccomp=unconfined --security-opt apparmor=unconfined` to `docker run`.
 
-Note that `--oci-worker-no-process-sandbox` allows build executor containers to `kill` (and potentially `ptrace` depending on the seccomp configuration) an arbitrary process in the BuildKit daemon container.
+Note that `--oci-worker-no-process-sandbox` allows build executor containers to `kill` (and potentially `ptrace` depending on the seccomp configuration) an arbitrary process in the DevKit daemon container.
 
 To allow running rootless `devkitd` without `--oci-worker-no-process-sandbox`, run `docker run` with `--security-opt systempaths=unconfined`. (For Kubernetes, set `securityContext.procMount` to `Unmasked`.)
 
@@ -166,7 +166,7 @@ The `--security-opt systempaths=unconfined` flag disables the masks for the `/pr
 
 The `khulnasoft/devkit:rootless` image has the following UID/GID configuration:
 
-Actual ID (shown in the host and the BuildKit daemon container)| Mapped ID (shown in build executor containers)
+Actual ID (shown in the host and the DevKit daemon container)| Mapped ID (shown in build executor containers)
 ----------|----------
 1000      | 0
 100000    | 1
@@ -186,7 +186,7 @@ $ docker exec cat /etc/subuid
 user:100000:65536
 ```
 
-To change the UID/GID configuration, you need to modify and build the BuildKit image manually.
+To change the UID/GID configuration, you need to modify and build the DevKit image manually.
 ```
 $ vi Dockerfile
 $ make images

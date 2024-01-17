@@ -36,14 +36,14 @@ func (b backend) Snapshotter() string {
 }
 
 func (b backend) Supports(feature string) bool {
-	if enabledFeatures := os.Getenv("BUILDKIT_TEST_ENABLE_FEATURES"); enabledFeatures != "" {
+	if enabledFeatures := os.Getenv("DEVKIT_TEST_ENABLE_FEATURES"); enabledFeatures != "" {
 		for _, enabledFeature := range strings.Split(enabledFeatures, ",") {
 			if feature == enabledFeature {
 				return true
 			}
 		}
 	}
-	if disabledFeatures := os.Getenv("BUILDKIT_TEST_DISABLE_FEATURES"); disabledFeatures != "" {
+	if disabledFeatures := os.Getenv("DEVKIT_TEST_DISABLE_FEATURES"); disabledFeatures != "" {
 		for _, disabledFeature := range strings.Split(disabledFeatures, ",") {
 			if feature == disabledFeature {
 				return false

@@ -28,7 +28,7 @@ func (cm *staticMountable) Mount() ([]mount.Mount, func() error, error) {
 	atomic.AddInt32(&cm.count, 1)
 	return mounts, func() error {
 		if atomic.AddInt32(&cm.count, -1) < 0 {
-			if v := os.Getenv("BUILDKIT_DEBUG_PANIC_ON_ERROR"); v == "1" {
+			if v := os.Getenv("DEVKIT_DEBUG_PANIC_ON_ERROR"); v == "1" {
 				panic("release of released mount " + cm.id)
 			}
 		}

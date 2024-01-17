@@ -14,7 +14,7 @@ To enable devkit support for Nydus image export, we need to build `devkitd` with
 go build -tags=nydus -o ./bin/devkitd ./cmd/devkitd
 ```
 
-### Building Nydus with BuildKit
+### Building Nydus with DevKit
 
 Download `nydus-image` binary from [nydus release page](https://github.com/dragonflyoss/image-service/releases) (require v2.1.6 or higher), then put the `nydus-image` binary path into $PATH or specifying it on `NYDUS_BUILDER` environment variable for devkitd:
 

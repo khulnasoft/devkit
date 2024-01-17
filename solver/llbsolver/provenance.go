@@ -429,7 +429,7 @@ func NewProvenanceCreator(ctx context.Context, cp *provenance.Capture, res solve
 					pr.Metadata = &provenance.ProvenanceMetadata{}
 				}
 
-				pr.Metadata.BuildKitMetadata.Layers = m
+				pr.Metadata.DevKitMetadata.Layers = m
 			}
 
 			return nil
@@ -464,7 +464,7 @@ func (p *ProvenanceCreator) Predicate() (*provenance.ProvenancePredicate, error)
 		if err != nil {
 			return nil, err
 		}
-		p.pr.Metadata.BuildKitMetadata.SysUsage = sysSamples
+		p.pr.Metadata.DevKitMetadata.SysUsage = sysSamples
 	}
 
 	return p.pr, nil
@@ -586,7 +586,7 @@ func AddBuildConfig(ctx context.Context, p *provenance.ProvenancePredicate, c *p
 			if p.Metadata == nil {
 				p.Metadata = &provenance.ProvenanceMetadata{}
 			}
-			p.Metadata.BuildKitMetadata.Source = &provenance.Source{
+			p.Metadata.DevKitMetadata.Source = &provenance.Source{
 				Infos:     sis,
 				Locations: locs,
 			}

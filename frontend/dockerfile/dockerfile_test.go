@@ -5075,14 +5075,14 @@ RUN echo $(hostname) | grep foo
 		{
 			name: "arg",
 			attrs: map[string]string{
-				"build-arg:BUILDKIT_SANDBOX_HOSTNAME": "foo",
+				"build-arg:DEVKIT_SANDBOX_HOSTNAME": "foo",
 			},
 		},
 		{
 			name: "meta and arg",
 			attrs: map[string]string{
 				"hostname":                            "bar",
-				"build-arg:BUILDKIT_SANDBOX_HOSTNAME": "foo",
+				"build-arg:DEVKIT_SANDBOX_HOSTNAME": "foo",
 			},
 		},
 	}
@@ -5418,7 +5418,7 @@ func testNamedImageContextPlatform(t *testing.T, sb integration.Sandbox) {
 
 	_, err = f.Solve(sb.Context(), c, client.SolveOpt{
 		FrontendAttrs: map[string]string{
-			"build-arg:BUILDKIT_MULTI_PLATFORM": "true",
+			"build-arg:DEVKIT_MULTI_PLATFORM": "true",
 		},
 		LocalDirs: map[string]string{
 			dockerui.DefaultLocalNameDockerfile: dir,
@@ -6368,7 +6368,7 @@ func testSBOMScannerImage(t *testing.T, sb integration.Sandbox) {
 FROM busybox:latest
 COPY <<-"EOF" /scan.sh
 	set -e
-	cat <<BUNDLE > $BUILDKIT_SCAN_DESTINATION/spdx.json
+	cat <<BUNDLE > $DEVKIT_SCAN_DESTINATION/spdx.json
 	{
 	  "_type": "https://in-toto.io/Statement/v0.1",
 	  "predicateType": "https://spdx.dev/Document",
@@ -6473,16 +6473,16 @@ func testSBOMScannerArgs(t *testing.T, sb integration.Sandbox) {
 FROM busybox:latest
 COPY <<-"EOF" /scan.sh
 	set -e
-	cat <<BUNDLE > $BUILDKIT_SCAN_DESTINATION/spdx.json
+	cat <<BUNDLE > $DEVKIT_SCAN_DESTINATION/spdx.json
 	{
 	  "_type": "https://in-toto.io/Statement/v0.1",
 	  "predicateType": "https://spdx.dev/Document",
 	  "predicate": {"name": "core"}
 	}
 	BUNDLE
-	if [ "${BUILDKIT_SCAN_SOURCE_EXTRAS}" ]; then
-		for src in "${BUILDKIT_SCAN_SOURCE_EXTRAS}"/*; do
-			cat <<BUNDLE > $BUILDKIT_SCAN_DESTINATION/$(basename $src).spdx.json
+	if [ "${DEVKIT_SCAN_SOURCE_EXTRAS}" ]; then
+		for src in "${DEVKIT_SCAN_SOURCE_EXTRAS}"/*; do
+			cat <<BUNDLE > $DEVKIT_SCAN_DESTINATION/$(basename $src).spdx.json
 			{
 			  "_type": "https://in-toto.io/Statement/v0.1",
 			  "predicateType": "https://spdx.dev/Document",
@@ -6539,8 +6539,8 @@ FROM base
 		},
 		FrontendAttrs: map[string]string{
 			"attest:sbom":                          "generator=" + scannerTarget,
-			"build-arg:BUILDKIT_SBOM_SCAN_CONTEXT": "true",
-			"build-arg:BUILDKIT_SBOM_SCAN_STAGE":   "true",
+			"build-arg:DEVKIT_SBOM_SCAN_CONTEXT": "true",
+			"build-arg:DEVKIT_SBOM_SCAN_STAGE":   "true",
 		},
 		Exports: []client.ExportEntry{
 			{
@@ -6570,25 +6570,25 @@ FROM base
 	require.Subset(t, attest.Predicate, map[string]interface{}{"name": "core"})
 
 	dockerfile = []byte(`
-ARG BUILDKIT_SBOM_SCAN_CONTEXT=true
+ARG DEVKIT_SBOM_SCAN_CONTEXT=true
 
 FROM scratch as file
-ARG BUILDKIT_SBOM_SCAN_STAGE=true
+ARG DEVKIT_SBOM_SCAN_STAGE=true
 COPY <<EOF /file
 data
 EOF
 
 FROM scratch as base
-ARG BUILDKIT_SBOM_SCAN_STAGE=true
+ARG DEVKIT_SBOM_SCAN_STAGE=true
 COPY --from=file /file /foo
 
 FROM scratch as base2
-ARG BUILDKIT_SBOM_SCAN_STAGE=true
+ARG DEVKIT_SBOM_SCAN_STAGE=true
 COPY --from=file /file /bar
 RUN non-existent-command-would-fail
 
 FROM base
-ARG BUILDKIT_SBOM_SCAN_STAGE=true
+ARG DEVKIT_SBOM_SCAN_STAGE=true
 `)
 	dir = integration.Tmpdir(
 		t,
@@ -6652,8 +6652,8 @@ ARG BUILDKIT_SBOM_SCAN_STAGE=true
 		},
 		FrontendAttrs: map[string]string{
 			"attest:sbom":                          "generator=" + scannerTarget,
-			"build-arg:BUILDKIT_SBOM_SCAN_STAGE":   "false",
-			"build-arg:BUILDKIT_SBOM_SCAN_CONTEXT": "false",
+			"build-arg:DEVKIT_SBOM_SCAN_STAGE":   "false",
+			"build-arg:DEVKIT_SBOM_SCAN_CONTEXT": "false",
 		},
 		Exports: []client.ExportEntry{
 			{
@@ -6836,7 +6836,7 @@ RUN rm -f /foo-2030.1
 
 	desc, manifest := readImage(t, ctx, target)
 	_, cacheManifest := readImage(t, ctx, target+"-cache")
-	t.Log("The digest may change depending on the BuildKit version, the snapshotter configuration, etc.")
+	t.Log("The digest may change depending on the DevKit version, the snapshotter configuration, etc.")
 	require.Equal(t, expectedDigest, desc.Digest.String())
 	// Image layers must have rewritten-timestamp
 	for _, l := range manifest.Layers {

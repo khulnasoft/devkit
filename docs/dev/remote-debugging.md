@@ -10,10 +10,10 @@ in its own docker container, but the container that has been configured by VS Co
 
 ## Building the devkit image with the debug variant
 
-The devkit image can be created with the debug variant by setting the build argument `BUILDKIT_DEBUG=1`.
+The devkit image can be created with the debug variant by setting the build argument `DEVKIT_DEBUG=1`.
 
 ```bash
-$ BUILDKIT_DEBUG=1 make images
+$ DEVKIT_DEBUG=1 make images
 ```
 
 ## Running the devkit image

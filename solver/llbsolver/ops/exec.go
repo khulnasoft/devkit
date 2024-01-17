@@ -385,7 +385,7 @@ func (e *ExecOp) Exec(ctx context.Context, g session.Group, inputs []solver.Resu
 	}
 	meta.Env = append(meta.Env, secretEnv...)
 
-	stdout, stderr, flush := logs.NewLogStreams(ctx, os.Getenv("BUILDKIT_DEBUG_EXEC_OUTPUT") == "1")
+	stdout, stderr, flush := logs.NewLogStreams(ctx, os.Getenv("DEVKIT_DEBUG_EXEC_OUTPUT") == "1")
 	defer stdout.Close()
 	defer stderr.Close()
 	defer func() {

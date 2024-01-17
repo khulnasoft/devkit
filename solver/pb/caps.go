@@ -355,7 +355,7 @@ func init() {
 		Status:  apicaps.CapStatusPrerelease,
 		SupportedHint: map[string]string{
 			"docker":   "Docker v19.03",
-			"devkit": "BuildKit v0.5.0",
+			"devkit": "DevKit v0.5.0",
 		},
 	})
 

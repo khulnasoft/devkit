@@ -149,10 +149,10 @@ func computeBlobChain(ctx context.Context, sr *immutableRef, createIfNeeded bool
 
 				// Determine differ and error/log handling according to the platform, envvar and the snapshotter.
 				var enableOverlay, fallback, logWarnOnErr bool
-				if forceOvlStr := os.Getenv("BUILDKIT_DEBUG_FORCE_OVERLAY_DIFF"); forceOvlStr != "" && sr.kind() != Diff {
+				if forceOvlStr := os.Getenv("DEVKIT_DEBUG_FORCE_OVERLAY_DIFF"); forceOvlStr != "" && sr.kind() != Diff {
 					enableOverlay, err = strconv.ParseBool(forceOvlStr)
 					if err != nil {
-						return struct{}{}, errors.Wrapf(err, "invalid boolean in BUILDKIT_DEBUG_FORCE_OVERLAY_DIFF")
+						return struct{}{}, errors.Wrapf(err, "invalid boolean in DEVKIT_DEBUG_FORCE_OVERLAY_DIFF")
 					}
 					fallback = false // prohibit fallback on debug
 				} else if !isTypeWindows(sr) {

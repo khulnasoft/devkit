@@ -1,4 +1,4 @@
-# Contribute to the BuildKit project
+# Contribute to the DevKit project
 
 This page contains information about reporting issues as well as some tips and
 guidelines useful to experienced open source contributors. Finally, make sure
@@ -44,7 +44,7 @@ inline.
 
 This section gives the experienced contributor some tips and guidelines.
 
-### Build BuildKit from source
+### Build DevKit from source
 
 Dependencies:
 
@@ -62,30 +62,30 @@ To build containerized `khulnasoft/devkit:local` and `khulnasoft/devkit:local-ro
 make images
 ```
 
-### Run BuildKit
+### Run DevKit
 
-You can launch the backend BuildKit daemon either in a container, or directly:
+You can launch the backend DevKit daemon either in a container, or directly:
 
 ```bash
 # run the daemon in a container
 $ docker run --rm -d --name devkitd --privileged khulnasoft/devkit:local
-$ export BUILDKIT_HOST=docker-container://devkitd
+$ export DEVKIT_HOST=docker-container://devkitd
 $ buildctl debug info
-BuildKit: github.com/khulnasoft/devkit v0.11.0-rc3-623-g2ff0d2a2f.m 2ff0d2a2f53663aae917980fa27eada7950ff69c.m
+DevKit: github.com/khulnasoft/devkit v0.11.0-rc3-623-g2ff0d2a2f.m 2ff0d2a2f53663aae917980fa27eada7950ff69c.m
 ```
 
 ```bash
 # run the daemon directly (only on linux)
 $ sudo devkitd
-$ export BUILDKIT_HOST=unix:///run/devkit/devkitd.sock
+$ export DEVKIT_HOST=unix:///run/devkit/devkitd.sock
 $ sudo buildctl debug info
-BuildKit: github.com/khulnasoft/devkit v0.11.0-rc3-506-g539bab193.m 539bab193c28d3ce731e6013f471ba24848f5c41.m
+DevKit: github.com/khulnasoft/devkit v0.11.0-rc3-506-g539bab193.m 539bab193c28d3ce731e6013f471ba24848f5c41.m
 ```
 
-You can also connect buildx to the BuildKit daemon using the [`remote` driver](https://docs.docker.com/build/drivers/remote/):
+You can also connect buildx to the DevKit daemon using the [`remote` driver](https://docs.docker.com/build/drivers/remote/):
 
 ```bash
-$ docker buildx create --driver=remote --name=dev $BUILDKIT_HOST
+$ docker buildx create --driver=remote --name=dev $DEVKIT_HOST
 $ docker buildx --builder=dev inspect
 Name:          dev
 Driver:        remote
@@ -99,12 +99,12 @@ Buildkit:  v0.11.0-rc3-506-g539bab193.m
 Platforms: linux/amd64, linux/amd64/v2, linux/amd64/v3, linux/386
 ```
 
-### Run BuildKit using Buildx
+### Run DevKit using Buildx
 
-You can also have buildx run and manage the custom BuildKit daemon itself using
+You can also have buildx run and manage the custom DevKit daemon itself using
 the [`docker-container` driver](https://docs.docker.com/build/drivers/remote/).
 
-This is usually the easiest way to get started with a custom BuildKit daemon
+This is usually the easiest way to get started with a custom DevKit daemon
 for development or debugging.
     
 ```bash
@@ -197,10 +197,10 @@ If your pull request is not accepted on the first try, don't be discouraged! If
 there's a problem with the implementation, hopefully you received feedback on
 what to improve.
 
-We're trying very hard to keep BuildKit lean and focused. We don't want it to
+We're trying very hard to keep DevKit lean and focused. We don't want it to
 do everything for everybody. This means that we might decide against
 incorporating a new feature. However, there might be a way to implement that
-feature *on top of* BuildKit.
+feature *on top of* DevKit.
 
 ### Design and cleanup proposals
 

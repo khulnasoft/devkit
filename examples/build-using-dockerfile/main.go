@@ -27,7 +27,7 @@ func main() {
 	app.Description = `
 build using Dockerfile.
 
-This command mimics behavior of "docker build" command so that people can easily get started with BuildKit.
+This command mimics behavior of "docker build" command so that people can easily get started with DevKit.
 This command is NOT the replacement of "docker build", and should NOT be used for building production images.
 
 By default, the built image is loaded to Docker.
@@ -36,13 +36,13 @@ By default, the built image is loaded to Docker.
 		cli.StringFlag{
 			Name:   "devkit-addr",
 			Usage:  "devkit daemon address",
-			EnvVar: "BUILDKIT_HOST",
+			EnvVar: "DEVKIT_HOST",
 			Value:  appdefaults.Address,
 		},
 		cli.BoolFlag{
 			Name:   "clientside-frontend",
 			Usage:  "run dockerfile frontend client side, rather than builtin to devkitd",
-			EnvVar: "BUILDKIT_CLIENTSIDE_FRONTEND",
+			EnvVar: "DEVKIT_CLIENTSIDE_FRONTEND",
 		},
 	}
 	app.Flags = append([]cli.Flag{

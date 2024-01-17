@@ -17,11 +17,11 @@ on:
   workflow_dispatch:
     inputs:
       source-tag:
-        description: 'BuildKit source Docker tag'
+        description: 'DevKit source Docker tag'
         required: true
         default: 'latest'
       dest-tag:
-        description: 'Default BuildKit Docker tag for buildx'
+        description: 'Default DevKit Docker tag for buildx'
         required: true
         default: 'buildx-stable-1'
       dry-run:

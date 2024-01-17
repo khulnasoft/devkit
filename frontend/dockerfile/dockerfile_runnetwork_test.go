@@ -28,7 +28,7 @@ func init() {
 }
 
 func testRunDefaultNetwork(t *testing.T, sb integration.Sandbox) {
-	if os.Getenv("BUILDKIT_RUN_NETWORK_INTEGRATION_TESTS") == "" {
+	if os.Getenv("DEVKIT_RUN_NETWORK_INTEGRATION_TESTS") == "" {
 		t.SkipNow()
 	}
 	if sb.Rootless() {
@@ -62,7 +62,7 @@ RUN ip link show eth0
 }
 
 func testRunNoNetwork(t *testing.T, sb integration.Sandbox) {
-	if os.Getenv("BUILDKIT_RUN_NETWORK_INTEGRATION_TESTS") == "" {
+	if os.Getenv("DEVKIT_RUN_NETWORK_INTEGRATION_TESTS") == "" {
 		t.SkipNow()
 	}
 
@@ -97,7 +97,7 @@ RUN --network=none ! ip link show eth0
 }
 
 func testRunHostNetwork(t *testing.T, sb integration.Sandbox) {
-	if os.Getenv("BUILDKIT_RUN_NETWORK_INTEGRATION_TESTS") == "" {
+	if os.Getenv("DEVKIT_RUN_NETWORK_INTEGRATION_TESTS") == "" {
 		t.SkipNow()
 	}
 

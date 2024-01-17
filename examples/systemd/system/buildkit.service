@@ -1,5 +1,5 @@
 [Unit]
-Description=BuildKit
+Description=DevKit
 Requires=devkit.socket
 After=devkit.socket
 Documentation=https://github.com/khulnasoft/devkit

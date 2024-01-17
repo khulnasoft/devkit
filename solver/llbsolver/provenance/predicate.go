@@ -14,7 +14,7 @@ import (
 )
 
 const (
-	BuildKitBuildType = "https://mobyproject.org/devkit@v1"
+	DevKitBuildType = "https://mobyproject.org/devkit@v1"
 )
 
 type ProvenancePredicate struct {
@@ -46,11 +46,11 @@ type Environment struct {
 
 type ProvenanceMetadata struct {
 	slsa02.ProvenanceMetadata
-	BuildKitMetadata BuildKitMetadata `json:"https://mobyproject.org/devkit@v1#metadata,omitempty"`
+	DevKitMetadata DevKitMetadata `json:"https://mobyproject.org/devkit@v1#metadata,omitempty"`
 	Hermetic         bool             `json:"https://mobyproject.org/devkit@v1#hermetic,omitempty"`
 }
 
-type BuildKitMetadata struct {
+type DevKitMetadata struct {
 	VCS      map[string]string                  `json:"vcs,omitempty"`
 	Source   *Source                            `json:"source,omitempty"`
 	Layers   map[string][][]ocispecs.Descriptor `json:"layers,omitempty"`
@@ -202,7 +202,7 @@ func NewPredicate(c *Capture) (*ProvenancePredicate, error) {
 	pr := &ProvenancePredicate{
 		Invocation: inv,
 		ProvenancePredicate: slsa02.ProvenancePredicate{
-			BuildType: BuildKitBuildType,
+			BuildType: DevKitBuildType,
 			Materials: materials,
 		},
 		Metadata: &ProvenanceMetadata{
@@ -218,7 +218,7 @@ func NewPredicate(c *Capture) (*ProvenancePredicate, error) {
 	}
 
 	if len(vcs) > 0 {
-		pr.Metadata.BuildKitMetadata.VCS = vcs
+		pr.Metadata.DevKitMetadata.VCS = vcs
 	}
 
 	return pr, nil

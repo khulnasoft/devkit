@@ -8324,7 +8324,7 @@ paths:
           default: ""
         - name: "outputs"
           in: "query"
-          description: "BuildKit output configuration"
+          description: "DevKit output configuration"
           type: "string"
           default: ""
       responses:
@@ -8943,9 +8943,9 @@ paths:
               description: |
                 Default version of docker image builder
 
-                The default on Linux is version "2" (BuildKit), but the daemon
+                The default on Linux is version "2" (DevKit), but the daemon
                 can be configured to recommend version "1" (classic Builder).
-                Windows does not yet support BuildKit for native Windows images,
+                Windows does not yet support DevKit for native Windows images,
                 and uses "1" (classic builder) as a default.
 
                 This value is a recommendation as advertised by the daemon, and

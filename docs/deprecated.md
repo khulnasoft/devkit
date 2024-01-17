@@ -1,11 +1,11 @@
 # Deprecated features
 
-This page provides an overview of features that are deprecated in BuildKit.
+This page provides an overview of features that are deprecated in DevKit.
 
-As changes are made to BuildKit there may be times when existing features need
+As changes are made to DevKit there may be times when existing features need
 to be removed or replaced with newer features. Before an existing feature is
 removed it is labeled as "deprecated" within the documentation and remains in
-BuildKit for at least one stable release unless specified explicitly otherwise.
+DevKit for at least one stable release unless specified explicitly otherwise.
 After that time it may be removed.
 
 Users are expected to take note of the list of deprecated features each release
@@ -34,13 +34,13 @@ features:
 ## Build information
 
 [Build information](https://github.com/khulnasoft/devkit/blob/v0.11/docs/buildinfo.md)
-structures have been introduced in [BuildKit v0.10.0](https://github.com/khulnasoft/devkit/releases/tag/v0.10.0)
+structures have been introduced in [DevKit v0.10.0](https://github.com/khulnasoft/devkit/releases/tag/v0.10.0)
 and are generated with build metadata that allows you to see all the sources
 (images, git repositories) that were used by the build with their exact
 versions and also the configuration that was passed to the build. This
 information is also embedded into the image configuration if one is generated.
 
 With the introduction of [provenance attestations](./attestations/slsa-provenance.md)
-in [BuildKit v0.11.0](https://github.com/khulnasoft/devkit/releases/tag/v0.11.0),
+in [DevKit v0.11.0](https://github.com/khulnasoft/devkit/releases/tag/v0.11.0),
 the build information feature has been deprecated and removed in v0.12.0
 release.

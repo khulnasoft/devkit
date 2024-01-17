@@ -3,15 +3,15 @@
 #
 # Usage: buildctl-daemonless.sh build ...
 #
-# Flags for devkitd can be specified as $BUILDKITD_FLAGS .
+# Flags for devkitd can be specified as $DEVKITD_FLAGS .
 #
 # The script is compatible with BusyBox shell.
 set -eu
 
 : ${BUILDCTL=buildctl}
 : ${BUILDCTL_CONNECT_RETRIES_MAX=10}
-: ${BUILDKITD=devkitd}
-: ${BUILDKITD_FLAGS=}
+: ${DEVKITD=devkitd}
+: ${DEVKITD_FLAGS=}
 : ${ROOTLESSKIT=rootlesskit}
 
 # $tmp holds the following files:
@@ -30,7 +30,7 @@ startBuildkitd() {
         addr=unix://$XDG_RUNTIME_DIR/devkit/devkitd.sock
         helper=$ROOTLESSKIT
     fi
-    $helper $BUILDKITD $BUILDKITD_FLAGS --addr=$addr >$tmp/log 2>&1 &
+    $helper $DEVKITD $DEVKITD_FLAGS --addr=$addr >$tmp/log 2>&1 &
     pid=$!
     echo $pid >$tmp/pid
     echo $addr >$tmp/addr

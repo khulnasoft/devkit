@@ -191,8 +191,8 @@ RUN echo "ok" > /foo
 
 			if !isClient {
 				require.Equal(t, "Dockerfile", pred.Invocation.ConfigSource.EntryPoint)
-				require.Equal(t, "https://xxxxx:xxxxx@example.invalid/repo.git", pred.Metadata.BuildKitMetadata.VCS["source"])
-				require.Equal(t, "123456", pred.Metadata.BuildKitMetadata.VCS["revision"])
+				require.Equal(t, "https://xxxxx:xxxxx@example.invalid/repo.git", pred.Metadata.DevKitMetadata.VCS["source"])
+				require.Equal(t, "123456", pred.Metadata.DevKitMetadata.VCS["revision"])
 			}
 
 			require.NotEmpty(t, pred.Metadata.BuildInvocationID)
@@ -215,16 +215,16 @@ RUN echo "ok" > /foo
 			require.False(t, pred.Metadata.Hermetic)
 
 			if mode == "max" || mode == "" {
-				require.Equal(t, 2, len(pred.Metadata.BuildKitMetadata.Layers))
-				require.NotNil(t, pred.Metadata.BuildKitMetadata.Source)
-				require.Equal(t, "Dockerfile", pred.Metadata.BuildKitMetadata.Source.Infos[0].Filename)
-				require.Equal(t, dockerfile, pred.Metadata.BuildKitMetadata.Source.Infos[0].Data)
+				require.Equal(t, 2, len(pred.Metadata.DevKitMetadata.Layers))
+				require.NotNil(t, pred.Metadata.DevKitMetadata.Source)
+				require.Equal(t, "Dockerfile", pred.Metadata.DevKitMetadata.Source.Infos[0].Filename)
+				require.Equal(t, dockerfile, pred.Metadata.DevKitMetadata.Source.Infos[0].Data)
 				require.NotNil(t, pred.BuildConfig)
 
 				require.Equal(t, 3, len(pred.BuildConfig.Definition))
 			} else {
-				require.Equal(t, 0, len(pred.Metadata.BuildKitMetadata.Layers))
-				require.Nil(t, pred.Metadata.BuildKitMetadata.Source)
+				require.Equal(t, 0, len(pred.Metadata.DevKitMetadata.Layers))
+				require.Nil(t, pred.Metadata.DevKitMetadata.Source)
 				require.Nil(t, pred.BuildConfig)
 			}
 		})
@@ -376,7 +376,7 @@ COPY myapp.Dockerfile /
 	}
 	require.False(t, pred.Metadata.Reproducible)
 
-	require.Equal(t, 0, len(pred.Metadata.BuildKitMetadata.VCS), "%+v", pred.Metadata.BuildKitMetadata.VCS)
+	require.Equal(t, 0, len(pred.Metadata.DevKitMetadata.VCS), "%+v", pred.Metadata.DevKitMetadata.VCS)
 }
 
 func testMultiPlatformProvenance(t *testing.T, sb integration.Sandbox) {
@@ -499,7 +499,7 @@ func testClientFrontendProvenance(t *testing.T, sb integration.Sandbox) {
 	integration.SkipOnPlatform(t, "windows")
 	workers.CheckFeatureCompat(t, sb, workers.FeatureDirectPush, workers.FeatureProvenance)
 	// Building with client frontend does not capture frontend provenance
-	// because frontend runs in client, not in BuildKit.
+	// because frontend runs in client, not in DevKit.
 	// This test builds Dockerfile inside a client frontend ensuring that
 	// in that case frontend provenance is captured.
 	ctx := sb.Context()
@@ -1270,7 +1270,7 @@ COPY bar bar2
 	var pred provenance.ProvenancePredicate
 	require.NoError(t, json.Unmarshal(provDt, &pred))
 
-	sources := pred.Metadata.BuildKitMetadata.Source.Infos
+	sources := pred.Metadata.DevKitMetadata.Source.Infos
 
 	require.Equal(t, 1, len(sources))
 	require.Equal(t, "Dockerfile", sources[0].Filename)
@@ -1357,7 +1357,7 @@ RUN date +%s > /b.txt
 	metadata := pred.Metadata
 	require.NotNil(t, metadata)
 
-	layers := metadata.BuildKitMetadata.Layers["step0:0"]
+	layers := metadata.DevKitMetadata.Layers["step0:0"]
 	require.NotNil(t, layers)
 	require.Len(t, layers, 1)
 }

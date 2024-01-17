@@ -78,8 +78,8 @@ func runBuildkitd(
 	cmd := exec.Command(args[0], args[1:]...) //nolint:gosec // test utility
 	cmd.Env = append(
 		os.Environ(),
-		"BUILDKIT_DEBUG_EXEC_OUTPUT=1",
-		"BUILDKIT_DEBUG_PANIC_ON_ERROR=1",
+		"DEVKIT_DEBUG_EXEC_OUTPUT=1",
+		"DEVKIT_DEBUG_PANIC_ON_ERROR=1",
 		"TMPDIR="+filepath.Join(tmpdir, "tmp"))
 	cmd.Env = append(cmd.Env, extraEnv...)
 	cmd.SysProcAttr = getSysProcAttr()

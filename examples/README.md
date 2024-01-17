@@ -1,15 +1,15 @@
-# BuildKit Examples
+# DevKit Examples
 
 ## Kubernetes manifests
 - [`./kubernetes`](./kubernetes): Kubernetes manifests (`Pod`, `Deployment`, `StatefulSet`, `Job`)
 
 ## CLI examples
 - [`./buildctl-daemonless`](./buildctl-daemonless): buildctl without daemon
-- [`./build-using-dockerfile`](./build-using-dockerfile): an example BuildKit client with `docker build`-style CLI
+- [`./build-using-dockerfile`](./build-using-dockerfile): an example DevKit client with `docker build`-style CLI
 
 ## LLB examples
 
-For understanding the basics of LLB, `devkit*` directory contains scripts that define how to build different configurations of BuildKit itself and its dependencies using the `client` package. Running one of these scripts generates a protobuf definition of a build graph. Note that the script itself does not execute any steps of the build.
+For understanding the basics of LLB, `devkit*` directory contains scripts that define how to build different configurations of DevKit itself and its dependencies using the `client` package. Running one of these scripts generates a protobuf definition of a build graph. Note that the script itself does not execute any steps of the build.
 
 You can use `buildctl debug dump-llb` to see what data is in this definition. Add `--dot` to generate dot layout.
 

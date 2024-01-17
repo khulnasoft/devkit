@@ -40,9 +40,9 @@ type Config struct {
 func getConfig(attrs map[string]string) (*Config, error) {
 	accountURLString, ok := attrs[attrAccountURL]
 	if !ok {
-		accountURLString, ok = os.LookupEnv("BUILDKIT_AZURE_STORAGE_ACCOUNT_URL")
+		accountURLString, ok = os.LookupEnv("DEVKIT_AZURE_STORAGE_ACCOUNT_URL")
 		if !ok {
-			return &Config{}, errors.New("either ${BUILDKIT_AZURE_STORAGE_ACCOUNT_URL} or account_url attribute is required for azblob cache")
+			return &Config{}, errors.New("either ${DEVKIT_AZURE_STORAGE_ACCOUNT_URL} or account_url attribute is required for azblob cache")
 		}
 	}
 
@@ -53,18 +53,18 @@ func getConfig(attrs map[string]string) (*Config, error) {
 
 	accountName, ok := attrs[attrAccountName]
 	if !ok {
-		accountName, ok = os.LookupEnv("BUILDKIT_AZURE_STORAGE_ACCOUNT_NAME")
+		accountName, ok = os.LookupEnv("DEVKIT_AZURE_STORAGE_ACCOUNT_NAME")
 		if !ok {
 			accountName = strings.Split(accountURL.Hostname(), ".")[0]
 		}
 	}
 	if accountName == "" {
-		return &Config{}, errors.New("unable to retrieve account name from account url or ${BUILDKIT_AZURE_STORAGE_ACCOUNT_NAME} or account_name attribute for azblob cache")
+		return &Config{}, errors.New("unable to retrieve account name from account url or ${DEVKIT_AZURE_STORAGE_ACCOUNT_NAME} or account_name attribute for azblob cache")
 	}
 
 	container, ok := attrs[attrContainer]
 	if !ok {
-		container, ok = os.LookupEnv("BUILDKIT_AZURE_STORAGE_CONTAINER")
+		container, ok = os.LookupEnv("DEVKIT_AZURE_STORAGE_CONTAINER")
 		if !ok {
 			container = "devkit-cache"
 		}
@@ -72,7 +72,7 @@ func getConfig(attrs map[string]string) (*Config, error) {
 
 	prefix, ok := attrs[attrPrefix]
 	if !ok {
-		prefix, _ = os.LookupEnv("BUILDKIT_AZURE_STORAGE_PREFIX")
+		prefix, _ = os.LookupEnv("DEVKIT_AZURE_STORAGE_PREFIX")
 	}
 
 	manifestsPrefix, ok := attrs[attrManifestsPrefix]

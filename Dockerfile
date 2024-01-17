@@ -20,7 +20,7 @@ ARG DELVE_VERSION=v1.21.0
 ARG GO_VERSION=1.21
 ARG ALPINE_VERSION=3.18
 ARG XX_VERSION=1.3.0
-ARG BUILDKIT_DEBUG
+ARG DEVKIT_DEBUG
 
 # minio for s3 integration tests
 FROM minio/minio:${MINIO_VERSION} AS minio
@@ -108,19 +108,19 @@ EOT
 
 # build devkitd binary
 FROM devkit-base AS devkitd
-# BUILDKITD_TAGS defines additional Go build tags for compiling devkitd
-ARG BUILDKITD_TAGS
+# DEVKITD_TAGS defines additional Go build tags for compiling devkitd
+ARG DEVKITD_TAGS
 ARG TARGETPLATFORM
 ARG GOBUILDFLAGS
 ARG VERIFYFLAGS="--static"
 ARG CGO_ENABLED=0
-ARG BUILDKIT_DEBUG
-ARG GOGCFLAGS=${BUILDKIT_DEBUG:+"all=-N -l"}
+ARG DEVKIT_DEBUG
+ARG GOGCFLAGS=${DEVKIT_DEBUG:+"all=-N -l"}
 RUN --mount=target=. --mount=target=/root/.cache,type=cache \
   --mount=target=/go/pkg/mod,type=cache \
   --mount=source=/tmp/.ldflags,target=/tmp/.ldflags,from=devkit-version <<EOT
   set -ex
-  xx-go build ${GOBUILDFLAGS} -gcflags="${GOGCFLAGS}" -ldflags "$(cat /tmp/.ldflags) -extldflags '-static'" -tags "osusergo netgo static_build seccomp ${BUILDKITD_TAGS}" -o /usr/bin/devkitd ./cmd/devkitd
+  xx-go build ${GOBUILDFLAGS} -gcflags="${GOGCFLAGS}" -ldflags "$(cat /tmp/.ldflags) -extldflags '-static'" -tags "osusergo netgo static_build seccomp ${DEVKITD_TAGS}" -o /usr/bin/devkitd ./cmd/devkitd
   xx-verify ${VERIFYFLAGS} /usr/bin/devkitd
 
   # devkitd --version can be flaky when running through emulation related to
@@ -206,7 +206,7 @@ COPY --link --from=buildctl /usr/bin/buildctl /
 
 FROM binaries-$TARGETOS AS binaries
 # enable scanning for this stage
-ARG BUILDKIT_SBOM_SCAN_STAGE=true
+ARG DEVKIT_SBOM_SCAN_STAGE=true
 
 FROM --platform=$BUILDPLATFORM alpine:${ALPINE_VERSION} AS releaser
 RUN apk add --no-cache tar gzip
@@ -298,7 +298,7 @@ RUN --mount=target=/root/.cache,type=cache \
 
 FROM devkit-export AS devkit-linux
 COPY --link --from=binaries / /usr/bin/
-ENV BUILDKIT_SETUP_CGROUPV2_ROOT=1
+ENV DEVKIT_SETUP_CGROUPV2_ROOT=1
 ENTRYPOINT ["devkitd"]
 
 FROM devkit-linux AS devkit-linux-debug
@@ -326,7 +326,7 @@ FROM binaries AS devkit-windows
 COPY --link --from=devkitd /usr/bin/devkitd /devkitd.exe
 
 FROM devkit-base AS integration-tests-base
-ENV BUILDKIT_INTEGRATION_ROOTLESS_IDPAIR="1000:1000"
+ENV DEVKIT_INTEGRATION_ROOTLESS_IDPAIR="1000:1000"
 RUN apk add --no-cache shadow shadow-uidmap sudo vim iptables ip6tables dnsmasq fuse curl git-daemon openssh-client \
   && useradd --create-home --home-dir /home/user --uid 1000 -s /bin/sh user \
   && echo "XDG_RUNTIME_DIR=/run/user/1000; export XDG_RUNTIME_DIR" >> /home/user/.profile \
@@ -345,9 +345,9 @@ RUN curl -Ls https://raw.githubusercontent.com/moby/moby/v20.10.21/hack/dind > /
   && chmod 0755 /docker-entrypoint.sh
 ENTRYPOINT ["/docker-entrypoint.sh"]
 # musl is needed to directly use the registry binary that is built on alpine
-ENV BUILDKIT_INTEGRATION_CONTAINERD_EXTRA="containerd-1.6=/opt/containerd-alt-16/bin"
-ENV BUILDKIT_INTEGRATION_SNAPSHOTTER=stargz
-ENV BUILDKIT_SETUP_CGROUPV2_ROOT=1
+ENV DEVKIT_INTEGRATION_CONTAINERD_EXTRA="containerd-1.6=/opt/containerd-alt-16/bin"
+ENV DEVKIT_INTEGRATION_SNAPSHOTTER=stargz
+ENV DEVKIT_SETUP_CGROUPV2_ROOT=1
 ENV CGO_ENABLED=0
 ENV GOTESTSUM_FORMAT=standard-verbose
 COPY --link --from=gotestsum /out/gotestsum /usr/bin/
@@ -368,7 +368,7 @@ COPY --link --from=binaries / /usr/bin/
 # integration-tests prepares an image suitable for running all tests
 FROM integration-tests-base AS integration-tests
 COPY . .
-ENV BUILDKIT_RUN_NETWORK_INTEGRATION_TESTS=1 BUILDKIT_CNI_INIT_LOCK_PATH=/run/devkit_cni_bridge.lock
+ENV DEVKIT_RUN_NETWORK_INTEGRATION_TESTS=1 DEVKIT_CNI_INIT_LOCK_PATH=/run/devkit_cni_bridge.lock
 
 FROM integration-tests AS dev-env
 VOLUME /var/lib/devkit
@@ -389,9 +389,9 @@ ENV HOME /home/user
 ENV USER user
 ENV XDG_RUNTIME_DIR=/run/user/1000
 ENV TMPDIR=/home/user/.local/tmp
-ENV BUILDKIT_HOST=unix:///run/user/1000/devkit/devkitd.sock
+ENV DEVKIT_HOST=unix:///run/user/1000/devkit/devkitd.sock
 VOLUME /home/user/.local/share/devkit
 ENTRYPOINT ["rootlesskit", "devkitd"]
 
 # devkit builds the devkit container image
-FROM devkit-$TARGETOS${BUILDKIT_DEBUG:+-debug} AS devkit
+FROM devkit-$TARGETOS${DEVKIT_DEBUG:+-debug} AS devkit

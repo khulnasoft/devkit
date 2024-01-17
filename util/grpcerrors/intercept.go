@@ -19,7 +19,7 @@ func UnaryServerInterceptor(ctx context.Context, req interface{}, info *grpc.Una
 	}
 	if oldErr != nil && err == nil {
 		logErr := errors.Wrap(err, "invalid grpc error conversion")
-		if os.Getenv("BUILDKIT_DEBUG_PANIC_ON_ERROR") == "1" {
+		if os.Getenv("DEVKIT_DEBUG_PANIC_ON_ERROR") == "1" {
 			panic(logErr)
 		}
 		log.Printf("%v", logErr)

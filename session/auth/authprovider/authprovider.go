@@ -256,7 +256,7 @@ func (ap *authProvider) getAuthConfig(host string) (*types.AuthConfig, error) {
 }
 
 func (ap *authProvider) getAuthorityKey(host string, salt []byte) (ed25519.PrivateKey, error) {
-	if v, err := strconv.ParseBool(os.Getenv("BUILDKIT_NO_CLIENT_TOKEN")); err == nil && v {
+	if v, err := strconv.ParseBool(os.Getenv("DEVKIT_NO_CLIENT_TOKEN")); err == nil && v {
 		return nil, status.Errorf(codes.Unavailable, "client side tokens disabled")
 	}
 

@@ -1,7 +1,7 @@
-# BuildKit Developer Docs
+# DevKit Developer Docs
 
-These are the BuildKit developer docs, designed to be read by technical users
-interested in contributing to or integrating with BuildKit.
+These are the DevKit developer docs, designed to be read by technical users
+interested in contributing to or integrating with DevKit.
 
 > **Warning**
 >
@@ -13,7 +13,7 @@ interested in contributing to or integrating with BuildKit.
 
 ## Video
 
-You can find recording for "BuildKit architecture and internals" session in [here](https://drive.google.com/file/d/1zGMQipL5WJ3sLySu7gHZ_o6tFpxRXRHs/view) ([slides](https://docs.google.com/presentation/d/1tEnuMOENuoVQ3l6viBmguYUn7XpjIHIC-3RHzfyIgjc/edit?usp=sharing)). This session gives an overview how BuildKit works under the hood and how it was designed. If you’re thinking about contributing to BuildKit, this session should give you an overview of the most important components that make up BuildKit and how they work together.
+You can find recording for "DevKit architecture and internals" session in [here](https://drive.google.com/file/d/1zGMQipL5WJ3sLySu7gHZ_o6tFpxRXRHs/view) ([slides](https://docs.google.com/presentation/d/1tEnuMOENuoVQ3l6viBmguYUn7XpjIHIC-3RHzfyIgjc/edit?usp=sharing)). This session gives an overview how DevKit works under the hood and how it was designed. If you’re thinking about contributing to DevKit, this session should give you an overview of the most important components that make up DevKit and how they work together.
 
 ## Jargon
 

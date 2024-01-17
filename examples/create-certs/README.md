@@ -1,4 +1,4 @@
-# Create BuildKit certificates
+# Create DevKit certificates
 
 This [bake definition](docker-bake.hcl) can be used for creating certificates:
 

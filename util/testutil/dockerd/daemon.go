@@ -127,7 +127,7 @@ func (d *Daemon) StartWithError(daemonLogs map[string]*bytes.Buffer, providedArg
 
 	d.args = append(d.args, providedArgs...)
 	d.cmd = exec.Command(dockerdBinary, d.args...)
-	d.cmd.Env = append(os.Environ(), "DOCKER_SERVICE_PREFER_OFFLINE_IMAGE=1", "BUILDKIT_DEBUG_EXEC_OUTPUT=1", "BUILDKIT_DEBUG_PANIC_ON_ERROR=1")
+	d.cmd.Env = append(os.Environ(), "DOCKER_SERVICE_PREFER_OFFLINE_IMAGE=1", "DEVKIT_DEBUG_EXEC_OUTPUT=1", "DEVKIT_DEBUG_PANIC_ON_ERROR=1")
 
 	if daemonLogs != nil {
 		b := new(bytes.Buffer)

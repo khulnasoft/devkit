@@ -42,7 +42,7 @@ func Providers(opt Opt) (providers map[pb.NetMode]network.Provider, resolvedMode
 		defaultProvider = bridgeProvider
 		resolvedMode = "cni"
 	case "auto", "":
-		if v, err := strconv.ParseBool(os.Getenv("BUILDKIT_NETWORK_BRIDGE_AUTO")); v && err == nil {
+		if v, err := strconv.ParseBool(os.Getenv("DEVKIT_NETWORK_BRIDGE_AUTO")); v && err == nil {
 			bridgeProvider, err := getBridgeProvider(opt.CNI)
 			if err != nil {
 				return nil, resolvedMode, err
