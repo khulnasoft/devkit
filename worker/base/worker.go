@@ -65,7 +65,7 @@ type WorkerOpt struct {
 	Labels           map[string]string
 	Platforms        []ocispecs.Platform
 	GCPolicy         []client.PruneInfo
-	DevkitVersion  client.DevkitVersion
+	DevkitVersion    client.DevkitVersion
 	NetworkProviders map[pb.NetMode]network.Provider
 	Executor         executor.Executor
 	Snapshotter      snapshot.Snapshotter
