@@ -74,7 +74,7 @@ func registerService() error {
 		ServiceType:  windows.SERVICE_WIN32_OWN_PROCESS,
 		StartType:    mgr.StartAutomatic,
 		ErrorControl: mgr.ErrorNormal,
-		DisplayName:  "Buildkitd",
+		DisplayName:  "Devkitd",
 		Description:  "Container image build engine",
 	}
 

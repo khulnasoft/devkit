@@ -1,6 +1,6 @@
 # Image annotations
 
-Buildkit supports attaching [OCI annotations](https://github.com/opencontainers/image-spec/blob/main/annotations.md)
+Devkit supports attaching [OCI annotations](https://github.com/opencontainers/image-spec/blob/main/annotations.md)
 to its built image manifests and indexes. These annotations can be used to
 attach additional metadata to a built image, which may not be appropriate to
 store in the image content itself.
@@ -36,7 +36,7 @@ like so:
         --opt platform=amd64,arm64 \
         --output "type=image,name=target,annotation[linux/amd64].org.opencontainers.image.url=https://example.com/amd64,annotation[linux/arm64].org.opencontainers.image.url=https://example.com/arm64"
         
-Buildkit also allows you to finely control the exact destination where the
+Devkit also allows you to finely control the exact destination where the
 annotation will be written to using the syntax `annotation-<type>.*`. You can
 write to the following `<type>`s:
 

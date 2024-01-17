@@ -7,7 +7,7 @@ manipulation of container layer chains that can result in highly efficient
 operations for many use cases.
 
 This doc assumes some familiarity with LLB and ops like ExecOp and FileOp. More
-background on LLB can be obtained from the README.md in Buildkit's git
+background on LLB can be obtained from the README.md in Devkit's git
 repository. This doc also uses the Go LLB client for examples, though MergeOp
 and DiffOp are not in any way language specific.
 
@@ -37,7 +37,7 @@ another state `A` creates a state that:
     removed.
 
 MergeOp is associative, i.e. using shorthand notation: `Merge(A, B, C) ==
-Merge(Merge(A, B), C) == Merge(A, Merge(B, C))`. Buildkit knows this and
+Merge(Merge(A, B), C) == Merge(A, Merge(B, C))`. Devkit knows this and
 internally optimizes LLB merges that are equivalent in this way to re-use the
 same cache entries.
 
@@ -84,10 +84,10 @@ mergedPlusMore = llb.Merge([]llb.State{merged, llb.Scratch().File(llb.Mkdir("/ye
 
 When the result of a MergeOp is exported as a container image, the image will
 consist of the layers making up each input joined together in the order of the
-MergeOp. If Buildkit has cached any one of these layers already, they will not
+MergeOp. If Devkit has cached any one of these layers already, they will not
 need to be re-exported (i.e. re-packaged into compressed tarballs).
 Additionally, if the image is being pushed to a registry and the registry
-indicates it already has any of the layers, then Buildkit can skip pushing
+indicates it already has any of the layers, then Devkit can skip pushing
 those layers entirely.
 
 Layers joined together by MergeOp do not have dependencies on each other, so a
@@ -164,7 +164,7 @@ llb.Diff(lower, upper) == llb.Merge([]llb.State{
 This behavior extends to arbitrary numbers of states separating `lower` and `upper`.
 
 In the case where there is not a chain between `lower` and `upper` that
-Buildkit can determine, DiffOp still works consistently but, when exported,
+Devkit can determine, DiffOp still works consistently but, when exported,
 will always result in a single layer that is not re-used from its inputs.
 
 ## Example Use Case: Better "Copy Chains" with MergeOp
@@ -178,8 +178,8 @@ frontend, this is the multi-stage build pattern and a chain of `COPY
 --from=...` statements.
 
 One issue with this type of pattern is that if any of the inputs to the copy
-chain change, that doesn't just invalidate Buildkit's cache for that input, it
-also invalidates Buildkit's cache for any copied layers after that one.
+chain change, that doesn't just invalidate Devkit's cache for that input, it
+also invalidates Devkit's cache for any copied layers after that one.
 
 To be a bit more concrete, consider the following LLB as specified with the Go client:
 
@@ -218,7 +218,7 @@ COPY --from=c /bin/c /usr/local/bin/c
 
 Now, say you do a build of this LLB and export the `combined` stage as a
 container image to a registry. If you were to then repeat the same build with
-the same instance of Buildkit, each part of the build should be cached,
+the same instance of Devkit, each part of the build should be cached,
 resulting in no work needing to be done and no layers needing to be exported or
 pushed to the registry.
 
@@ -292,7 +292,7 @@ The benefits of MergeOp become apparent when considering what happens if the
 build of `a` is modified. Whereas before this led to invalidation of the copy
 of `b` and `c`, now those merge inputs are completely unaffected; no new cache
 entries or new container layers need to be created for them. So, the end result
-is that the only work Buildkit does when `a` changes is re-build `a` and then
+is that the only work Devkit does when `a` changes is re-build `a` and then
 push the new layers for `/usr/local/bin/a` (plus a new image manifest).
 `/usr/local/bin/b` and `/usr/local/bin/c` do not need to be re-exported and do
 not need to be re-pushed to the registry. In graphical form:
@@ -326,7 +326,7 @@ behavior is discussed more in the "Performance Considerations" section of the
 doc.
 
 You can see a working-code example of this by comparing `examples/devkit3`
-with `examples/devkit4` in the Buildkit git repo.
+with `examples/devkit4` in the Devkit git repo.
 
 ## Example Use Case: Remote-only Image Append with MergeOp
 
@@ -342,10 +342,10 @@ merged := llb.Merge([]llb.State{foo, bar, qaz})
 ```
 
 If `merged` is being exported to the same registry that already has the layers
-for `fooApp`, `barApp` and `qazApp`, then the only thing Buildkit does during
+for `fooApp`, `barApp` and `qazApp`, then the only thing Devkit does during
 the export is create an image manifest (just some metadata) and push it to the
 registry. No layers need to be pushed (they are already there) and they don't
-even need to be pulled locally to Buildkit either.
+even need to be pulled locally to Devkit either.
 
 Note that if you were to instead do this:
 
@@ -358,7 +358,7 @@ usually be merged together more efficiently than the naive solution of just
 unpacking the layers on top of each other. See the "Performance Details"
 section for more info.
 
-Additionally, if you export your Buildkit cache to a registry, this same idea
+Additionally, if you export your Devkit cache to a registry, this same idea
 can be extended to any LLB types, not just `llb.Image`. So, using the same
 example as the previous use case:
 
@@ -375,9 +375,9 @@ combined := llb.Merge([]llb.State{
 ```
 
 If you do a build that includes a remote cache export to a registry, then any
-Buildkit worker importing that cache can run builds that do different merges of
+Devkit worker importing that cache can run builds that do different merges of
 those layers without having to pull anything down. For instance, if a separate
-Buildkit worker imported that remote cache and then built this:
+Devkit worker imported that remote cache and then built this:
 
 ```go
 combined2 := llb.Merge([]llb.State{
@@ -481,7 +481,7 @@ approaches are viable:
 
 1. The version that uses `DESTDIR` will likely have *slightly* better
    performance than the version using DiffOp for many use cases. This is because
-   it's faster for Buildkit to merge in a state that is just a single layer on top
+   it's faster for Devkit to merge in a state that is just a single layer on top
    of scratch (i.e. the first version of `builtPackage` that used `DESTDIR`) than
    it is to merge in a state whose diff is between two non-empty states (i.e. the
    DiffOp version). Whether the performance difference actually matters needs to
@@ -555,7 +555,7 @@ Diff op or otherwise want to understand them at a deeper level.
 ### Layer-like Behavior of Merge and Diff
 
 One important principal of LLB results is that when they are exported as
-container images, an external runtime besides Buildkit that pulls and unpacks
+container images, an external runtime besides Devkit that pulls and unpacks
 the image must see the same filesystem that is seen during build time.
 
 That may seem a bit obvious, but it has important implications for Merge and
@@ -652,7 +652,7 @@ existed in `bar`, not any of its deletions.
 Note that there are currently performance tradeoffs to this copy approach in
 that it will actually result in a copy on disk (i.e. no hardlink
 optimizations), the copy will not be lazy and `squashedBar` will be a distinct
-layer from its inputs as far as the Buildkit cache and any remote registries
+layer from its inputs as far as the Devkit cache and any remote registries
 are concerned, which may or may not matter depending on the use-case.
 
 ### Diff Corner Cases

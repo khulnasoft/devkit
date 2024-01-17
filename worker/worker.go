@@ -24,7 +24,7 @@ type Worker interface {
 	ID() string
 	Labels() map[string]string
 	Platforms(noCache bool) []ocispecs.Platform
-	BuildkitVersion() client.BuildkitVersion
+	DevkitVersion() client.DevkitVersion
 
 	GCPolicy() []client.PruneInfo
 	LoadRef(ctx context.Context, id string, hidden bool) (cache.ImmutableRef, error)

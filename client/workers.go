@@ -17,7 +17,7 @@ type WorkerInfo struct {
 	Labels          map[string]string   `json:"labels"`
 	Platforms       []ocispecs.Platform `json:"platforms"`
 	GCPolicy        []PruneInfo         `json:"gcPolicy"`
-	BuildkitVersion BuildkitVersion     `json:"devkitVersion"`
+	DevkitVersion DevkitVersion     `json:"devkitVersion"`
 }
 
 // ListWorkers lists all active workers
@@ -41,7 +41,7 @@ func (c *Client) ListWorkers(ctx context.Context, opts ...ListWorkersOption) ([]
 			Labels:          w.Labels,
 			Platforms:       pb.ToSpecPlatforms(w.Platforms),
 			GCPolicy:        fromAPIGCPolicy(w.GCPolicy),
-			BuildkitVersion: fromAPIBuildkitVersion(w.BuildkitVersion),
+			DevkitVersion: fromAPIDevkitVersion(w.DevkitVersion),
 		})
 	}
 

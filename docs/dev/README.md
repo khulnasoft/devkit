@@ -25,14 +25,14 @@ process.
 | :--- | :---------- |
 | **LLB** | LLB stands for low-level build definition, which is a binary intermediate format used for defining the dependency graph for processes running part of your build. |
 | **Definition** | Definition is the LLB serialized using protocol buffers. This is the protobuf type that is transported over the gRPC interfaces. |
-| **Frontend** | Frontends are builders of LLB and may issue requests to Buildkit’s gRPC server like solving graphs. Currently there is only `dockerfile.v0` and `gateway.v0` implemented, but the gateway frontend allows running container images that function as frontends.  |
+| **Frontend** | Frontends are builders of LLB and may issue requests to Devkit’s gRPC server like solving graphs. Currently there is only `dockerfile.v0` and `gateway.v0` implemented, but the gateway frontend allows running container images that function as frontends.  |
 | **State** | State is a helper object to build LLBs from higher level concepts like images, shell executions, mounts, etc. Frontends use the state API in order to build LLBs and marshal them into the definition. |
 | **Solver** | Solver is an abstract interface to solve a graph of vertices and edges to find the final result. An LLB solver is a solver that understands that vertices are implemented by container-based operations, and that edges map to container-snapshot results. |
 | **Vertex** | Vertex is a node in a build graph. It defines an interface for a content addressable operation and its inputs. |
 | **Op** | Op defines how the solver can evaluate the properties of a vertex operation. An op is retrieved from a vertex and executed in the worker. For example, there are op implementations for image sources, git sources, exec processes, etc. |
 | **Edge** | Edge is a connection point between vertices. An edge references a specific output a vertex’s operation. Edges are used as inputs to other vertices. |
 | **Result** | Result is an abstract interface return value of a solve. In LLB, the result is a generic interface over a container snapshot. |
-| **Worker** | Worker is a backend that can run OCI images. Currently, Buildkit can run with workers using either runc or containerd. |
+| **Worker** | Worker is a backend that can run OCI images. Currently, Devkit can run with workers using either runc or containerd. |
 
 ## Table of Contents
 

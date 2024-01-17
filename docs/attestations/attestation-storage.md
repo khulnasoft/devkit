@@ -1,6 +1,6 @@
 # Image Attestation Storage
 
-Buildkit supports creating and attaching attestations to build artifacts. These
+Devkit supports creating and attaching attestations to build artifacts. These
 attestations can provide valuable information from the build process,
 including, but not limited to: [SBOMs](https://en.wikipedia.org/wiki/Software_supply_chain),
 [SLSA Provenance](https://slsa.dev/provenance), build logs, etc.

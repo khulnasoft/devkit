@@ -1,6 +1,6 @@
 # Experimental FreeBSD support
 
-Buildkit also has experimental FreeBSD support. The container infrastructure on FreeBSD is still at an early stage, so problems may occur.
+Devkit also has experimental FreeBSD support. The container infrastructure on FreeBSD is still at an early stage, so problems may occur.
 
 Dependencies:
 

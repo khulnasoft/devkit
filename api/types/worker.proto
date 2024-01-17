@@ -14,7 +14,7 @@ message WorkerRecord {
 	map<string, string> Labels = 2;
 	repeated pb.Platform platforms = 3 [(gogoproto.nullable) = false];
 	repeated GCPolicy GCPolicy = 4;
-	BuildkitVersion BuildkitVersion = 5;
+	DevkitVersion DevkitVersion = 5;
 }
 
 message GCPolicy {
@@ -24,7 +24,7 @@ message GCPolicy {
 	repeated string filters = 4;
 }
 
-message BuildkitVersion {
+message DevkitVersion {
 	string package = 1;
 	string version = 2;
 	string revision = 3;

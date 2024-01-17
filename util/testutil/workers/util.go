@@ -26,7 +26,7 @@ func (osp otelSocketPath) UpdateConfigFile(in string) string {
 `, in, osp)
 }
 
-func runBuildkitd(
+func runDevkitd(
 	ctx context.Context,
 	conf *integration.BackendConfig,
 	args []string,
@@ -72,7 +72,7 @@ func runBuildkitd(
 	})
 
 	args = append(args, "--config="+cfgfile)
-	address = getBuildkitdAddr(tmpdir)
+	address = getDevkitdAddr(tmpdir)
 
 	args = append(args, "--root", tmpdir, "--addr", address, "--debug")
 	cmd := exec.Command(args[0], args[1:]...) //nolint:gosec // test utility

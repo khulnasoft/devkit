@@ -6,7 +6,7 @@ import (
 	"syscall"
 )
 
-func applyBuildkitdPlatformFlags(args []string) []string {
+func applyDevkitdPlatformFlags(args []string) []string {
 	return args
 }
 
@@ -18,7 +18,7 @@ func getSysProcAttr() *syscall.SysProcAttr {
 	return &syscall.SysProcAttr{}
 }
 
-func getBuildkitdAddr(tmpdir string) string {
+func getDevkitdAddr(tmpdir string) string {
 	return "npipe:////./pipe/devkitd-" + filepath.Base(tmpdir)
 }
 

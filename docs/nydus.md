@@ -6,7 +6,7 @@ Nydus image can be flexibly configured as a FUSE-based user-space filesystem or 
 
 ## Creating Nydus images
 
-### Buildkitd with Nydus Support
+### Devkitd with Nydus Support
 
 To enable devkit support for Nydus image export, we need to build `devkitd` with the following command:
 

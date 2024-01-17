@@ -29,7 +29,7 @@ type WorkerRecord struct {
 	Labels               map[string]string `protobuf:"bytes,2,rep,name=Labels,proto3" json:"Labels,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 	Platforms            []pb.Platform     `protobuf:"bytes,3,rep,name=platforms,proto3" json:"platforms"`
 	GCPolicy             []*GCPolicy       `protobuf:"bytes,4,rep,name=GCPolicy,proto3" json:"GCPolicy,omitempty"`
-	BuildkitVersion      *BuildkitVersion  `protobuf:"bytes,5,opt,name=BuildkitVersion,proto3" json:"BuildkitVersion,omitempty"`
+	DevkitVersion      *DevkitVersion  `protobuf:"bytes,5,opt,name=DevkitVersion,proto3" json:"DevkitVersion,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}          `json:"-"`
 	XXX_unrecognized     []byte            `json:"-"`
 	XXX_sizecache        int32             `json:"-"`
@@ -96,9 +96,9 @@ func (m *WorkerRecord) GetGCPolicy() []*GCPolicy {
 	return nil
 }
 
-func (m *WorkerRecord) GetBuildkitVersion() *BuildkitVersion {
+func (m *WorkerRecord) GetDevkitVersion() *DevkitVersion {
 	if m != nil {
-		return m.BuildkitVersion
+		return m.DevkitVersion
 	}
 	return nil
 }
@@ -174,7 +174,7 @@ func (m *GCPolicy) GetFilters() []string {
 	return nil
 }
 
-type BuildkitVersion struct {
+type DevkitVersion struct {
 	Package              string   `protobuf:"bytes,1,opt,name=package,proto3" json:"package,omitempty"`
 	Version              string   `protobuf:"bytes,2,opt,name=version,proto3" json:"version,omitempty"`
 	Revision             string   `protobuf:"bytes,3,opt,name=revision,proto3" json:"revision,omitempty"`
@@ -183,18 +183,18 @@ type BuildkitVersion struct {
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *BuildkitVersion) Reset()         { *m = BuildkitVersion{} }
-func (m *BuildkitVersion) String() string { return proto.CompactTextString(m) }
-func (*BuildkitVersion) ProtoMessage()    {}
-func (*BuildkitVersion) Descriptor() ([]byte, []int) {
+func (m *DevkitVersion) Reset()         { *m = DevkitVersion{} }
+func (m *DevkitVersion) String() string { return proto.CompactTextString(m) }
+func (*DevkitVersion) ProtoMessage()    {}
+func (*DevkitVersion) Descriptor() ([]byte, []int) {
 	return fileDescriptor_e4ff6184b07e587a, []int{2}
 }
-func (m *BuildkitVersion) XXX_Unmarshal(b []byte) error {
+func (m *DevkitVersion) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *BuildkitVersion) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *DevkitVersion) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_BuildkitVersion.Marshal(b, m, deterministic)
+		return xxx_messageInfo_DevkitVersion.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -204,33 +204,33 @@ func (m *BuildkitVersion) XXX_Marshal(b []byte, deterministic bool) ([]byte, err
 		return b[:n], nil
 	}
 }
-func (m *BuildkitVersion) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_BuildkitVersion.Merge(m, src)
+func (m *DevkitVersion) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DevkitVersion.Merge(m, src)
 }
-func (m *BuildkitVersion) XXX_Size() int {
+func (m *DevkitVersion) XXX_Size() int {
 	return m.Size()
 }
-func (m *BuildkitVersion) XXX_DiscardUnknown() {
-	xxx_messageInfo_BuildkitVersion.DiscardUnknown(m)
+func (m *DevkitVersion) XXX_DiscardUnknown() {
+	xxx_messageInfo_DevkitVersion.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_BuildkitVersion proto.InternalMessageInfo
+var xxx_messageInfo_DevkitVersion proto.InternalMessageInfo
 
-func (m *BuildkitVersion) GetPackage() string {
+func (m *DevkitVersion) GetPackage() string {
 	if m != nil {
 		return m.Package
 	}
 	return ""
 }
 
-func (m *BuildkitVersion) GetVersion() string {
+func (m *DevkitVersion) GetVersion() string {
 	if m != nil {
 		return m.Version
 	}
 	return ""
 }
 
-func (m *BuildkitVersion) GetRevision() string {
+func (m *DevkitVersion) GetRevision() string {
 	if m != nil {
 		return m.Revision
 	}
@@ -241,7 +241,7 @@ func init() {
 	proto.RegisterType((*WorkerRecord)(nil), "moby.devkit.v1.types.WorkerRecord")
 	proto.RegisterMapType((map[string]string)(nil), "moby.devkit.v1.types.WorkerRecord.LabelsEntry")
 	proto.RegisterType((*GCPolicy)(nil), "moby.devkit.v1.types.GCPolicy")
-	proto.RegisterType((*BuildkitVersion)(nil), "moby.devkit.v1.types.BuildkitVersion")
+	proto.RegisterType((*DevkitVersion)(nil), "moby.devkit.v1.types.DevkitVersion")
 }
 
 func init() { proto.RegisterFile("worker.proto", fileDescriptor_e4ff6184b07e587a) }
@@ -300,9 +300,9 @@ func (m *WorkerRecord) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i -= len(m.XXX_unrecognized)
 		copy(dAtA[i:], m.XXX_unrecognized)
 	}
-	if m.BuildkitVersion != nil {
+	if m.DevkitVersion != nil {
 		{
-			size, err := m.BuildkitVersion.MarshalToSizedBuffer(dAtA[:i])
+			size, err := m.DevkitVersion.MarshalToSizedBuffer(dAtA[:i])
 			if err != nil {
 				return 0, err
 			}
@@ -425,7 +425,7 @@ func (m *GCPolicy) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *BuildkitVersion) Marshal() (dAtA []byte, err error) {
+func (m *DevkitVersion) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -435,12 +435,12 @@ func (m *BuildkitVersion) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *BuildkitVersion) MarshalTo(dAtA []byte) (int, error) {
+func (m *DevkitVersion) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *BuildkitVersion) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *DevkitVersion) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -514,8 +514,8 @@ func (m *WorkerRecord) Size() (n int) {
 			n += 1 + l + sovWorker(uint64(l))
 		}
 	}
-	if m.BuildkitVersion != nil {
-		l = m.BuildkitVersion.Size()
+	if m.DevkitVersion != nil {
+		l = m.DevkitVersion.Size()
 		n += 1 + l + sovWorker(uint64(l))
 	}
 	if m.XXX_unrecognized != nil {
@@ -551,7 +551,7 @@ func (m *GCPolicy) Size() (n int) {
 	return n
 }
 
-func (m *BuildkitVersion) Size() (n int) {
+func (m *DevkitVersion) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -839,7 +839,7 @@ func (m *WorkerRecord) Unmarshal(dAtA []byte) error {
 			iNdEx = postIndex
 		case 5:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field BuildkitVersion", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field DevkitVersion", wireType)
 			}
 			var msglen int
 			for shift := uint(0); ; shift += 7 {
@@ -866,10 +866,10 @@ func (m *WorkerRecord) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if m.BuildkitVersion == nil {
-				m.BuildkitVersion = &BuildkitVersion{}
+			if m.DevkitVersion == nil {
+				m.DevkitVersion = &DevkitVersion{}
 			}
-			if err := m.BuildkitVersion.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			if err := m.DevkitVersion.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex
@@ -1036,7 +1036,7 @@ func (m *GCPolicy) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *BuildkitVersion) Unmarshal(dAtA []byte) error {
+func (m *DevkitVersion) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -1059,10 +1059,10 @@ func (m *BuildkitVersion) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: BuildkitVersion: wiretype end group for non-group")
+			return fmt.Errorf("proto: DevkitVersion: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: BuildkitVersion: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: DevkitVersion: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:

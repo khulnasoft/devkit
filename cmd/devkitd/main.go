@@ -886,8 +886,8 @@ func getGCPolicy(cfg config.GCConfig, root string) []client.PruneInfo {
 	return out
 }
 
-func getBuildkitVersion() client.BuildkitVersion {
-	return client.BuildkitVersion{
+func getDevkitVersion() client.DevkitVersion {
+	return client.DevkitVersion{
 		Package:  version.Package,
 		Version:  version.Version,
 		Revision: version.Revision,

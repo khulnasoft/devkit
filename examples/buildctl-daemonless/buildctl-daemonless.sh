@@ -21,7 +21,7 @@ set -eu
 tmp=$(mktemp -d /tmp/buildctl-daemonless.XXXXXX)
 trap "kill \$(cat $tmp/pid) || true; wait \$(cat $tmp/pid) || true; rm -rf $tmp" EXIT
 
-startBuildkitd() {
+startDevkitd() {
     addr=
     helper=
     if [ $(id -u) = 0 ]; then
@@ -38,7 +38,7 @@ startBuildkitd() {
 
 # devkitd supports NOTIFY_SOCKET but as far as we know, there is no easy way
 # to wait for NOTIFY_SOCKET activation using busybox-builtin commands...
-waitForBuildkitd() {
+waitForDevkitd() {
     addr=$(cat $tmp/addr)
     try=0
     max=$BUILDCTL_CONNECT_RETRIES_MAX
@@ -54,7 +54,7 @@ waitForBuildkitd() {
     done
 }
 
-startBuildkitd
-waitForBuildkitd
+startDevkitd
+waitForDevkitd
 $BUILDCTL --addr=$(cat $tmp/addr) "$@"
 
