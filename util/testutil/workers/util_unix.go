@@ -14,7 +14,7 @@ import (
 	"github.com/pkg/errors"
 )
 
-func applyBuildkitdPlatformFlags(args []string) []string {
+func applyDevkitdPlatformFlags(args []string) []string {
 	return append(args, "--oci-worker=false")
 }
 
@@ -31,7 +31,7 @@ func getSysProcAttr() *syscall.SysProcAttr {
 	}
 }
 
-func getBuildkitdAddr(tmpdir string) string {
+func getDevkitdAddr(tmpdir string) string {
 	return "unix://" + filepath.Join(tmpdir, "devkitd.sock")
 }
 
