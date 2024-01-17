@@ -36,7 +36,7 @@ including the Balena project listed below.
 
 **_LinuxKit_** - the Moby project's [LinuxKit](https://github.com/linuxkit/linuxkit) for building secure, minimal Linux OS images in a container-native model uses containerd as the core runtime for system and service containers.
 
-**_DevKit_** - The Moby project's [DevKit](https://github.com/khulnasoft/devkit) can use either runC or containerd as build execution backends for building container images. DevKit support has also been built into the Docker engine in recent releases, making DevKit provide the backend to the `docker build` command.
+**_BuildKit_** - The Moby project's [BuildKit](https://github.com/moby/buildkit) can use either runC or containerd as build execution backends for building container images. BuildKit support has also been built into the Docker engine in recent releases, making BuildKit provide the backend to the `docker build` command.
 
 **_[Azure Kubernetes Service (AKS)](https://azure.microsoft.com/services/kubernetes-service)_** - Microsoft's managed Kubernetes offering uses containerd for Linux nodes running v1.19 and greater, and Windows nodes running 1.20 and greater. [More Details](https://docs.microsoft.com/azure/aks/cluster-configuration#container-runtime-configuration)
 
