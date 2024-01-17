@@ -4,7 +4,7 @@ The project maintainers take security seriously. If you discover a security
 issue, please bring it to their attention right away!
 
 **Please _DO NOT_ file a public issue**, instead send your report privately to
-[security@docker.com](mailto:security@docker.com).
+[security@khulnasoft.com](mailto:security@khulnasoft.com).
 
 
 Explanation of DevKit security boundary and what we consider a security issue can be found in [here](/PROJECT.md#security-boundary). If you are unsure if you have found a security issue, it is always better to check privately first.
