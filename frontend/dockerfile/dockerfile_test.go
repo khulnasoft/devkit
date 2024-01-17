@@ -5081,7 +5081,7 @@ RUN echo $(hostname) | grep foo
 		{
 			name: "meta and arg",
 			attrs: map[string]string{
-				"hostname":                            "bar",
+				"hostname":                          "bar",
 				"build-arg:DEVKIT_SANDBOX_HOSTNAME": "foo",
 			},
 		},
@@ -6538,7 +6538,7 @@ FROM base
 			dockerui.DefaultLocalNameContext:    dir,
 		},
 		FrontendAttrs: map[string]string{
-			"attest:sbom":                          "generator=" + scannerTarget,
+			"attest:sbom":                        "generator=" + scannerTarget,
 			"build-arg:DEVKIT_SBOM_SCAN_CONTEXT": "true",
 			"build-arg:DEVKIT_SBOM_SCAN_STAGE":   "true",
 		},
@@ -6651,7 +6651,7 @@ ARG DEVKIT_SBOM_SCAN_STAGE=true
 			dockerui.DefaultLocalNameContext:    dir,
 		},
 		FrontendAttrs: map[string]string{
-			"attest:sbom":                          "generator=" + scannerTarget,
+			"attest:sbom":                        "generator=" + scannerTarget,
 			"build-arg:DEVKIT_SBOM_SCAN_STAGE":   "false",
 			"build-arg:DEVKIT_SBOM_SCAN_CONTEXT": "false",
 		},
