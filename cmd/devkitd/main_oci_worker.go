@@ -316,7 +316,7 @@ func ociWorkerInitializer(c *cli.Context, common workerInitializerOpt) ([]worker
 		return nil, err
 	}
 	opt.GCPolicy = getGCPolicy(cfg.GCConfig, common.config.Root)
-	opt.BuildkitVersion = getBuildkitVersion()
+	opt.DevkitVersion = getDevkitVersion()
 	opt.RegistryHosts = hosts
 
 	if platformsStr := cfg.Platforms; len(platformsStr) != 0 {

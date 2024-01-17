@@ -57,7 +57,7 @@ Sometimes it is not completely clear if the issue belongs in `khulnasoft/devkit`
 
 Provide versions of the tools you used:
 
-- Using Buildkitd/Buildctl  `buildctl --version` `devkitd version`
+- Using Devkitd/Buildctl  `buildctl --version` `devkitd version`
 - Using Docker Buildx `docker buildx version` and `docker buildx inspect` to return info about your current builder instance. If you run `docker build` then also report this.
 - If the issue is specific to Docker Engine embedded DevKit or `docker buildx` Docker driver then report `docker version` and `docker info`
 

@@ -76,7 +76,7 @@ func (c *Controller) WorkerInfos() []client.WorkerInfo {
 			ID:              w.ID(),
 			Labels:          w.Labels(),
 			Platforms:       w.Platforms(false),
-			BuildkitVersion: w.BuildkitVersion(),
+			DevkitVersion: w.DevkitVersion(),
 		})
 	}
 	return out

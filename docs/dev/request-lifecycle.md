@@ -1,6 +1,6 @@
 # Solve Request Lifecycle
 
-Buildkit solves build graphs to find the final result. By default, nothing will
+Devkit solves build graphs to find the final result. By default, nothing will
 be exported to the client, but requests can be made after solving the graph to
 export results to external destinations (like the client’s filesystem).
 
@@ -9,7 +9,7 @@ A solve request goes through the following:
 1. Client makes a solve request and sends it to devkitd over gRPC. The
    request may either include a LLB definition, or the name of a frontend (must
    be `dockerfile.v0` or `gateway.v0`), but it must not be both.
-2. Buildkitd receives the solve request with the Controller. The controller is
+2. Devkitd receives the solve request with the Controller. The controller is
    registered as the ControlServer gRPC service.
 3. The controller passes it down to the LLB solver, which will create a job for
    this request. It will also create a FrontendLLBBridge, that provides a
@@ -79,7 +79,7 @@ solve request, they will share the same FrontendLLBBridge and underlying job.
 
 ## Dockerfile frontend (`dockerfile.v0`)
 
-Buildkit comes with a Dockerfile frontend which essentially is a parser that
+Devkit comes with a Dockerfile frontend which essentially is a parser that
 translates Dockerfile instructions into a LLB definition. In order to introduce
 new features into the Dockerfile DSL without breaking backwards compatibility,
 Dockerfiles can include a syntax directive at the top of the file to indicate a
@@ -87,7 +87,7 @@ frontend image to use.
 
 For example, users can include a syntax directive to use
 `docker/dockerfile:1-labs` to opt-in for an extended Dockerfile DSL that
-takes advantage of Buildkit features. However, the frontend image doesn’t have
+takes advantage of Devkit features. However, the frontend image doesn’t have
 to be Dockerfile-specific. One can write a frontend that reads a YAML file, and
 using the syntax directive, issue the build request using `docker build -f
 my-config.yaml`.

@@ -1337,7 +1337,7 @@ func (m *InfoRequest) XXX_DiscardUnknown() {
 var xxx_messageInfo_InfoRequest proto.InternalMessageInfo
 
 type InfoResponse struct {
-	BuildkitVersion      *types.BuildkitVersion `protobuf:"bytes,1,opt,name=devkitVersion,proto3" json:"devkitVersion,omitempty"`
+	DevkitVersion      *types.DevkitVersion `protobuf:"bytes,1,opt,name=devkitVersion,proto3" json:"devkitVersion,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}               `json:"-"`
 	XXX_unrecognized     []byte                 `json:"-"`
 	XXX_sizecache        int32                  `json:"-"`
@@ -1376,9 +1376,9 @@ func (m *InfoResponse) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_InfoResponse proto.InternalMessageInfo
 
-func (m *InfoResponse) GetBuildkitVersion() *types.BuildkitVersion {
+func (m *InfoResponse) GetDevkitVersion() *types.DevkitVersion {
 	if m != nil {
-		return m.BuildkitVersion
+		return m.DevkitVersion
 	}
 	return nil
 }
@@ -3875,9 +3875,9 @@ func (m *InfoResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i -= len(m.XXX_unrecognized)
 		copy(dAtA[i:], m.XXX_unrecognized)
 	}
-	if m.BuildkitVersion != nil {
+	if m.DevkitVersion != nil {
 		{
-			size, err := m.BuildkitVersion.MarshalToSizedBuffer(dAtA[:i])
+			size, err := m.DevkitVersion.MarshalToSizedBuffer(dAtA[:i])
 			if err != nil {
 				return 0, err
 			}
@@ -5057,8 +5057,8 @@ func (m *InfoResponse) Size() (n int) {
 	}
 	var l int
 	_ = l
-	if m.BuildkitVersion != nil {
-		l = m.BuildkitVersion.Size()
+	if m.DevkitVersion != nil {
+		l = m.DevkitVersion.Size()
 		n += 1 + l + sovControl(uint64(l))
 	}
 	if m.XXX_unrecognized != nil {
@@ -9111,7 +9111,7 @@ func (m *InfoResponse) Unmarshal(dAtA []byte) error {
 		switch fieldNum {
 		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field BuildkitVersion", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field DevkitVersion", wireType)
 			}
 			var msglen int
 			for shift := uint(0); ; shift += 7 {
@@ -9138,10 +9138,10 @@ func (m *InfoResponse) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if m.BuildkitVersion == nil {
-				m.BuildkitVersion = &types.BuildkitVersion{}
+			if m.DevkitVersion == nil {
+				m.DevkitVersion = &types.DevkitVersion{}
 			}
-			if err := m.BuildkitVersion.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			if err := m.DevkitVersion.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex

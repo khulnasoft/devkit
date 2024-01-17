@@ -14,7 +14,7 @@ For more details about stargz/eStargz image format, please see also [Stargz and 
 
 ## Enabling lazy pulling of stargz/eStargz images
 
-Buildkit supports two ways to enable lazy pulling of stargz/eStargz images.
+Devkit supports two ways to enable lazy pulling of stargz/eStargz images.
 
 ### Using builtin support (recommended)
 

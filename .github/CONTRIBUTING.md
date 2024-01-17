@@ -95,7 +95,7 @@ Nodes:
 Name:      dev0
 Endpoint:  tcp://localhost:1234
 Status:    running
-Buildkit:  v0.11.0-rc3-506-g539bab193.m
+Devkit:  v0.11.0-rc3-506-g539bab193.m
 Platforms: linux/amd64, linux/amd64/v2, linux/amd64/v3, linux/386
 ```
 
@@ -124,7 +124,7 @@ Name:           dev0
 Endpoint:       desktop-linux
 Driver Options: image="khulnasoft/devkit:local"
 Status:         running
-Buildkit:       v0.11.0-rc3-623-g2ff0d2a2f.m
+Devkit:       v0.11.0-rc3-623-g2ff0d2a2f.m
 Platforms:      linux/amd64, linux/amd64/v2, linux/amd64/v3, linux/arm64, linux/riscv64, linux/ppc64le, linux/s390x, linux/386, linux/mips64le, linux/mips64, linux/arm/v7, linux/arm/v6
 ```
 

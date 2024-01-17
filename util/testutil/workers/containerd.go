@@ -146,9 +146,9 @@ disabled_plugins = ["cri"]
 		address, getContainerdDebugSock(tmpdir),
 	)
 
-	var snBuildkitdArgs []string
+	var snDevkitdArgs []string
 	if c.Snapshotter != "" {
-		snBuildkitdArgs = append(snBuildkitdArgs,
+		snDevkitdArgs = append(snDevkitdArgs,
 			fmt.Sprintf("--containerd-worker-snapshotter=%s", c.Snapshotter))
 		if c.Snapshotter == "stargz" {
 			snPath, snCl, err := runStargzSnapshotter(cfg)
@@ -206,8 +206,8 @@ disabled_plugins = ["cri"]
 		"--containerd-worker-addr", address,
 		"--containerd-worker-labels=org.mobyproject.devkit.worker.sandbox=true", // Include use of --containerd-worker-labels to trigger https://github.com/khulnasoft/devkit/pull/603
 	}
-	devkitdArgs = applyBuildkitdPlatformFlags(devkitdArgs)
-	devkitdArgs = append(devkitdArgs, snBuildkitdArgs...)
+	devkitdArgs = applyDevkitdPlatformFlags(devkitdArgs)
+	devkitdArgs = append(devkitdArgs, snDevkitdArgs...)
 
 	if runtime.GOOS != "windows" && c.Snapshotter != "native" {
 		c.ExtraEnv = append(c.ExtraEnv, "DEVKIT_DEBUG_FORCE_OVERLAY_DIFF=true")
@@ -225,7 +225,7 @@ disabled_plugins = ["cri"]
 			"nsenter", "-U", "--preserve-credentials", "-m", "-t", fmt.Sprintf("%d", pid)},
 			append(devkitdArgs, "--containerd-worker-snapshotter=native")...)
 	}
-	devkitdSock, stop, err := runBuildkitd(ctx, cfg, devkitdArgs, cfg.Logs, c.UID, c.GID, c.ExtraEnv)
+	devkitdSock, stop, err := runDevkitd(ctx, cfg, devkitdArgs, cfg.Logs, c.UID, c.GID, c.ExtraEnv)
 	if err != nil {
 		integration.PrintLogs(cfg.Logs, log.Println)
 		return nil, nil, err

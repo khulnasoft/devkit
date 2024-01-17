@@ -33,7 +33,7 @@ var termColorMap = map[string]aec.ANSI{
 }
 
 func setUserDefinedTermColors(colorsEnv string) {
-	fields := readBuildkitColorsEnv(colorsEnv)
+	fields := readDevkitColorsEnv(colorsEnv)
 	if fields == nil {
 		return
 	}
@@ -58,7 +58,7 @@ func setUserDefinedTermColors(colorsEnv string) {
 	}
 }
 
-func readBuildkitColorsEnv(colorsEnv string) []string {
+func readDevkitColorsEnv(colorsEnv string) []string {
 	csvReader := csv.NewReader(strings.NewReader(colorsEnv))
 	csvReader.Comma = ':'
 	fields, err := csvReader.Read()

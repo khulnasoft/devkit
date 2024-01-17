@@ -9,10 +9,10 @@ import (
 )
 
 type Info struct {
-	BuildkitVersion BuildkitVersion `json:"devkitVersion"`
+	DevkitVersion DevkitVersion `json:"devkitVersion"`
 }
 
-type BuildkitVersion struct {
+type DevkitVersion struct {
 	Package  string `json:"package"`
 	Version  string `json:"version"`
 	Revision string `json:"revision"`
@@ -24,15 +24,15 @@ func (c *Client) Info(ctx context.Context) (*Info, error) {
 		return nil, errors.Wrap(err, "failed to call info")
 	}
 	return &Info{
-		BuildkitVersion: fromAPIBuildkitVersion(res.BuildkitVersion),
+		DevkitVersion: fromAPIDevkitVersion(res.DevkitVersion),
 	}, nil
 }
 
-func fromAPIBuildkitVersion(in *apitypes.BuildkitVersion) BuildkitVersion {
+func fromAPIDevkitVersion(in *apitypes.DevkitVersion) DevkitVersion {
 	if in == nil {
-		return BuildkitVersion{}
+		return DevkitVersion{}
 	}
-	return BuildkitVersion{
+	return DevkitVersion{
 		Package:  in.Package,
 		Version:  in.Version,
 		Revision: in.Revision,

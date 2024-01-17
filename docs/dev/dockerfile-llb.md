@@ -1,10 +1,10 @@
 # Dockerfile conversion to LLB
 
-If you want to understand how Buildkit translates Dockerfile instructions into
+If you want to understand how Devkit translates Dockerfile instructions into
 LLB, or you want to write your own frontend, then seeing how Dockerfile maps to
-using the Buildkit LLB package will give you a jump start.
+using the Devkit LLB package will give you a jump start.
 
-The `llb` package from Buildkit provides a chainable state object to help
+The `llb` package from Devkit provides a chainable state object to help
 construct a LLB. Then you can marshal the state object into a definition using
 protocol buffers, and send it off in a solve request over gRPC.
 
@@ -136,7 +136,7 @@ caching semantics and understanding of the command:
 Bind mounts allow unidirectional syncing of the host's local file system into
 the build environment.
 
-Bind mounts in Buildkit should not be confused with bind mounts in the linux
+Bind mounts in Devkit should not be confused with bind mounts in the linux
 kernel - they do not sync bidirectionally. Bind mounts are only a snapshot of
 your local state, which is specified through the `llb.Local` state object:
 

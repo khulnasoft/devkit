@@ -1602,12 +1602,12 @@ This behavior is analogous to the [Linux `cp` utility's](https://www.man7.org/li
 Note that, without the `--parents` flag specified, any filename collision will
 fail the Linux `cp` operation with an explicit error message
 (`cp: will not overwrite just-created './x/a.txt' with './y/a.txt'`), where the
-Buildkit will silently overwrite the target file at the destination.
+Devkit will silently overwrite the target file at the destination.
 
 While it is possible to preserve the directory structure for `COPY`
 instructions consisting of only one `src` entry, usually it is more beneficial
 to keep the layer count in the resulting image as low as possible. Therefore,
-with the `--parents` flag, the Buildkit is capable of packing multiple
+with the `--parents` flag, the Devkit is capable of packing multiple
 `COPY` instructions together, keeping the directory structure intact.
 
 ## ENTRYPOINT

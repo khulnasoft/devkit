@@ -173,7 +173,7 @@ message ListWorkersResponse {
 message InfoRequest {}
 
 message InfoResponse {
-	moby.devkit.v1.types.BuildkitVersion devkitVersion = 1;
+	moby.devkit.v1.types.DevkitVersion devkitVersion = 1;
 }
 
 message BuildHistoryRequest {
