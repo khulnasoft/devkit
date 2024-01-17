@@ -7,7 +7,6 @@ import (
 	"time"
 
 	"github.com/containerd/containerd/platforms"
-	"github.com/mitchellh/hashstructure/v2"
 	"github.com/khulnasoft/devkit/cache/remotecache"
 	"github.com/khulnasoft/devkit/client"
 	"github.com/khulnasoft/devkit/client/llb"
@@ -26,6 +25,7 @@ import (
 	"github.com/khulnasoft/devkit/util/flightcontrol"
 	"github.com/khulnasoft/devkit/util/progress"
 	"github.com/khulnasoft/devkit/worker"
+	"github.com/mitchellh/hashstructure/v2"
 	digest "github.com/opencontainers/go-digest"
 	"github.com/pkg/errors"
 )

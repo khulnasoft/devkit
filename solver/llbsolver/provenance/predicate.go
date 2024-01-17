@@ -47,7 +47,7 @@ type Environment struct {
 type ProvenanceMetadata struct {
 	slsa02.ProvenanceMetadata
 	DevKitMetadata DevKitMetadata `json:"https://mobyproject.org/devkit@v1#metadata,omitempty"`
-	Hermetic         bool             `json:"https://mobyproject.org/devkit@v1#hermetic,omitempty"`
+	Hermetic       bool           `json:"https://mobyproject.org/devkit@v1#hermetic,omitempty"`
 }
 
 type DevKitMetadata struct {
