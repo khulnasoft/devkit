@@ -1,0 +1,12 @@
+[Unit]
+Requires=devkit.service
+After=devkit.service
+Requires=devkit-proxy.socket
+After=devkit-proxy.socket
+
+[Service]
+# need to use proxy because rootlesskit does not forward the fd://3
+ExecStart=/usr/lib/systemd/systemd-socket-proxyd %t/devkit/rootless
+
+[Install]
+WantedBy=multi-user.target

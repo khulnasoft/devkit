@@ -1,0 +1,12 @@
+[Unit]
+Description=BuildKit
+Requires=devkit.socket
+After=devkit.socket
+Documentation=https://github.com/khulnasoft/devkit
+
+[Service]
+Type=notify
+ExecStart=/usr/local/bin/devkitd --addr fd://
+
+[Install]
+WantedBy=multi-user.target

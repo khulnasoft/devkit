@@ -1,0 +1,10 @@
+[Unit]
+Description=BuildKit
+Documentation=https://github.com/khulnasoft/devkit
+
+[Socket]
+ListenStream=%t/devkit/devkitd.sock
+SocketMode=0660
+
+[Install]
+WantedBy=sockets.target

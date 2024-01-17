@@ -1,0 +1,91 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: devkitd
+  name: devkitd
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: devkitd
+  template:
+    metadata:
+      labels:
+        app: devkitd
+      annotations:
+        container.apparmor.security.beta.kubernetes.io/devkitd: unconfined
+    # see devkit/docs/rootless.md for caveats of rootless mode
+    spec:
+      containers:
+        - name: devkitd
+          image: khulnasoft/devkit:master-rootless
+          args:
+            - --addr
+            - unix:///run/user/1000/devkit/devkitd.sock
+            - --addr
+            - tcp://0.0.0.0:1234
+            - --tlscacert
+            - /certs/ca.pem
+            - --tlscert
+            - /certs/cert.pem
+            - --tlskey
+            - /certs/key.pem
+            - --oci-worker-no-process-sandbox
+          # the probe below will only work after Release v0.6.3
+          readinessProbe:
+            exec:
+              command:
+                - buildctl
+                - debug
+                - workers
+            initialDelaySeconds: 5
+            periodSeconds: 30
+          # the probe below will only work after Release v0.6.3
+          livenessProbe:
+            exec:
+              command:
+                - buildctl
+                - debug
+                - workers
+            initialDelaySeconds: 5
+            periodSeconds: 30
+          securityContext:
+            # Needs Kubernetes >= 1.19
+            seccompProfile:
+              type: Unconfined
+            # To change UID/GID, you need to rebuild the image
+            runAsUser: 1000
+            runAsGroup: 1000
+          ports:
+            - containerPort: 1234
+          volumeMounts:
+            - name: certs
+              readOnly: true
+              mountPath: /certs
+            # Dockerfile has `VOLUME /home/user/.local/share/devkit` by default too,
+            # but the default VOLUME does not work with rootless on Google's Container-Optimized OS
+            # as it is mounted with `nosuid,nodev`.
+            # https://github.com/khulnasoft/devkit/issues/879#issuecomment-1240347038
+            - mountPath: /home/user/.local/share/devkit
+              name: devkitd
+      volumes:
+        # devkit-daemon-certs must contain ca.pem, cert.pem, and key.pem
+        - name: certs
+          secret:
+            secretName: devkit-daemon-certs
+        - name: devkitd
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: devkitd
+  name: devkitd
+spec:
+  ports:
+    - port: 1234
+      protocol: TCP
+  selector:
+    app: devkitd

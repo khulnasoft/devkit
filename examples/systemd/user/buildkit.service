@@ -1,0 +1,11 @@
+[Unit]
+Description=BuildKit
+Documentation=https://github.com/khulnasoft/devkit
+
+[Service]
+Type=notify
+NotifyAccess=all
+ExecStart=rootlesskit --net=slirp4netns --copy-up=/etc --disable-host-loopback /usr/local/bin/devkitd --addr unix://%t/devkit/rootless
+
+[Install]
+WantedBy=multi-user.target
