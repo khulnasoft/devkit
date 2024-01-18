@@ -34,7 +34,7 @@ const (
 // dont have to deal with repeated wake-up of EPOLLER or EPOLLHUP.
 // For more details, see:
 // - https://github.com/systemd/systemd/pull/4262
-// - https://github.com/khulnasoft-lab/docker/issues/27202
+// - https://github.com/moby/moby/issues/27202
 //
 // Example usage of Epoller and EpollConsole can be as follow:
 //

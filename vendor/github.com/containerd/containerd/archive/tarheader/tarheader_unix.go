@@ -17,10 +17,10 @@
 */
 
 /*
-   Portions from https://github.com/khulnasoft-lab/docker/blob/v23.0.1/pkg/archive/archive_unix.go#L52-L70
+   Portions from https://github.com/moby/moby/blob/v23.0.1/pkg/archive/archive_unix.go#L52-L70
    Copyright (C) Docker/Moby authors.
    Licensed under the Apache License, Version 2.0
-   NOTICE: https://github.com/khulnasoft-lab/docker/blob/v23.0.1/NOTICE
+   NOTICE: https://github.com/moby/moby/blob/v23.0.1/NOTICE
 */
 
 package tarheader
@@ -39,7 +39,7 @@ func init() {
 
 // statUnix populates hdr from system-dependent fields of fi without performing
 // any OS lookups.
-// From https://github.com/khulnasoft-lab/docker/blob/v23.0.1/pkg/archive/archive_unix.go#L52-L70
+// From https://github.com/moby/moby/blob/v23.0.1/pkg/archive/archive_unix.go#L52-L70
 func statUnix(fi os.FileInfo, hdr *tar.Header) error {
 	s, ok := fi.Sys().(*syscall.Stat_t)
 	if !ok {

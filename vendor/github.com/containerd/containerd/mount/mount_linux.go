@@ -84,7 +84,7 @@ func (m *Mount) mount(target string) (err error) {
 		return errors.New("mount options is too long")
 	}
 
-	// In the case of remounting with changed data (data != ""), need to call mount (khulnasoft-lab/docker#34077).
+	// In the case of remounting with changed data (data != ""), need to call mount (moby/moby#34077).
 	if flags&unix.MS_REMOUNT == 0 || dataInStr != "" {
 		// Initial call applying all non-propagation flags for mount
 		// or remount with changed data

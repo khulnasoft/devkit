@@ -217,7 +217,7 @@ otherwise cleanup our project.
     <td>Forums</td>
     <td>
       A public forum for users to discuss questions and explore current design patterns and
-      best practices about all the Moby projects. To participate, log in with your Github
+      best practices about all the Khulnasoft projects. To participate, log in with your Github
       account or create an account at <a href="https://forums.mobyproject.org" target="_blank">https://forums.mobyproject.org</a>.
     </td>
   </tr>
@@ -234,7 +234,7 @@ otherwise cleanup our project.
   <tr>
     <td>Twitter</td>
     <td>
-      You can follow <a href="https://twitter.com/moby/" target="_blank">Moby Project Twitter feed</a>
+      You can follow <a href="https://twitter.com/moby/" target="_blank">Khulnasoft Project Twitter feed</a>
       to get updates on our products. You can also tweet us questions or just
       share blogs or stories.
     </td>

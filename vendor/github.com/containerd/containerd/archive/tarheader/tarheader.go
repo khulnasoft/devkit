@@ -15,10 +15,10 @@
 */
 
 /*
-   Portions from https://github.com/khulnasoft-lab/docker/blob/v23.0.1/pkg/archive/archive.go#L419-L464
+   Portions from https://github.com/moby/moby/blob/v23.0.1/pkg/archive/archive.go#L419-L464
    Copyright (C) Docker/Moby authors.
    Licensed under the Apache License, Version 2.0
-   NOTICE: https://github.com/khulnasoft-lab/docker/blob/v23.0.1/NOTICE
+   NOTICE: https://github.com/moby/moby/blob/v23.0.1/NOTICE
 */
 
 package tarheader
@@ -32,7 +32,7 @@ import (
 // prevent tar.FileInfoHeader from introspecting it and potentially calling into
 // glibc.
 //
-// From https://github.com/khulnasoft-lab/docker/blob/v23.0.1/pkg/archive/archive.go#L419-L434 .
+// From https://github.com/moby/moby/blob/v23.0.1/pkg/archive/archive.go#L419-L434 .
 type nosysFileInfo struct {
 	os.FileInfo
 }
@@ -49,7 +49,7 @@ func (fi nosysFileInfo) Sys() interface{} {
 
 // sysStat, if non-nil, populates hdr from system-dependent fields of fi.
 //
-// From https://github.com/khulnasoft-lab/docker/blob/v23.0.1/pkg/archive/archive.go#L436-L437 .
+// From https://github.com/moby/moby/blob/v23.0.1/pkg/archive/archive.go#L436-L437 .
 var sysStat func(fi os.FileInfo, hdr *tar.Header) error
 
 // FileInfoHeaderNoLookups creates a partially-populated tar.Header from fi.
@@ -69,7 +69,7 @@ var sysStat func(fi os.FileInfo, hdr *tar.Header) error
 // fields to be zeroed should explicitly zero them out in the returned Header
 // value to avoid any compatibility issues in the future.
 //
-// From https://github.com/khulnasoft-lab/docker/blob/v23.0.1/pkg/archive/archive.go#L439-L464 .
+// From https://github.com/moby/moby/blob/v23.0.1/pkg/archive/archive.go#L439-L464 .
 func FileInfoHeaderNoLookups(fi os.FileInfo, link string) (*tar.Header, error) {
 	hdr, err := tar.FileInfoHeader(nosysFileInfo{fi}, link)
 	if err != nil {

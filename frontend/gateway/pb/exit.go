@@ -1,4 +1,4 @@
-package moby_devkit_v1_frontend //nolint:revive
+package khulnasoft.devkit_v1_frontend //nolint:revive
 
 import (
 	"fmt"

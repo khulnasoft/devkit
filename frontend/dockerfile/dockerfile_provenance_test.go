@@ -131,7 +131,7 @@ RUN echo "ok" > /foo
 			require.NoError(t, json.Unmarshal(att.LayersRaw[0], &stmt))
 			pred := stmt.Predicate
 
-			require.Equal(t, "https://mobyproject.org/devkit@v1", pred.BuildType)
+			require.Equal(t, "https://buildkit.khulnasoft.com/devkit@v1", pred.BuildType)
 			require.Equal(t, "", pred.Builder.ID)
 
 			require.Equal(t, "", pred.Invocation.ConfigSource.URI)
@@ -464,7 +464,7 @@ RUN echo "ok-$TARGETARCH" > /foo
 		require.NoError(t, json.Unmarshal(att.LayersRaw[0], &stmt))
 		pred := stmt.Predicate
 
-		require.Equal(t, "https://mobyproject.org/devkit@v1", pred.BuildType)
+		require.Equal(t, "https://buildkit.khulnasoft.com/devkit@v1", pred.BuildType)
 		require.Equal(t, "", pred.Builder.ID)
 		require.Equal(t, "", pred.Invocation.ConfigSource.URI)
 
@@ -646,7 +646,7 @@ func testClientFrontendProvenance(t *testing.T, sb integration.Sandbox) {
 	require.NoError(t, json.Unmarshal(att.LayersRaw[0], &stmt))
 	pred := stmt.Predicate
 
-	require.Equal(t, "https://mobyproject.org/devkit@v1", pred.BuildType)
+	require.Equal(t, "https://buildkit.khulnasoft.com/devkit@v1", pred.BuildType)
 	require.Equal(t, "", pred.Builder.ID)
 	require.Equal(t, "", pred.Invocation.ConfigSource.URI)
 
@@ -676,13 +676,13 @@ func testClientFrontendProvenance(t *testing.T, sb integration.Sandbox) {
 	require.NoError(t, json.Unmarshal(att.LayersRaw[0], &stmt))
 	pred = stmt.Predicate
 
-	require.Equal(t, "https://mobyproject.org/devkit@v1", pred.BuildType)
+	require.Equal(t, "https://buildkit.khulnasoft.com/devkit@v1", pred.BuildType)
 	require.Equal(t, "", pred.Builder.ID)
 	require.Equal(t, "", pred.Invocation.ConfigSource.URI)
 
 	args = pred.Invocation.Parameters.Args
 	require.Equal(t, 2, len(args), "%+v", args)
-	require.Equal(t, "Moby", args["build-arg:FOO"])
+	require.Equal(t, "Khulnasoft", args["build-arg:FOO"])
 	require.Equal(t, "x86target", args["target"])
 
 	require.Equal(t, 2, len(pred.Invocation.Parameters.Locals))
@@ -775,7 +775,7 @@ func testClientLLBProvenance(t *testing.T, sb integration.Sandbox) {
 
 	img := imgs.Find(nativePlatform)
 	require.NotNil(t, img)
-	require.Contains(t, string(img.Layers[1]["foo"].Data), "The Moby Project")
+	require.Contains(t, string(img.Layers[1]["foo"].Data), "The Khulnasoft Project")
 
 	att := imgs.FindAttestation(nativePlatform)
 	require.NotNil(t, att)
@@ -792,7 +792,7 @@ func testClientLLBProvenance(t *testing.T, sb integration.Sandbox) {
 	require.NoError(t, json.Unmarshal(att.LayersRaw[0], &stmt))
 	pred := stmt.Predicate
 
-	require.Equal(t, "https://mobyproject.org/devkit@v1", pred.BuildType)
+	require.Equal(t, "https://buildkit.khulnasoft.com/devkit@v1", pred.BuildType)
 	require.Equal(t, "", pred.Builder.ID)
 	require.Equal(t, "", pred.Invocation.ConfigSource.URI)
 

@@ -10,9 +10,9 @@ import (
 )
 
 var enabledCaps = map[string]struct{}{
-	"moby.devkit.frontend.inputs":      {},
-	"moby.devkit.frontend.subrequests": {},
-	"moby.devkit.frontend.contexts":    {},
+	"khulnasoft.devkit.frontend.inputs":      {},
+	"khulnasoft.devkit.frontend.subrequests": {},
+	"khulnasoft.devkit.frontend.contexts":    {},
 }
 
 func validateCaps(req string) (forward bool, err error) {

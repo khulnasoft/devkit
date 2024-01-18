@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package moby.devkit.v1;
+package khulnasoft.devkit.v1;
 
 // import "github.com/containerd/containerd/api/types/descriptor.proto";
 import "github.com/gogo/googleapis/google/rpc/status.proto";
@@ -72,7 +72,7 @@ message SolveRequest {
 	repeated string Entitlements = 9 [(gogoproto.customtype) = "github.com/khulnasoft/devkit/util/entitlements.Entitlement" ];
 	map<string, pb.Definition> FrontendInputs = 10;
 	bool Internal = 11; // Internal builds are not recorded in build history
-	moby.devkit.v1.sourcepolicy.Policy SourcePolicy = 12;
+	khulnasoft.devkit.v1.sourcepolicy.Policy SourcePolicy = 12;
 	repeated Exporter Exporters = 13;
 }
 
@@ -167,13 +167,13 @@ message ListWorkersRequest {
 }
 
 message ListWorkersResponse {
-	repeated moby.devkit.v1.types.WorkerRecord record = 1;
+	repeated khulnasoft.devkit.v1.types.WorkerRecord record = 1;
 }
 
 message InfoRequest {}
 
 message InfoResponse {
-	moby.devkit.v1.types.DevkitVersion devkitVersion = 1;
+	khulnasoft.devkit.v1.types.DevkitVersion devkitVersion = 1;
 }
 
 message BuildHistoryRequest {

@@ -14,7 +14,7 @@ import (
 )
 
 const (
-	DevKitBuildType = "https://mobyproject.org/devkit@v1"
+	DevKitBuildType = "https://buildkit.khulnasoft.com/devkit@v1"
 )
 
 type ProvenancePredicate struct {
@@ -46,8 +46,8 @@ type Environment struct {
 
 type ProvenanceMetadata struct {
 	slsa02.ProvenanceMetadata
-	DevKitMetadata DevKitMetadata `json:"https://mobyproject.org/devkit@v1#metadata,omitempty"`
-	Hermetic       bool           `json:"https://mobyproject.org/devkit@v1#hermetic,omitempty"`
+	DevKitMetadata DevKitMetadata `json:"https://buildkit.khulnasoft.com/devkit@v1#metadata,omitempty"`
+	Hermetic       bool           `json:"https://buildkit.khulnasoft.com/devkit@v1#hermetic,omitempty"`
 }
 
 type DevKitMetadata struct {
