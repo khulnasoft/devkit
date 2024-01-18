@@ -75,7 +75,7 @@ func (m *BytesMessage) GetData() []byte {
 }
 
 func init() {
-	proto.RegisterType((*BytesMessage)(nil), "moby.filesync.v1.BytesMessage")
+	proto.RegisterType((*BytesMessage)(nil), "khulnasoft.filesync.v1.BytesMessage")
 }
 
 func init() { proto.RegisterFile("filesync.proto", fileDescriptor_d1042549f1f24495) }
@@ -170,7 +170,7 @@ func NewFileSyncClient(cc *grpc.ClientConn) FileSyncClient {
 }
 
 func (c *fileSyncClient) DiffCopy(ctx context.Context, opts ...grpc.CallOption) (FileSync_DiffCopyClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_FileSync_serviceDesc.Streams[0], "/moby.filesync.v1.FileSync/DiffCopy", opts...)
+	stream, err := c.cc.NewStream(ctx, &_FileSync_serviceDesc.Streams[0], "/khulnasoft.filesync.v1.FileSync/DiffCopy", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -201,7 +201,7 @@ func (x *fileSyncDiffCopyClient) Recv() (*types.Packet, error) {
 }
 
 func (c *fileSyncClient) TarStream(ctx context.Context, opts ...grpc.CallOption) (FileSync_TarStreamClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_FileSync_serviceDesc.Streams[1], "/moby.filesync.v1.FileSync/TarStream", opts...)
+	stream, err := c.cc.NewStream(ctx, &_FileSync_serviceDesc.Streams[1], "/khulnasoft.filesync.v1.FileSync/TarStream", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -305,7 +305,7 @@ func (x *fileSyncTarStreamServer) Recv() (*types.Packet, error) {
 }
 
 var _FileSync_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "moby.filesync.v1.FileSync",
+	ServiceName: "khulnasoft.filesync.v1.FileSync",
 	HandlerType: (*FileSyncServer)(nil),
 	Methods:     []grpc.MethodDesc{},
 	Streams: []grpc.StreamDesc{
@@ -341,7 +341,7 @@ func NewFileSendClient(cc *grpc.ClientConn) FileSendClient {
 }
 
 func (c *fileSendClient) DiffCopy(ctx context.Context, opts ...grpc.CallOption) (FileSend_DiffCopyClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_FileSend_serviceDesc.Streams[0], "/moby.filesync.v1.FileSend/DiffCopy", opts...)
+	stream, err := c.cc.NewStream(ctx, &_FileSend_serviceDesc.Streams[0], "/khulnasoft.filesync.v1.FileSend/DiffCopy", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -415,7 +415,7 @@ func (x *fileSendDiffCopyServer) Recv() (*BytesMessage, error) {
 }
 
 var _FileSend_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "moby.filesync.v1.FileSend",
+	ServiceName: "khulnasoft.filesync.v1.FileSend",
 	HandlerType: (*FileSendServer)(nil),
 	Methods:     []grpc.MethodDesc{},
 	Streams: []grpc.StreamDesc{

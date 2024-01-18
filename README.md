@@ -24,9 +24,9 @@ Key features:
 -   Pluggable architecture
 -   Execution without root privileges
 
-Read the proposal from https://github.com/moby/moby/issues/32925
+Read the proposal from https://github.com/khulnasoft-lab/docker/issues/32925
 
-Introductory blog post https://blog.mobyproject.org/introducing-devkit-17e056cc5317
+Introductory blog post https://blog.khulnasoftproject.org/introducing-devkit-17e056cc5317
 
 Join `#devkit` channel on [Docker Community Slack](https://dockr.ly/comm-slack)
 
@@ -91,7 +91,7 @@ Join `#devkit` channel on [Docker Community Slack](https://dockr.ly/comm-slack)
 
 DevKit is used by the following projects:
 
--   [Moby & Docker](https://github.com/moby/moby/pull/37151) (`DOCKER_DEVKIT=1 docker build`)
+-   [Khulnasoft & Docker](https://github.com/khulnasoft-lab/docker/pull/37151) (`DOCKER_DEVKIT=1 docker build`)
 -   [img](https://github.com/genuinetools/img)
 -   [OpenFaaS Cloud](https://github.com/openfaas/openfaas-cloud)
 -   [container build interface](https://github.com/containerbuilding/cbi)
@@ -223,7 +223,7 @@ buildctl build \
 buildctl build \
     --frontend gateway.v0 \
     --opt source=docker/dockerfile \
-    --opt context=https://github.com/moby/moby.git \
+    --opt context=https://github.com/khulnasoft-lab/docker.git \
     --opt build-arg:APT_MIRROR=cdn-fastly.deb.debian.org
 ```
 

@@ -33,7 +33,7 @@ import (
 	"github.com/khulnasoft/devkit/util/gitutil"
 	"github.com/khulnasoft/devkit/util/suggest"
 	"github.com/khulnasoft/devkit/util/system"
-	"github.com/moby/sys/signal"
+	"github.com/khulnasoft-lab/docker-sys/signal"
 	digest "github.com/opencontainers/go-digest"
 	ocispecs "github.com/opencontainers/image-spec/specs-go/v1"
 	"github.com/pkg/errors"

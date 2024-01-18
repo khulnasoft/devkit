@@ -74,7 +74,7 @@ func (m *BytesMessage) GetData() []byte {
 }
 
 func init() {
-	proto.RegisterType((*BytesMessage)(nil), "moby.upload.v1.BytesMessage")
+	proto.RegisterType((*BytesMessage)(nil), "khulnasoft.upload.v1.BytesMessage")
 }
 
 func init() { proto.RegisterFile("upload.proto", fileDescriptor_91b94b655bd2a7e5) }
@@ -162,7 +162,7 @@ func NewUploadClient(cc *grpc.ClientConn) UploadClient {
 }
 
 func (c *uploadClient) Pull(ctx context.Context, opts ...grpc.CallOption) (Upload_PullClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_Upload_serviceDesc.Streams[0], "/moby.upload.v1.Upload/Pull", opts...)
+	stream, err := c.cc.NewStream(ctx, &_Upload_serviceDesc.Streams[0], "/khulnasoft.upload.v1.Upload/Pull", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -236,7 +236,7 @@ func (x *uploadPullServer) Recv() (*BytesMessage, error) {
 }
 
 var _Upload_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "moby.upload.v1.Upload",
+	ServiceName: "khulnasoft.upload.v1.Upload",
 	HandlerType: (*UploadServer)(nil),
 	Methods:     []grpc.MethodDesc{},
 	Streams: []grpc.StreamDesc{

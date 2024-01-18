@@ -152,9 +152,9 @@ func (m *CheckAgentResponse) XXX_DiscardUnknown() {
 var xxx_messageInfo_CheckAgentResponse proto.InternalMessageInfo
 
 func init() {
-	proto.RegisterType((*BytesMessage)(nil), "moby.sshforward.v1.BytesMessage")
-	proto.RegisterType((*CheckAgentRequest)(nil), "moby.sshforward.v1.CheckAgentRequest")
-	proto.RegisterType((*CheckAgentResponse)(nil), "moby.sshforward.v1.CheckAgentResponse")
+	proto.RegisterType((*BytesMessage)(nil), "khulnasoft.sshforward.v1.BytesMessage")
+	proto.RegisterType((*CheckAgentRequest)(nil), "khulnasoft.sshforward.v1.CheckAgentRequest")
+	proto.RegisterType((*CheckAgentResponse)(nil), "khulnasoft.sshforward.v1.CheckAgentResponse")
 }
 
 func init() { proto.RegisterFile("ssh.proto", fileDescriptor_ef0eae71e2e883eb) }
@@ -312,7 +312,7 @@ func NewSSHClient(cc *grpc.ClientConn) SSHClient {
 
 func (c *sSHClient) CheckAgent(ctx context.Context, in *CheckAgentRequest, opts ...grpc.CallOption) (*CheckAgentResponse, error) {
 	out := new(CheckAgentResponse)
-	err := c.cc.Invoke(ctx, "/moby.sshforward.v1.SSH/CheckAgent", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/khulnasoft.sshforward.v1.SSH/CheckAgent", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -320,7 +320,7 @@ func (c *sSHClient) CheckAgent(ctx context.Context, in *CheckAgentRequest, opts 
 }
 
 func (c *sSHClient) ForwardAgent(ctx context.Context, opts ...grpc.CallOption) (SSH_ForwardAgentClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_SSH_serviceDesc.Streams[0], "/moby.sshforward.v1.SSH/ForwardAgent", opts...)
+	stream, err := c.cc.NewStream(ctx, &_SSH_serviceDesc.Streams[0], "/khulnasoft.sshforward.v1.SSH/ForwardAgent", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -381,7 +381,7 @@ func _SSH_CheckAgent_Handler(srv interface{}, ctx context.Context, dec func(inte
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/moby.sshforward.v1.SSH/CheckAgent",
+		FullMethod: "/khulnasoft.sshforward.v1.SSH/CheckAgent",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(SSHServer).CheckAgent(ctx, req.(*CheckAgentRequest))
@@ -416,7 +416,7 @@ func (x *sSHForwardAgentServer) Recv() (*BytesMessage, error) {
 }
 
 var _SSH_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "moby.sshforward.v1.SSH",
+	ServiceName: "khulnasoft.sshforward.v1.SSH",
 	HandlerType: (*SSHServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

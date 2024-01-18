@@ -372,7 +372,7 @@ func buildAction(clicontext *cli.Context) error {
 			_, isSubRequest := sreq.FrontendOpt["requestid"]
 			if isSubRequest {
 				if _, ok := sreq.FrontendOpt["frontend.caps"]; !ok {
-					sreq.FrontendOpt["frontend.caps"] = "moby.devkit.frontend.subrequests"
+					sreq.FrontendOpt["frontend.caps"] = "khulnasoft.devkit.frontend.subrequests"
 				}
 			}
 			res, err := c.Solve(ctx, sreq)

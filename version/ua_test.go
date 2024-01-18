@@ -28,9 +28,9 @@ func TestUserAgent(t *testing.T) {
 			name:    "product",
 			version: "v0.11.6",
 			products: map[string]string{
-				"moby": "v24.0",
+				"khulnasoft": "v24.0",
 			},
-			want: "devkit/v0.11 moby/v24.0",
+			want: "devkit/v0.11 khulnasoft/v24.0",
 		},
 	}
 	for _, tt := range cases {

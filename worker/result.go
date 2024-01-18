@@ -34,7 +34,7 @@ func (wr *WorkerRef) Release(ctx context.Context) error {
 }
 
 // GetRemotes method abstracts ImmutableRef's GetRemotes to allow a Worker to override.
-// This is needed for moby integration.
+// This is needed for khulnasoft integration.
 // Use this method instead of calling ImmutableRef.GetRemotes() directly.
 func (wr *WorkerRef) GetRemotes(ctx context.Context, createIfNeeded bool, refCfg cacheconfig.RefConfig, all bool, g session.Group) ([]*solver.Remote, error) {
 	if w, ok := wr.Worker.(interface {

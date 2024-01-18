@@ -98,7 +98,7 @@ Runtime dependencies should usually use the latest stable release available when
 
 The core vendored dependencies (eg. `x/sys` , OTEL, grpc, protobuf) should use the same dependency version that is used by the vendored `containerd` library. At feature release time containerd library should use a version from a containerd release branch. If you need to update such dependency, update it in containerd repository first and then update containerd in DevKit. During development, using containerd development branch is allowed if the release timeline shows that containerd release (and matching update in DevKit) will happen before next DevKit feature release.
 
-Docker dependencies from `moby/moby` and `docker/cli` may use versions from the development branch.
+Docker dependencies from `khulnasoft-lab/docker` and `docker/cli` may use versions from the development branch.
 
 For other dependencies, updating to the latest patch release is always allowed in the development branch. Updating to a new feature release should have a reason unless the dependency is very stale. Dependencies should use a tagged version if one is available and there isn’t a need for a specific patch from an untagged commit. Go modules should define the lowest compatible version for their dependencies so there is no goal that all dependencies need to be in their latest versions before a new DevKit feature release is cut.
 

@@ -2,7 +2,7 @@ package label
 
 // Pre-defined label keys
 const (
-	prefix = "org.mobyproject.devkit.worker."
+	prefix = "org.khulnasoftproject.devkit.worker."
 
 	Executor            = prefix + "executor"    // "oci" or "containerd"
 	Snapshotter         = prefix + "snapshotter" // containerd snapshotter name ("overlay", "native", ...)

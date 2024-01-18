@@ -1782,7 +1782,7 @@ CMD ["test"]
 	require.NoError(t, err)
 	defer c.Close()
 
-	target := "docker.io/moby/cmdoverridetest:latest"
+	target := "docker.io/khulnasoft/cmdoverridetest:latest"
 	_, err = f.Solve(sb.Context(), c, client.SolveOpt{
 		Exports: []client.ExportEntry{
 			{
@@ -1800,7 +1800,7 @@ CMD ["test"]
 	require.NoError(t, err)
 
 	dockerfile = []byte(`
-FROM docker.io/moby/cmdoverridetest:latest
+FROM docker.io/khulnasoft/cmdoverridetest:latest
 SHELL ["ls"]
 ENTRYPOINT my entrypoint
 `)
@@ -1810,7 +1810,7 @@ ENTRYPOINT my entrypoint
 		fstest.CreateFile("Dockerfile", dockerfile, 0600),
 	)
 
-	target = "docker.io/moby/cmdoverridetest2:latest"
+	target = "docker.io/khulnasoft/cmdoverridetest2:latest"
 	_, err = f.Solve(sb.Context(), c, client.SolveOpt{
 		Exports: []client.ExportEntry{
 			{
@@ -1873,7 +1873,7 @@ LABEL foo=bar
 	require.NoError(t, err)
 	defer c.Close()
 
-	target := "docker.io/moby/testpullscratch:latest"
+	target := "docker.io/khulnasoft/testpullscratch:latest"
 	_, err = f.Solve(sb.Context(), c, client.SolveOpt{
 		Exports: []client.ExportEntry{
 			{
@@ -1891,7 +1891,7 @@ LABEL foo=bar
 	require.NoError(t, err)
 
 	dockerfile = []byte(`
-FROM docker.io/moby/testpullscratch:latest
+FROM docker.io/khulnasoft/testpullscratch:latest
 LABEL bar=baz
 COPY foo .
 `)
@@ -1902,7 +1902,7 @@ COPY foo .
 		fstest.CreateFile("foo", []byte("foo-contents"), 0600),
 	)
 
-	target = "docker.io/moby/testpullscratch2:latest"
+	target = "docker.io/khulnasoft/testpullscratch2:latest"
 	_, err = f.Solve(sb.Context(), c, client.SolveOpt{
 		Exports: []client.ExportEntry{
 			{
@@ -1949,7 +1949,7 @@ COPY foo .
 
 	echo := llb.Image("busybox").
 		Run(llb.Shlex(`sh -c "echo -n foo0 > /empty/foo"`)).
-		AddMount("/empty", llb.Image("docker.io/moby/testpullscratch:latest"))
+		AddMount("/empty", llb.Image("docker.io/khulnasoft/testpullscratch:latest"))
 
 	def, err := echo.Marshal(sb.Context())
 	require.NoError(t, err)
@@ -2534,7 +2534,7 @@ ENV foo=bar
 	args, trace := f.DFCmdArgs(dir, dir)
 	defer os.RemoveAll(trace)
 
-	target := "example.com/moby/dockerfilescratch:test"
+	target := "example.com/khulnasoft/dockerfilescratch:test"
 	cmd := sb.Cmd(args + " --output type=image,name=" + target)
 	err := cmd.Run()
 	require.NoError(t, err)
@@ -2600,7 +2600,7 @@ EXPOSE 5000
 	require.NoError(t, err)
 	defer c.Close()
 
-	target := "example.com/moby/dockerfileexpansion:test"
+	target := "example.com/khulnasoft/dockerfileexpansion:test"
 	_, err = f.Solve(sb.Context(), c, client.SolveOpt{
 		Exports: []client.ExportEntry{
 			{
@@ -2764,7 +2764,7 @@ COPY . .
 	}
 }
 
-// moby/moby#10858
+// khulnasoft-lab/docker#10858
 func testDockerfileLowercase(t *testing.T, sb integration.Sandbox) {
 	integration.SkipOnPlatform(t, "windows")
 	f := getFrontend(t, sb)
@@ -2821,7 +2821,7 @@ RUN ["ls"]
 
 	workers.CheckFeatureCompat(t, sb, workers.FeatureImageExporter)
 
-	target := "example.com/moby/dockerfilescratch:test"
+	target := "example.com/khulnasoft/dockerfilescratch:test"
 	cmd := sb.Cmd(args + " --output type=image,name=" + target)
 	require.NoError(t, cmd.Run())
 
@@ -2971,7 +2971,7 @@ USER nobody
 	require.Equal(t, "daemon\n", string(dt))
 
 	// test user in exported
-	target := "example.com/moby/dockerfileuser:test"
+	target := "example.com/khulnasoft/dockerfileuser:test"
 	_, err = f.Solve(sb.Context(), c, client.SolveOpt{
 		Exports: []client.ExportEntry{
 			{
@@ -3758,7 +3758,7 @@ LABEL foo=bar
 	require.NoError(t, err)
 	defer c.Close()
 
-	target := "example.com/moby/dockerfilelabels:test"
+	target := "example.com/khulnasoft/dockerfilelabels:test"
 	_, err = f.Solve(sb.Context(), c, client.SolveOpt{
 		FrontendAttrs: map[string]string{
 			"label:bar": "baz",
@@ -4299,7 +4299,7 @@ RUN echo bar > bar
 	require.NoError(t, err)
 	defer c.Close()
 
-	target := "example.com/moby/dockerfileids:test"
+	target := "example.com/khulnasoft/dockerfileids:test"
 	opt := client.SolveOpt{
 		FrontendAttrs: map[string]string{},
 		Exports: []client.ExportEntry{
@@ -4319,7 +4319,7 @@ RUN echo bar > bar
 	_, err = f.Solve(sb.Context(), c, opt, nil)
 	require.NoError(t, err)
 
-	target2 := "example.com/moby/dockerfileids2:test"
+	target2 := "example.com/khulnasoft/dockerfileids2:test"
 	opt.Exports[0].Attrs["name"] = target2
 
 	_, err = f.Solve(sb.Context(), c, opt, nil)
@@ -4376,7 +4376,7 @@ RUN echo bar > bar
 	require.NoError(t, err)
 	defer c.Close()
 
-	target := "example.com/moby/dockerfileexpids:test"
+	target := "example.com/khulnasoft/dockerfileexpids:test"
 	cacheTarget := registry + "/test/dockerfileexpids:cache"
 	opt := client.SolveOpt{
 		FrontendAttrs: map[string]string{},
@@ -4417,7 +4417,7 @@ RUN echo bar > bar
 
 	ensurePruneAll(t, c, sb)
 
-	target2 := "example.com/moby/dockerfileexpids2:test"
+	target2 := "example.com/khulnasoft/dockerfileexpids2:test"
 
 	opt.Exports[0].Attrs["name"] = target2
 	opt.FrontendAttrs["cache-from"] = cacheTarget
@@ -5008,7 +5008,7 @@ COPY Dockerfile Dockerfile
 		_, err = c.Solve(ctx, gateway.SolveRequest{
 			FrontendOpt: map[string]string{
 				"requestid":     "frontend.subrequests.notexist",
-				"frontend.caps": "moby.devkit.frontend.subrequests",
+				"frontend.caps": "khulnasoft.devkit.frontend.subrequests",
 			},
 			Frontend: "dockerfile.v0",
 		})
@@ -5019,14 +5019,14 @@ COPY Dockerfile Dockerfile
 
 		_, err = c.Solve(ctx, gateway.SolveRequest{
 			FrontendOpt: map[string]string{
-				"frontend.caps": "moby.devkit.frontend.notexistcap",
+				"frontend.caps": "khulnasoft.devkit.frontend.notexistcap",
 			},
 			Frontend: "dockerfile.v0",
 		})
 		require.Error(t, err)
 		var capErr *errdefs.UnsupportedFrontendCapError
 		require.True(t, errors.As(err, &capErr))
-		require.Equal(t, "moby.devkit.frontend.notexistcap", capErr.GetName())
+		require.Equal(t, "khulnasoft.devkit.frontend.notexistcap", capErr.GetName())
 
 		called = true
 		return nil, nil
@@ -6751,7 +6751,7 @@ COPY Dockerfile \
 	require.Equal(t, "Empty continuation line found in: COPY Dockerfile .", string(w.Short))
 	require.Equal(t, 1, len(w.Detail))
 	require.Equal(t, "Empty continuation lines will become errors in a future release", string(w.Detail[0]))
-	require.Equal(t, "https://github.com/moby/moby/pull/33719", w.URL)
+	require.Equal(t, "https://github.com/khulnasoft-lab/docker/pull/33719", w.URL)
 	require.Equal(t, 1, w.Level)
 }
 

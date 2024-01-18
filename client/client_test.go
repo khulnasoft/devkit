@@ -2685,7 +2685,7 @@ func testMultipleExporters(t *testing.T, sb integration.Sandbox) {
 
 	imageExporter := ExporterImage
 	if workers.IsTestDockerd() {
-		imageExporter = "moby"
+		imageExporter = "khulnasoft"
 	}
 
 	ref := identity.NewID()
@@ -3362,9 +3362,9 @@ func testFrontendMetadataReturn(t *testing.T, sb integration.Sandbox) {
 	}
 
 	var exports []ExportEntry
-	if workers.IsTestDockerdMoby(sb) {
+	if workers.IsTestDockerdKhulnasoft(sb) {
 		exports = []ExportEntry{{
-			Type: "moby",
+			Type: "khulnasoft",
 			Attrs: map[string]string{
 				"name": "reg.dummy:5000/devkit/test:latest",
 			},
@@ -6851,8 +6851,8 @@ func testMergeOp(t *testing.T, sb integration.Sandbox) {
 	}
 
 	var imageTarget string
-	if workers.IsTestDockerdMoby(sb) {
-		// do image export but use a fake url as the image should just end up in moby's
+	if workers.IsTestDockerdKhulnasoft(sb) {
+		// do image export but use a fake url as the image should just end up in khulnasoft's
 		// local store
 		imageTarget = "fake.invalid:33333/devkit/testmergeop:latest"
 	} else if registry != "" {
@@ -7343,9 +7343,9 @@ func requireContents(ctx context.Context, t *testing.T, c *Client, sb integratio
 
 	if imageTarget != "" {
 		var exports []ExportEntry
-		if workers.IsTestDockerdMoby(sb) {
+		if workers.IsTestDockerdKhulnasoft(sb) {
 			exports = []ExportEntry{{
-				Type: "moby",
+				Type: "khulnasoft",
 				Attrs: map[string]string{
 					"name": imageTarget,
 				},
@@ -10079,5 +10079,5 @@ func testClientCustomGRPCOpts(t *testing.T, sb integration.Sandbox) {
 	_, err = c.Solve(sb.Context(), def, SolveOpt{}, nil)
 	require.NoError(t, err)
 
-	require.Contains(t, interceptedMethods, "/moby.devkit.v1.Control/Solve")
+	require.Contains(t, interceptedMethods, "/khulnasoft.devkit.v1.Control/Solve")
 }

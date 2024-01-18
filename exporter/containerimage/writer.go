@@ -723,7 +723,7 @@ func patchImageConfig(dt []byte, descs []ocispecs.Descriptor, history []ocispecs
 		if err != nil {
 			return nil, err
 		}
-		m["moby.devkit.cache.v0"] = dt
+		m["khulnasoft.devkit.cache.v0"] = dt
 	}
 
 	dt, err = json.Marshal(m)

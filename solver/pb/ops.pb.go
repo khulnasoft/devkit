@@ -11,7 +11,7 @@ import (
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
 	github_com_gogo_protobuf_sortkeys "github.com/gogo/protobuf/sortkeys"
-	github_com_moby_devkit_util_apicaps "github.com/khulnasoft/devkit/util/apicaps"
+	github_com_khulnasoft_devkit_util_apicaps "github.com/khulnasoft/devkit/util/apicaps"
 	github_com_opencontainers_go_digest "github.com/opencontainers/go-digest"
 	io "io"
 	math "math"
@@ -1281,7 +1281,7 @@ type OpMetadata struct {
 	// index 3 reserved for WorkerConstraint in previous versions
 	// WorkerConstraint worker_constraint = 3;
 	ExportCache   *ExportCache                                         `protobuf:"bytes,4,opt,name=export_cache,json=exportCache,proto3" json:"export_cache,omitempty"`
-	Caps          map[github_com_moby_devkit_util_apicaps.CapID]bool `protobuf:"bytes,5,rep,name=caps,proto3,castkey=github.com/khulnasoft/devkit/util/apicaps.CapID" json:"caps" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"varint,2,opt,name=value,proto3"`
+	Caps          map[github_com_khulnasoft_devkit_util_apicaps.CapID]bool `protobuf:"bytes,5,rep,name=caps,proto3,castkey=github.com/khulnasoft/devkit/util/apicaps.CapID" json:"caps" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"varint,2,opt,name=value,proto3"`
 	ProgressGroup *ProgressGroup                                       `protobuf:"bytes,6,opt,name=progress_group,json=progressGroup,proto3" json:"progress_group,omitempty"`
 }
 
@@ -1335,7 +1335,7 @@ func (m *OpMetadata) GetExportCache() *ExportCache {
 	return nil
 }
 
-func (m *OpMetadata) GetCaps() map[github_com_moby_devkit_util_apicaps.CapID]bool {
+func (m *OpMetadata) GetCaps() map[github_com_khulnasoft_devkit_util_apicaps.CapID]bool {
 	if m != nil {
 		return m.Caps
 	}
@@ -2820,7 +2820,7 @@ func init() {
 	proto.RegisterMapType((map[string]*BuildInput)(nil), "pb.BuildOp.InputsEntry")
 	proto.RegisterType((*BuildInput)(nil), "pb.BuildInput")
 	proto.RegisterType((*OpMetadata)(nil), "pb.OpMetadata")
-	proto.RegisterMapType((map[github_com_moby_devkit_util_apicaps.CapID]bool)(nil), "pb.OpMetadata.CapsEntry")
+	proto.RegisterMapType((map[github_com_khulnasoft_devkit_util_apicaps.CapID]bool)(nil), "pb.OpMetadata.CapsEntry")
 	proto.RegisterMapType((map[string]string)(nil), "pb.OpMetadata.DescriptionEntry")
 	proto.RegisterType((*Source)(nil), "pb.Source")
 	proto.RegisterMapType((map[string]*Locations)(nil), "pb.Source.LocationsEntry")
@@ -4142,7 +4142,7 @@ func (m *OpMetadata) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		}
 		github_com_gogo_protobuf_sortkeys.Strings(keysForCaps)
 		for iNdEx := len(keysForCaps) - 1; iNdEx >= 0; iNdEx-- {
-			v := m.Caps[github_com_moby_devkit_util_apicaps.CapID(keysForCaps[iNdEx])]
+			v := m.Caps[github_com_khulnasoft_devkit_util_apicaps.CapID(keysForCaps[iNdEx])]
 			baseI := i
 			i--
 			if v {
@@ -9966,9 +9966,9 @@ func (m *OpMetadata) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			if m.Caps == nil {
-				m.Caps = make(map[github_com_moby_devkit_util_apicaps.CapID]bool)
+				m.Caps = make(map[github_com_khulnasoft_devkit_util_apicaps.CapID]bool)
 			}
-			var mapkey github_com_moby_devkit_util_apicaps.CapID
+			var mapkey github_com_khulnasoft_devkit_util_apicaps.CapID
 			var mapvalue bool
 			for iNdEx < postIndex {
 				entryPreIndex := iNdEx
@@ -10015,7 +10015,7 @@ func (m *OpMetadata) Unmarshal(dAtA []byte) error {
 					if postStringIndexmapkey > l {
 						return io.ErrUnexpectedEOF
 					}
-					mapkey = github_com_moby_devkit_util_apicaps.CapID(dAtA[iNdEx:postStringIndexmapkey])
+					mapkey = github_com_khulnasoft_devkit_util_apicaps.CapID(dAtA[iNdEx:postStringIndexmapkey])
 					iNdEx = postStringIndexmapkey
 				} else if fieldNum == 2 {
 					var mapvaluetemp int
@@ -10049,7 +10049,7 @@ func (m *OpMetadata) Unmarshal(dAtA []byte) error {
 					iNdEx += skippy
 				}
 			}
-			m.Caps[github_com_moby_devkit_util_apicaps.CapID(mapkey)] = mapvalue
+			m.Caps[github_com_khulnasoft_devkit_util_apicaps.CapID(mapkey)] = mapvalue
 			iNdEx = postIndex
 		case 6:
 			if wireType != 2 {

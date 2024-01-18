@@ -17,7 +17,7 @@ import (
 	"github.com/khulnasoft/devkit/session"
 	"github.com/khulnasoft/devkit/snapshot"
 	"github.com/moby/locker"
-	"github.com/moby/patternmatcher"
+	"github.com/khulnasoft-lab/patternmatcher"
 	digest "github.com/opencontainers/go-digest"
 	"github.com/pkg/errors"
 	"github.com/tonistiigi/fsutil"

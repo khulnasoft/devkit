@@ -63,7 +63,7 @@ FROM second AS binary
 	frontend := func(ctx context.Context, c gateway.Client) (*gateway.Result, error) {
 		res, err := c.Solve(ctx, gateway.SolveRequest{
 			FrontendOpt: map[string]string{
-				"frontend.caps": "moby.devkit.frontend.subrequests",
+				"frontend.caps": "khulnasoft.devkit.frontend.subrequests",
 				"requestid":     "frontend.targets",
 			},
 			Frontend: "dockerfile.v0",

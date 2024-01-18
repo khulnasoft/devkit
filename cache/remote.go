@@ -32,7 +32,7 @@ type Unlazier interface {
 // type is applied to all blobs in the chain. If Force is false, it's applied only to the newly created
 // layers. If all is true, all available chains that has the specified compression type of topmost blob are
 // appended to the result.
-// Note: Use WorkerRef.GetRemotes instead as moby integration requires custom GetRemotes implementation.
+// Note: Use WorkerRef.GetRemotes instead as khulnasoft integration requires custom GetRemotes implementation.
 func (sr *immutableRef) GetRemotes(ctx context.Context, createIfNeeded bool, refCfg config.RefConfig, all bool, s session.Group) ([]*solver.Remote, error) {
 	ctx, done, err := leaseutil.WithLease(ctx, sr.cm.LeaseManager, leaseutil.MakeTemporary)
 	if err != nil {

@@ -23,7 +23,7 @@ import (
 	"github.com/khulnasoft/devkit/util/apicaps"
 	"github.com/khulnasoft/devkit/util/bklog"
 	"github.com/khulnasoft/devkit/util/grpcerrors"
-	"github.com/moby/sys/signal"
+	"github.com/khulnasoft-lab/docker-sys/signal"
 	digest "github.com/opencontainers/go-digest"
 	"github.com/pkg/errors"
 	fstypes "github.com/tonistiigi/fsutil/types"

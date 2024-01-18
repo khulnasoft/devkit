@@ -180,7 +180,7 @@ func newSolveOpt(clicontext *cli.Context, w io.WriteCloser) (*client.SolveOpt, e
 }
 
 func loadDockerTar(r io.Reader) error {
-	// no need to use moby/moby/client here
+	// no need to use khulnasoft-lab/docker/client here
 	cmd := exec.Command("docker", "load")
 	cmd.Stdin = r
 	cmd.Stdout = os.Stdout

@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package moby.devkit.v1.frontend;
+package khulnasoft.devkit.v1.frontend;
 
 import "github.com/gogo/googleapis/google/rpc/status.proto";
 import "github.com/gogo/protobuf/gogoproto/gogo.proto";
@@ -123,7 +123,7 @@ message ResolveImageConfigRequest {
 	int32 ResolverType = 5;
 	string SessionID = 6;
 	string StoreID = 7;
-	repeated moby.devkit.v1.sourcepolicy.Policy SourcePolicies = 8;
+	repeated khulnasoft.devkit.v1.sourcepolicy.Policy SourcePolicies = 8;
 }
 
 message ResolveImageConfigResponse {
@@ -152,7 +152,7 @@ message SolveRequest {
 
 	bool Evaluate = 14;
 
-	repeated moby.devkit.v1.sourcepolicy.Policy SourcePolicies = 15;
+	repeated khulnasoft.devkit.v1.sourcepolicy.Policy SourcePolicies = 15;
 }
 
 // CacheOptionsEntry corresponds to the control.CacheOptionsEntry
@@ -215,9 +215,9 @@ message EvaluateResponse {
 message PingRequest{
 }
 message PongResponse{
-	repeated moby.devkit.v1.apicaps.APICap FrontendAPICaps = 1 [(gogoproto.nullable) = false];
-	repeated moby.devkit.v1.apicaps.APICap LLBCaps = 2 [(gogoproto.nullable) = false];
-	repeated moby.devkit.v1.types.WorkerRecord Workers = 3;
+	repeated khulnasoft.devkit.v1.apicaps.APICap FrontendAPICaps = 1 [(gogoproto.nullable) = false];
+	repeated khulnasoft.devkit.v1.apicaps.APICap LLBCaps = 2 [(gogoproto.nullable) = false];
+	repeated khulnasoft.devkit.v1.types.WorkerRecord Workers = 3;
 }
 
 message WarnRequest {

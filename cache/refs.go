@@ -32,7 +32,7 @@ import (
 	"github.com/khulnasoft/devkit/util/progress"
 	rootlessmountopts "github.com/khulnasoft/devkit/util/rootless/mountopts"
 	"github.com/khulnasoft/devkit/util/winlayers"
-	"github.com/moby/sys/mountinfo"
+	"github.com/khulnasoft-lab/docker-sys/mountinfo"
 	digest "github.com/opencontainers/go-digest"
 	ocispecs "github.com/opencontainers/image-spec/specs-go/v1"
 	"github.com/pkg/errors"
@@ -287,7 +287,7 @@ func (cr *cacheRecord) isLazy(ctx context.Context) (bool, error) {
 		return false, nil
 	}
 	dgst := cr.getBlob()
-	// special case for moby where there is no compressed blob (empty digest)
+	// special case for khulnasoft where there is no compressed blob (empty digest)
 	if dgst == "" {
 		return false, nil
 	}
@@ -416,7 +416,7 @@ func (cr *cacheRecord) mount(ctx context.Context, s session.Group) (_ snapshot.M
 			return nil, err
 		}
 		// Return the mount direct from View rather than setting it using the Mounts call below.
-		// The two are equivalent for containerd snapshotters but the moby snapshotter requires
+		// The two are equivalent for containerd snapshotters but the khulnasoft snapshotter requires
 		// the use of the mountable returned by View in this case.
 		mnts, err := cr.cm.Snapshotter.View(ctx, mountSnapshotID, cr.getSnapshotID())
 		if err != nil && !errdefs.IsAlreadyExists(err) {

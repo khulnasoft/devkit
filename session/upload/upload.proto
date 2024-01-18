@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package moby.upload.v1;
+package khulnasoft.upload.v1;
 
 option go_package = "upload";
 

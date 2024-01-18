@@ -18,7 +18,7 @@ import (
 	"github.com/khulnasoft/devkit/frontend/gateway/client"
 	"github.com/khulnasoft/devkit/solver/pb"
 	"github.com/khulnasoft/devkit/util/flightcontrol"
-	"github.com/moby/patternmatcher/ignorefile"
+	"github.com/khulnasoft-lab/patternmatcher/ignorefile"
 	digest "github.com/opencontainers/go-digest"
 	ocispecs "github.com/opencontainers/image-spec/specs-go/v1"
 	"github.com/pkg/errors"
@@ -312,7 +312,7 @@ func (bc *Client) ReadEntrypoint(ctx context.Context, lang string, opts ...llb.L
 
 		filenames := []string{bctx.filename, bctx.filename + ".dockerignore"}
 
-		// dockerfile is also supported casing moby/moby#10858
+		// dockerfile is also supported casing khulnasoft-lab/docker#10858
 		if path.Base(bctx.filename) == DefaultDockerfileName {
 			filenames = append(filenames, path.Join(path.Dir(bctx.filename), strings.ToLower(DefaultDockerfileName)))
 		}

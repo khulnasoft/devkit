@@ -8,7 +8,7 @@ import (
 type HeaderConverter func(*tar.Header)
 
 // NewReader returns a reader that applies headerConverter.
-// Forked from https://github.com/moby/moby/blob/v24.0.6/pkg/archive/copy.go#L308-L373 .
+// Forked from https://github.com/khulnasoft-lab/docker/blob/v24.0.6/pkg/archive/copy.go#L308-L373 .
 func NewReader(srcContent io.Reader, headerConverter HeaderConverter) io.ReadCloser {
 	rebased, w := io.Pipe()
 
@@ -36,7 +36,7 @@ func NewReader(srcContent io.Reader, headerConverter HeaderConverter) io.ReadClo
 				return
 			}
 
-			// Ignoring GoSec G110. See https://github.com/moby/moby/blob/v24.0.6/pkg/archive/copy.go#L355-L363
+			// Ignoring GoSec G110. See https://github.com/khulnasoft-lab/docker/blob/v24.0.6/pkg/archive/copy.go#L355-L363
 			//nolint:gosec // G110: Potential DoS vulnerability via decompression bomb (gosec)
 			if _, err = io.Copy(rebasedTar, srcTar); err != nil {
 				w.CloseWithError(err)
