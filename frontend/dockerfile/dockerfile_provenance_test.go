@@ -536,7 +536,7 @@ func testClientFrontendProvenance(t *testing.T, sb integration.Sandbox) {
 	)
 
 	frontend := func(ctx context.Context, c gateway.Client) (*gateway.Result, error) {
-		st := llb.HTTP("https://raw.githubusercontent.com/moby/moby/v20.10.21/README.md")
+		st := llb.HTTP("https://raw.githubusercontent.com/khulnasoft-lab/docker/v20.10.21/README.md")
 		def, err := st.Marshal(ctx)
 		if err != nil {
 			return nil, err
@@ -715,7 +715,7 @@ func testClientLLBProvenance(t *testing.T, sb integration.Sandbox) {
 	}
 
 	frontend := func(ctx context.Context, c gateway.Client) (*gateway.Result, error) {
-		st := llb.HTTP("https://raw.githubusercontent.com/moby/moby/v20.10.21/README.md")
+		st := llb.HTTP("https://raw.githubusercontent.com/khulnasoft-lab/docker/v20.10.21/README.md")
 		def, err := st.Marshal(ctx)
 		if err != nil {
 			return nil, err

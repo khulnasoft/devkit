@@ -626,7 +626,7 @@ func TestChecksumIncludeDoubleStar(t *testing.T) {
 	require.NoError(t, err)
 	require.Equal(t, dgstDoubleStar, dgst)
 
-	// **/... pattern (https://github.com/moby/moby/issues/41433)
+	// **/... pattern (https://github.com/khulnasoft-lab/docker/issues/41433)
 	dgst, err = cc.Checksum(context.TODO(), ref, "prefix/a", ChecksumOpts{IncludePatterns: []string{"**/foo", "**/report"}}, nil)
 	require.NoError(t, err)
 	require.Equal(t, dgstDoubleStar, dgst)

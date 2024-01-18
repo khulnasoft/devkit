@@ -82,7 +82,7 @@ import (
 //   - https://github.com/docker/engine-api/issues/189
 //   - https://github.com/golang/go/issues/13624
 //   - https://github.com/golang/go/issues/61076
-//   - https://github.com/moby/moby/issues/45935
+//   - https://github.com/khulnasoft-lab/docker/issues/45935
 //
 // [RFC 2606, Section 2]: https://www.rfc-editor.org/rfc/rfc2606.html#section-2
 // [RFC 6761, Section 6.3]: https://www.rfc-editor.org/rfc/rfc6761#section-6.3

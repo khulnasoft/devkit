@@ -14,7 +14,7 @@
    limitations under the License.
 
    File copied and customized based on
-   https://github.com/moby/moby/tree/v20.10.14/profiles/seccomp/kernel_linux.go
+   https://github.com/khulnasoft-lab/docker/tree/v20.10.14/profiles/seccomp/kernel_linux.go
 */
 
 package kernelversion

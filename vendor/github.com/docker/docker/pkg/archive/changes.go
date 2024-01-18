@@ -66,7 +66,7 @@ func (c changesByPath) Swap(i, j int)      { c[j], c[i] = c[i], c[j] }
 // Gnu tar doesn't have sub-second mtime precision. The go tar
 // writer (1.10+) does when using PAX format, but we round times to seconds
 // to ensure archives have the same hashes for backwards compatibility.
-// See https://github.com/moby/moby/pull/35739/commits/fb170206ba12752214630b269a40ac7be6115ed4.
+// See https://github.com/khulnasoft-lab/docker/pull/35739/commits/fb170206ba12752214630b269a40ac7be6115ed4.
 //
 // Non-sub-second is problematic when we apply changes via tar
 // files. We handle this by comparing for exact times, *or* same
