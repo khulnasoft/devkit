@@ -3362,7 +3362,7 @@ func testFrontendMetadataReturn(t *testing.T, sb integration.Sandbox) {
 	}
 
 	var exports []ExportEntry
-	if workers.IsTestDockerdMoby(sb) {
+	if workers.IsTestDockerdKhulnasoft(sb) {
 		exports = []ExportEntry{{
 			Type: "moby",
 			Attrs: map[string]string{
@@ -6851,7 +6851,7 @@ func testMergeOp(t *testing.T, sb integration.Sandbox) {
 	}
 
 	var imageTarget string
-	if workers.IsTestDockerdMoby(sb) {
+	if workers.IsTestDockerdKhulnasoft(sb) {
 		// do image export but use a fake url as the image should just end up in moby's
 		// local store
 		imageTarget = "fake.invalid:33333/devkit/testmergeop:latest"
@@ -7343,7 +7343,7 @@ func requireContents(ctx context.Context, t *testing.T, c *Client, sb integratio
 
 	if imageTarget != "" {
 		var exports []ExportEntry
-		if workers.IsTestDockerdMoby(sb) {
+		if workers.IsTestDockerdKhulnasoft(sb) {
 			exports = []ExportEntry{{
 				Type: "moby",
 				Attrs: map[string]string{
@@ -10079,5 +10079,5 @@ func testClientCustomGRPCOpts(t *testing.T, sb integration.Sandbox) {
 	_, err = c.Solve(sb.Context(), def, SolveOpt{}, nil)
 	require.NoError(t, err)
 
-	require.Contains(t, interceptedMethods, "/moby.devkit.v1.Control/Solve")
+	require.Contains(t, interceptedMethods, "/khulnasoft.devkit.v1.Control/Solve")
 }

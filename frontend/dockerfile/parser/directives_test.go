@@ -23,7 +23,7 @@ func TestDirectives(t *testing.T) {
 	require.Equal(t, d[0].Name, "escape")
 	require.Equal(t, d[0].Value, "\\")
 
-	// for some reason Moby implementation in case insensitive for escape
+	// for some reason Khulnasoft implementation in case insensitive for escape
 	dt = `# EScape=\
 # KEY = FOO bar
 

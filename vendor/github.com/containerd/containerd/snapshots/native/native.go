@@ -251,7 +251,7 @@ func (o *snapshotter) createSnapshot(ctx context.Context, kind snapshots.Kind, k
 			if len(s.ParentIDs) > 0 {
 				parent := o.getSnapshotDir(s.ParentIDs[0])
 				xattrErrorHandler := func(dst, src, xattrKey string, copyErr error) error {
-					// security.* xattr cannot be copied in most cases (moby/devkit#1189)
+					// security.* xattr cannot be copied in most cases (moby/buildkit#1189)
 					log.G(ctx).WithError(copyErr).Debugf("failed to copy xattr %q", xattrKey)
 					return nil
 				}

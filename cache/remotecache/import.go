@@ -302,7 +302,7 @@ type image struct {
 	Rootfs struct {
 		DiffIDs []digest.Digest `json:"diff_ids"`
 	} `json:"rootfs"`
-	Cache   []byte `json:"moby.devkit.cache.v0"`
+	Cache   []byte `json:"khulnasoft.devkit.cache.v0"`
 	History []struct {
 		Created    *time.Time `json:"created,omitempty"`
 		CreatedBy  string     `json:"created_by,omitempty"`

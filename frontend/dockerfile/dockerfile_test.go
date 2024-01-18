@@ -5008,7 +5008,7 @@ COPY Dockerfile Dockerfile
 		_, err = c.Solve(ctx, gateway.SolveRequest{
 			FrontendOpt: map[string]string{
 				"requestid":     "frontend.subrequests.notexist",
-				"frontend.caps": "moby.devkit.frontend.subrequests",
+				"frontend.caps": "khulnasoft.devkit.frontend.subrequests",
 			},
 			Frontend: "dockerfile.v0",
 		})
@@ -5019,14 +5019,14 @@ COPY Dockerfile Dockerfile
 
 		_, err = c.Solve(ctx, gateway.SolveRequest{
 			FrontendOpt: map[string]string{
-				"frontend.caps": "moby.devkit.frontend.notexistcap",
+				"frontend.caps": "khulnasoft.devkit.frontend.notexistcap",
 			},
 			Frontend: "dockerfile.v0",
 		})
 		require.Error(t, err)
 		var capErr *errdefs.UnsupportedFrontendCapError
 		require.True(t, errors.As(err, &capErr))
-		require.Equal(t, "moby.devkit.frontend.notexistcap", capErr.GetName())
+		require.Equal(t, "khulnasoft.devkit.frontend.notexistcap", capErr.GetName())
 
 		called = true
 		return nil, nil

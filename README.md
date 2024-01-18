@@ -91,7 +91,7 @@ Join `#devkit` channel on [Docker Community Slack](https://dockr.ly/comm-slack)
 
 DevKit is used by the following projects:
 
--   [Moby & Docker](https://github.com/khulnasoft-lab/docker/pull/37151) (`DOCKER_DEVKIT=1 docker build`)
+-   [Khulnasoftnasoft & Docker](https://github.com/khulnasoft-lab/docker/pull/37151) (`DOCKER_DEVKIT=1 docker build`)
 -   [img](https://github.com/genuinetools/img)
 -   [OpenFaaS Cloud](https://github.com/openfaas/openfaas-cloud)
 -   [container build interface](https://github.com/containerbuilding/cbi)

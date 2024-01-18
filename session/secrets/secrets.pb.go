@@ -125,9 +125,9 @@ func (m *GetSecretResponse) GetData() []byte {
 }
 
 func init() {
-	proto.RegisterType((*GetSecretRequest)(nil), "moby.devkit.secrets.v1.GetSecretRequest")
-	proto.RegisterMapType((map[string]string)(nil), "moby.devkit.secrets.v1.GetSecretRequest.AnnotationsEntry")
-	proto.RegisterType((*GetSecretResponse)(nil), "moby.devkit.secrets.v1.GetSecretResponse")
+	proto.RegisterType((*GetSecretRequest)(nil), "khulnasoft.devkit.secrets.v1.GetSecretRequest")
+	proto.RegisterMapType((map[string]string)(nil), "khulnasoft.devkit.secrets.v1.GetSecretRequest.AnnotationsEntry")
+	proto.RegisterType((*GetSecretResponse)(nil), "khulnasoft.devkit.secrets.v1.GetSecretResponse")
 }
 
 func init() { proto.RegisterFile("secrets.proto", fileDescriptor_d4bc6c625e214507) }
@@ -277,7 +277,7 @@ func NewSecretsClient(cc *grpc.ClientConn) SecretsClient {
 
 func (c *secretsClient) GetSecret(ctx context.Context, in *GetSecretRequest, opts ...grpc.CallOption) (*GetSecretResponse, error) {
 	out := new(GetSecretResponse)
-	err := c.cc.Invoke(ctx, "/moby.devkit.secrets.v1.Secrets/GetSecret", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/khulnasoft.devkit.secrets.v1.Secrets/GetSecret", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -311,7 +311,7 @@ func _Secrets_GetSecret_Handler(srv interface{}, ctx context.Context, dec func(i
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/moby.devkit.secrets.v1.Secrets/GetSecret",
+		FullMethod: "/khulnasoft.devkit.secrets.v1.Secrets/GetSecret",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(SecretsServer).GetSecret(ctx, req.(*GetSecretRequest))
@@ -320,7 +320,7 @@ func _Secrets_GetSecret_Handler(srv interface{}, ctx context.Context, dec func(i
 }
 
 var _Secrets_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "moby.devkit.secrets.v1.Secrets",
+	ServiceName: "khulnasoft.devkit.secrets.v1.Secrets",
 	HandlerType: (*SecretsServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

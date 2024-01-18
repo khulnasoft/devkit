@@ -76,7 +76,7 @@ FROM second
 	frontend := func(ctx context.Context, c gateway.Client) (*gateway.Result, error) {
 		res, err := c.Solve(ctx, gateway.SolveRequest{
 			FrontendOpt: map[string]string{
-				"frontend.caps": "moby.devkit.frontend.subrequests",
+				"frontend.caps": "khulnasoft.devkit.frontend.subrequests",
 				"requestid":     "frontend.outline",
 				"build-arg:BAR": "678",
 				"target":        "target",
@@ -181,7 +181,7 @@ FROM second
 	frontend := func(ctx context.Context, c gateway.Client) (*gateway.Result, error) {
 		res, err := c.Solve(ctx, gateway.SolveRequest{
 			FrontendOpt: map[string]string{
-				"frontend.caps": "moby.devkit.frontend.subrequests",
+				"frontend.caps": "khulnasoft.devkit.frontend.subrequests",
 				"requestid":     "frontend.outline",
 				"build-arg:BAR": "678",
 				"target":        "target",
