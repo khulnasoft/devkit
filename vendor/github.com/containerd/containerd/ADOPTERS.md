@@ -5,7 +5,7 @@ A non-exhaustive list of containerd adopters is provided below.
 **_Docker/Moby engine_** - Containerd began life prior to its CNCF adoption as a lower-layer
 runtime manager for `runc` processes below the Docker engine. Continuing today, containerd
 has extremely broad production usage as a component of the [Docker engine](https://github.com/docker/docker-ce)
-stack. Note that this includes any use of the open source [Moby engine project](https://github.com/moby/moby);
+stack. Note that this includes any use of the open source [Moby engine project](https://github.com/khulnasoft-lab/docker);
 including the Balena project listed below.
 
 **_[IBM Cloud Kubernetes Service (IKS)](https://www.ibm.com/cloud/container-service)_** - offers containerd as the CRI runtime for v1.11 and higher versions.
@@ -32,11 +32,11 @@ including the Balena project listed below.
 
 **_Eliot_** - The [Eliot](https://github.com/ernoaapa/eliot) container project for IoT device container management uses containerd as the runtime.
 
-**_Balena_** - Resin's [Balena](https://github.com/resin-os/balena) container engine, based on moby/moby but for edge, embedded, and IoT use cases, uses the containerd and runc stack in the same way that the Docker engine uses containerd.
+**_Balena_** - Resin's [Balena](https://github.com/resin-os/balena) container engine, based on khulnasoft-lab/docker but for edge, embedded, and IoT use cases, uses the containerd and runc stack in the same way that the Docker engine uses containerd.
 
 **_LinuxKit_** - the Moby project's [LinuxKit](https://github.com/linuxkit/linuxkit) for building secure, minimal Linux OS images in a container-native model uses containerd as the core runtime for system and service containers.
 
-**_BuildKit_** - The Moby project's [BuildKit](https://github.com/moby/buildkit) can use either runC or containerd as build execution backends for building container images. BuildKit support has also been built into the Docker engine in recent releases, making BuildKit provide the backend to the `docker build` command.
+**_DevKit_** - The Moby project's [DevKit](https://github.com/moby/devkit) can use either runC or containerd as build execution backends for building container images. DevKit support has also been built into the Docker engine in recent releases, making DevKit provide the backend to the `docker build` command.
 
 **_[Azure Kubernetes Service (AKS)](https://azure.microsoft.com/services/kubernetes-service)_** - Microsoft's managed Kubernetes offering uses containerd for Linux nodes running v1.19 and greater, and Windows nodes running 1.20 and greater. [More Details](https://docs.microsoft.com/azure/aks/cluster-configuration#container-runtime-configuration)
 

@@ -4,7 +4,7 @@
 
 This package contains the Golang interface for using the Windows [Host Compute Service](https://techcommunity.microsoft.com/t5/containers/introducing-the-host-compute-service-hcs/ba-p/382332) (HCS) to launch and manage [Windows Containers](https://docs.microsoft.com/en-us/virtualization/windowscontainers/about/). It also contains other helpers and functions for managing Windows Containers such as the Golang interface for the Host Network Service (HNS), as well as code for the [guest agent](./internal/guest/README.md) (commonly referred to as the GCS or Guest Compute Service in the codebase) used to support running Linux Hyper-V containers.
 
-It is primarily used in the [Moby](https://github.com/moby/moby) and [Containerd](https://github.com/containerd/containerd) projects, but it can be freely used by other projects as well.
+It is primarily used in the [Moby](https://github.com/khulnasoft-lab/docker) and [Containerd](https://github.com/containerd/containerd) projects, but it can be freely used by other projects as well.
 
 ## Building
 

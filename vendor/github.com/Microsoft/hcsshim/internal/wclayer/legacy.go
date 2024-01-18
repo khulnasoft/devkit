@@ -110,7 +110,7 @@ func (r *legacyLayerReader) walkUntilCancelled() error {
 			return err
 		}
 
-		// Indirect fix for https://github.com/moby/moby/issues/32838#issuecomment-343610048.
+		// Indirect fix for https://github.com/khulnasoft-lab/docker/issues/32838#issuecomment-343610048.
 		// Handle failure from what may be a golang bug in the conversion of
 		// UTF16 to UTF8 in files which are left in the recycle bin. Os.Lstat
 		// which is called by filepath.Walk will fail when a filename contains

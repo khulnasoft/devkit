@@ -129,7 +129,7 @@ type ImageBuildOptions struct {
 	// build with the cancel request.
 	BuildID string
 	// Outputs defines configurations for exporting build results. Only supported
-	// in BuildKit mode
+	// in DevKit mode
 	Outputs []ImageBuildOutput
 }
 
@@ -145,8 +145,8 @@ type BuilderVersion string
 const (
 	// BuilderV1 is the first generation builder in docker daemon
 	BuilderV1 BuilderVersion = "1"
-	// BuilderBuildKit is builder based on moby/buildkit project
-	BuilderBuildKit BuilderVersion = "2"
+	// BuilderDevKit is builder based on moby/devkit project
+	BuilderDevKit BuilderVersion = "2"
 )
 
 // ImageBuildResponse holds information

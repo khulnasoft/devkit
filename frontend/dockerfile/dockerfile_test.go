@@ -2764,7 +2764,7 @@ COPY . .
 	}
 }
 
-// moby/moby#10858
+// khulnasoft-lab/docker#10858
 func testDockerfileLowercase(t *testing.T, sb integration.Sandbox) {
 	integration.SkipOnPlatform(t, "windows")
 	f := getFrontend(t, sb)
@@ -6751,7 +6751,7 @@ COPY Dockerfile \
 	require.Equal(t, "Empty continuation line found in: COPY Dockerfile .", string(w.Short))
 	require.Equal(t, 1, len(w.Detail))
 	require.Equal(t, "Empty continuation lines will become errors in a future release", string(w.Detail[0]))
-	require.Equal(t, "https://github.com/moby/moby/pull/33719", w.URL)
+	require.Equal(t, "https://github.com/khulnasoft-lab/docker/pull/33719", w.URL)
 	require.Equal(t, 1, w.Level)
 }
 

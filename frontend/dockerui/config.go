@@ -312,7 +312,7 @@ func (bc *Client) ReadEntrypoint(ctx context.Context, lang string, opts ...llb.L
 
 		filenames := []string{bctx.filename, bctx.filename + ".dockerignore"}
 
-		// dockerfile is also supported casing moby/moby#10858
+		// dockerfile is also supported casing khulnasoft-lab/docker#10858
 		if path.Base(bctx.filename) == DefaultDockerfileName {
 			filenames = append(filenames, path.Join(path.Dir(bctx.filename), strings.ToLower(DefaultDockerfileName)))
 		}

@@ -53,7 +53,7 @@ In addition to describing the problem make sure to provide enough details about 
 
 There are lots of ways to run DevKit, first make it clear which way you are using. Are you using `docker build` , a specific driver of `docker buildx` , running `devkitd` or `buildctl` manually, in kubernetes, etc. 
 
-Sometimes it is not completely clear if the issue belongs in `khulnasoft/devkit` , `docker/buildx` or even `moby/moby` repository. If you are unsure you can start from either DevKit or Buildx and maintainers, feel free to report the issue here. Maintainers will re-route it if necessary. DevKit is where your builds actually run, Buildx covers a Docker CLI experience and DevKit deployment with drivers.
+Sometimes it is not completely clear if the issue belongs in `khulnasoft/devkit` , `docker/buildx` or even `khulnasoft-lab/docker` repository. If you are unsure you can start from either DevKit or Buildx and maintainers, feel free to report the issue here. Maintainers will re-route it if necessary. DevKit is where your builds actually run, Buildx covers a Docker CLI experience and DevKit deployment with drivers.
 
 Provide versions of the tools you used:
 

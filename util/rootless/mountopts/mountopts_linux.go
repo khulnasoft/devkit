@@ -14,7 +14,7 @@ import (
 // kernel restrictions that require user namespace mounts to preserve
 // CL_UNPRIVILEGED locked flags.
 //
-// From https://github.com/moby/moby/blob/v23.0.1/daemon/oci_linux.go#L430-L460
+// From https://github.com/khulnasoft-lab/docker/blob/v23.0.1/daemon/oci_linux.go#L430-L460
 func UnprivilegedMountFlags(path string) ([]string, error) {
 	var statfs unix.Statfs_t
 	if err := unix.Statfs(path, &statfs); err != nil {
