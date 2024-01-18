@@ -169,3 +169,17 @@ require (
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	kernel.org/pub/linux/libs/security/libcap/psx v1.2.67 // indirect
 )
+
+replace github.com/moby/sys/mountinfo => github.com/khulnasoft-lab/docker-sys/mountinfo v0.7.1
+
+replace github.com/moby/sys/signal => github.com/khulnasoft-lab/docker-sys/signal v0.7.0
+
+replace github.com/moby/sys/user => github.com/khulnasoft-lab/docker-sys/user v0.1.0
+
+replace github.com/moby/sys/mount => github.com/khulnasoft-lab/docker-sys/mount v0.3.3
+
+replace github.com/moby/sys/sequential => github.com/khulnasoft-lab/docker-sys/sequential v0.5.0
+
+replace github.com/moby/locker => github.com/khulnasoft-lab/docker-locker v1.0.1
+
+replace github.com/moby/patternmatcher => github.com/khulnasoft-lab/patternmatcher v0.6.0
