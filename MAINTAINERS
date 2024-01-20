@@ -3,6 +3,8 @@
 # This file describes the maintainer groups within the khulnasoft/devkit project.
 # More detail on Khulnasoft project governance is available in the
 # https://github.com/khulnasoft-lab/docker/blob/master/project/GOVERNANCE.md file.
+# More detail on Moby project governance is available in the
+# https://github.com/khulnasoft-lab/docker/blob/master/project/GOVERNANCE.md file.
 #
 # It is structured to be consumable by both humans and programs.
 # To extract its contents programmatically, use any TOML-compliant
