@@ -9,13 +9,13 @@ import (
 	"sync"
 
 	"github.com/distribution/reference"
+	"github.com/khulnasoft-lab/patternmatcher/ignorefile"
 	"github.com/khulnasoft/devkit/client/llb"
 	"github.com/khulnasoft/devkit/exporter/containerimage/exptypes"
 	"github.com/khulnasoft/devkit/exporter/containerimage/image"
 	"github.com/khulnasoft/devkit/frontend/gateway/client"
 	"github.com/khulnasoft/devkit/solver/pb"
 	"github.com/khulnasoft/devkit/util/imageutil"
-	"github.com/moby/patternmatcher/ignorefile"
 	"github.com/pkg/errors"
 )
 

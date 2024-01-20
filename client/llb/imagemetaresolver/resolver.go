@@ -8,11 +8,11 @@ import (
 	"github.com/containerd/containerd/platforms"
 	"github.com/containerd/containerd/remotes"
 	"github.com/containerd/containerd/remotes/docker"
+	locker "github.com/khulnasoft-lab/docker-locker"
 	"github.com/khulnasoft/devkit/client/llb"
 	"github.com/khulnasoft/devkit/util/contentutil"
 	"github.com/khulnasoft/devkit/util/imageutil"
 	"github.com/khulnasoft/devkit/version"
-	"github.com/moby/locker"
 	digest "github.com/opencontainers/go-digest"
 	ocispecs "github.com/opencontainers/image-spec/specs-go/v1"
 )

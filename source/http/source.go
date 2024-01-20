@@ -17,6 +17,7 @@ import (
 	"time"
 
 	"github.com/docker/docker/pkg/idtools"
+	locker "github.com/khulnasoft-lab/docker-locker"
 	"github.com/khulnasoft/devkit/cache"
 	"github.com/khulnasoft/devkit/session"
 	"github.com/khulnasoft/devkit/snapshot"
@@ -25,7 +26,6 @@ import (
 	"github.com/khulnasoft/devkit/source"
 	srctypes "github.com/khulnasoft/devkit/source/types"
 	"github.com/khulnasoft/devkit/util/tracing"
-	"github.com/moby/locker"
 	digest "github.com/opencontainers/go-digest"
 	"github.com/pkg/errors"
 )

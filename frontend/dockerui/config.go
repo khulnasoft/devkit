@@ -11,6 +11,7 @@ import (
 
 	"github.com/containerd/containerd/platforms"
 	"github.com/distribution/reference"
+	"github.com/khulnasoft-lab/patternmatcher/ignorefile"
 	controlapi "github.com/khulnasoft/devkit/api/services/control"
 	"github.com/khulnasoft/devkit/client/llb"
 	"github.com/khulnasoft/devkit/exporter/containerimage/image"
@@ -18,7 +19,6 @@ import (
 	"github.com/khulnasoft/devkit/frontend/gateway/client"
 	"github.com/khulnasoft/devkit/solver/pb"
 	"github.com/khulnasoft/devkit/util/flightcontrol"
-	"github.com/moby/patternmatcher/ignorefile"
 	digest "github.com/opencontainers/go-digest"
 	ocispecs "github.com/opencontainers/image-spec/specs-go/v1"
 	"github.com/pkg/errors"

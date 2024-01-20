@@ -46,11 +46,8 @@ require (
 	github.com/in-toto/in-toto-golang v0.5.0
 	github.com/klauspost/compress v1.17.4
 	github.com/mitchellh/hashstructure/v2 v2.0.2
-	github.com/moby/locker v1.0.1
-	github.com/moby/patternmatcher v0.6.0
-	github.com/moby/sys/mountinfo v0.6.2
-	github.com/moby/sys/signal v0.7.0
-	github.com/moby/sys/user v0.1.0
+	github.com/khulnasoft-lab/docker-locker v1.0.1
+	github.com/khulnasoft-lab/patternmatcher v0.5.0
 	github.com/morikuni/aec v1.0.0
 	github.com/opencontainers/go-digest v1.0.0
 	github.com/opencontainers/image-spec v1.1.0-rc5
@@ -148,8 +145,8 @@ require (
 	github.com/jmespath/go-jmespath v0.4.0 // indirect
 	github.com/kylelemons/godebug v1.1.0 // indirect
 	github.com/matttproud/golang_protobuf_extensions v1.0.4 // indirect
-	github.com/moby/sys/mount v0.3.3 // indirect
-	github.com/moby/sys/sequential v0.5.0 // indirect
+	github.com/khulnasoft-lab/docker-sys/mount v0.1.1 // indirect
+	github.com/khulnasoft-lab/docker-sys/sequential v0.5.0 // indirect
 	github.com/pkg/browser v0.0.0-20210115035449-ce105d075bb4 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/prometheus/client_model v0.4.0 // indirect
@@ -168,18 +165,5 @@ require (
 	google.golang.org/genproto/googleapis/api v0.0.0-20230711160842-782d3b101e98 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	kernel.org/pub/linux/libs/security/libcap/psx v1.2.67 // indirect
+	github.com/khulnasoft-lab/docker-locker v1.0.2
 )
-
-replace github.com/moby/sys/mountinfo => github.com/khulnasoft-lab/docker-sys/mountinfo v0.7.1
-
-replace github.com/moby/sys/signal => github.com/khulnasoft-lab/docker-sys/signal v0.7.0
-
-replace github.com/moby/sys/user => github.com/khulnasoft-lab/docker-sys/user v0.1.0
-
-replace github.com/moby/sys/mount => github.com/khulnasoft-lab/docker-sys/mount v0.3.3
-
-replace github.com/moby/sys/sequential => github.com/khulnasoft-lab/docker-sys/sequential v0.5.0
-
-replace github.com/moby/locker => github.com/khulnasoft-lab/docker-locker v1.0.1
-
-replace github.com/moby/patternmatcher => github.com/khulnasoft-lab/patternmatcher v0.6.0

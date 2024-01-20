@@ -15,6 +15,7 @@ import (
 	"strconv"
 	"strings"
 
+	locker "github.com/khulnasoft-lab/docker-locker"
 	"github.com/khulnasoft/devkit/cache"
 	"github.com/khulnasoft/devkit/client"
 	"github.com/khulnasoft/devkit/identity"
@@ -30,7 +31,6 @@ import (
 	"github.com/khulnasoft/devkit/util/gitutil"
 	"github.com/khulnasoft/devkit/util/progress/logs"
 	"github.com/khulnasoft/devkit/util/urlutil"
-	"github.com/moby/locker"
 	"github.com/pkg/errors"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"

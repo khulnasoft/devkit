@@ -13,11 +13,11 @@ import (
 
 	iradix "github.com/hashicorp/go-immutable-radix"
 	"github.com/hashicorp/golang-lru/simplelru"
+	locker "github.com/khulnasoft-lab/docker-locker"
+	"github.com/khulnasoft-lab/patternmatcher"
 	"github.com/khulnasoft/devkit/cache"
 	"github.com/khulnasoft/devkit/session"
 	"github.com/khulnasoft/devkit/snapshot"
-	"github.com/moby/locker"
-	"github.com/moby/patternmatcher"
 	digest "github.com/opencontainers/go-digest"
 	"github.com/pkg/errors"
 	"github.com/tonistiigi/fsutil"

@@ -13,6 +13,7 @@ import (
 	"github.com/containerd/containerd/mount"
 	"github.com/containerd/containerd/pkg/userns"
 	"github.com/docker/docker/pkg/idtools"
+	locker "github.com/khulnasoft-lab/docker-locker"
 	"github.com/khulnasoft/devkit/cache"
 	"github.com/khulnasoft/devkit/client"
 	"github.com/khulnasoft/devkit/identity"
@@ -22,7 +23,6 @@ import (
 	"github.com/khulnasoft/devkit/snapshot"
 	"github.com/khulnasoft/devkit/solver/pb"
 	"github.com/khulnasoft/devkit/util/grpcerrors"
-	"github.com/moby/locker"
 	"github.com/pkg/errors"
 	"google.golang.org/grpc/codes"
 )

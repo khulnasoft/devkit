@@ -8,9 +8,9 @@ import (
 
 	"github.com/containerd/console"
 	runc "github.com/containerd/go-runc"
+	"github.com/khulnasoft-lab/docker-sys/signal"
 	"github.com/khulnasoft/devkit/executor"
 	"github.com/khulnasoft/devkit/util/bklog"
-	"github.com/moby/sys/signal"
 	"github.com/opencontainers/runtime-spec/specs-go"
 	"github.com/pkg/errors"
 	"golang.org/x/sync/errgroup"
