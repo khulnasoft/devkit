@@ -41,7 +41,7 @@ func (s *OCI) New(ctx context.Context, cfg *integration.BackendConfig) (integrat
 		return nil, nil, err
 	}
 	// Include use of --oci-worker-labels to trigger https://github.com/khulnasoft/devkit/pull/603
-	devkitdArgs := []string{"devkitd", "--oci-worker=true", "--containerd-worker=false", "--oci-worker-gc=false", "--oci-worker-labels=org.mobyproject.devkit.worker.sandbox=true"}
+	devkitdArgs := []string{"devkitd", "--oci-worker=true", "--containerd-worker=false", "--oci-worker-gc=false", "--oci-worker-labels=org.khulnasoftproject.devkit.worker.sandbox=true"}
 
 	if s.Snapshotter != "" {
 		devkitdArgs = append(devkitdArgs,

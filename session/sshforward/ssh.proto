@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package moby.sshforward.v1;
+package khulnasoft.sshforward.v1;
 
 option go_package = "sshforward";
 

@@ -81,7 +81,7 @@ func testBuildContainerdExporter(t *testing.T, sb integration.Sandbox) {
 	rdr, err := marshal(sb.Context(), st.Root())
 	require.NoError(t, err)
 
-	imageName := "example.com/moby/imageexporter:test"
+	imageName := "example.com/khulnasoft/imageexporter:test"
 
 	buildCmd := []string{
 		"build", "--progress=plain",
@@ -122,7 +122,7 @@ func testBuildMetadataFile(t *testing.T, sb integration.Sandbox) {
 
 	tmpDir := t.TempDir()
 
-	imageName := "example.com/moby/metadata:test"
+	imageName := "example.com/khulnasoft/metadata:test"
 	metadataFile := filepath.Join(tmpDir, "metadata.json")
 
 	buildCmd := []string{

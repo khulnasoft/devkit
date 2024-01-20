@@ -1,4 +1,4 @@
-package moby_devkit_v1_sourcepolicy //nolint:revive
+package khulnasoft_devkit_v1_sourcepolicy //nolint:revive
 
 import (
 	"encoding/json"

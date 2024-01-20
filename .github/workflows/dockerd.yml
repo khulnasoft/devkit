@@ -46,27 +46,27 @@ jobs:
         with:
           context: ${{ env.DOCKER_VERSION }}
           target: binary
-          outputs: /tmp/moby
+          outputs: /tmp/khulnasoft
       -
         name: Rename binary
         if: ${{ env.DOCKER_BUILD == 'true' }}
         run: |
-          if [ -L "/tmp/moby/binary-daemon/dockerd" ]; then
-            mv -f $(readlink /tmp/moby/binary-daemon/dockerd) /tmp/moby/dockerd
+          if [ -L "/tmp/khulnasoft/binary-daemon/dockerd" ]; then
+            mv -f $(readlink /tmp/khulnasoft/binary-daemon/dockerd) /tmp/khulnasoft/dockerd
           fi
       -
         name: Download
         if: ${{ env.DOCKER_BUILD != 'true' }}
         run: |
-          mkdir -p /tmp/moby
-          cd /tmp/moby
+          mkdir -p /tmp/khulnasoft
+          cd /tmp/khulnasoft
           wget -qO- "https://download.docker.com/linux/static/stable/x86_64/docker-${{ env.DOCKER_VERSION }}.tgz" | tar xvz --strip 1
       -
         name: Upload dockerd
         uses: actions/upload-artifact@v3
         with:
           name: dockerd
-          path: /tmp/moby/dockerd
+          path: /tmp/khulnasoft/dockerd
           if-no-files-found: error
 
   test:

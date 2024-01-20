@@ -20,7 +20,7 @@ import (
 
 // InitDockerdWorker registers a dockerd worker with the global registry.
 func InitDockerdWorker() {
-	integration.Register(&Moby{
+	integration.Register(&Khulnasoft{
 		ID:         "dockerd",
 		IsRootless: false,
 		Unsupported: []string{
@@ -43,7 +43,7 @@ func InitDockerdWorker() {
 			FeatureCNINetwork,
 		},
 	})
-	integration.Register(&Moby{
+	integration.Register(&Khulnasoft{
 		ID:                    "dockerd-containerd",
 		IsRootless:            false,
 		ContainerdSnapshotter: true,
@@ -54,7 +54,7 @@ func InitDockerdWorker() {
 	})
 }
 
-type Moby struct {
+type Khulnasoft struct {
 	ID         string
 	IsRootless bool
 
@@ -63,15 +63,15 @@ type Moby struct {
 	Unsupported []string
 }
 
-func (c Moby) Name() string {
+func (c Khulnasoft) Name() string {
 	return c.ID
 }
 
-func (c Moby) Rootless() bool {
+func (c Khulnasoft) Rootless() bool {
 	return c.IsRootless
 }
 
-func (c Moby) New(ctx context.Context, cfg *integration.BackendConfig) (b integration.Backend, cl func() error, err error) {
+func (c Khulnasoft) New(ctx context.Context, cfg *integration.BackendConfig) (b integration.Backend, cl func() error, err error) {
 	if err := requireRoot(); err != nil {
 		return nil, nil, err
 	}
@@ -229,7 +229,7 @@ func (c Moby) New(ctx context.Context, cfg *integration.BackendConfig) (b integr
 	}, cl, nil
 }
 
-func (c Moby) Close() error {
+func (c Khulnasoft) Close() error {
 	return nil
 }
 
@@ -253,6 +253,6 @@ func IsTestDockerd() bool {
 	return os.Getenv("TEST_DOCKERD") == "1"
 }
 
-func IsTestDockerdMoby(sb integration.Sandbox) bool {
+func IsTestDockerdKhulnasoft(sb integration.Sandbox) bool {
 	return sb.DockerAddress() != "" && sb.Name() == "dockerd"
 }

@@ -2,7 +2,7 @@
 
 This page contains information about reporting issues as well as some tips and
 guidelines useful to experienced open source contributors. Finally, make sure
-you read our [community guidelines](https://github.com/khulnasoft-lab/docker/blob/master/CONTRIBUTING.md#moby-community-guidelines)
+you read our [community guidelines](https://github.com/khulnasoft-lab/docker/blob/master/CONTRIBUTING.md#khulnasoft-community-guidelines)
 before you start participating.
 
 ## Reporting security issues
@@ -217,8 +217,8 @@ otherwise cleanup our project.
     <td>Forums</td>
     <td>
       A public forum for users to discuss questions and explore current design patterns and
-      best practices about all the Moby projects. To participate, log in with your Github
-      account or create an account at <a href="https://forums.mobyproject.org" target="_blank">https://forums.mobyproject.org</a>.
+      best practices about all the Khulnasoft projects. To participate, log in with your Github
+      account or create an account at <a href="https://forums.khulnasoftproject.org" target="_blank">https://forums.khulnasoftproject.org</a>.
     </td>
   </tr>
   <tr>
@@ -227,14 +227,14 @@ otherwise cleanup our project.
       <p>
         Register for the Docker Community Slack (dockercommunity.slack.com)
         <a href="https://dockr.ly/comm-slack" target="_blank">Click here for an invite to docker community slack</a>.
-        You'll find us in <code>#devkit</code> channel, and the <code>#moby-project</code> channel for general discussions.
+        You'll find us in <code>#devkit</code> channel, and the <code>#khulnasoft-project</code> channel for general discussions.
       </p>
     </td>
   </tr>
   <tr>
     <td>Twitter</td>
     <td>
-      You can follow <a href="https://twitter.com/moby/" target="_blank">Moby Project Twitter feed</a>
+      You can follow <a href="https://twitter.com/khulnasoft/" target="_blank">Khulnasoft Project Twitter feed</a>
       to get updates on our products. You can also tweet us questions or just
       share blogs or stories.
     </td>

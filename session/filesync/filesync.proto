@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package moby.filesync.v1;
+package khulnasoft.filesync.v1;
 
 option go_package = "filesync";
 

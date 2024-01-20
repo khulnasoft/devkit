@@ -37,7 +37,7 @@ func Describe(ctx context.Context, c client.Client) ([]Request, error) {
 	res, err := c.Solve(ctx, client.SolveRequest{
 		FrontendOpt: map[string]string{
 			"requestid":     RequestSubrequestsDescribe,
-			"frontend.caps": "moby.devkit.frontend.subrequests",
+			"frontend.caps": "khulnasoft.devkit.frontend.subrequests",
 		},
 		Frontend: "dockerfile.v0",
 	})

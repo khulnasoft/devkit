@@ -454,14 +454,14 @@ func (m *VerifyTokenAuthorityResponse) GetSigned() []byte {
 }
 
 func init() {
-	proto.RegisterType((*CredentialsRequest)(nil), "moby.filesync.v1.CredentialsRequest")
-	proto.RegisterType((*CredentialsResponse)(nil), "moby.filesync.v1.CredentialsResponse")
-	proto.RegisterType((*FetchTokenRequest)(nil), "moby.filesync.v1.FetchTokenRequest")
-	proto.RegisterType((*FetchTokenResponse)(nil), "moby.filesync.v1.FetchTokenResponse")
-	proto.RegisterType((*GetTokenAuthorityRequest)(nil), "moby.filesync.v1.GetTokenAuthorityRequest")
-	proto.RegisterType((*GetTokenAuthorityResponse)(nil), "moby.filesync.v1.GetTokenAuthorityResponse")
-	proto.RegisterType((*VerifyTokenAuthorityRequest)(nil), "moby.filesync.v1.VerifyTokenAuthorityRequest")
-	proto.RegisterType((*VerifyTokenAuthorityResponse)(nil), "moby.filesync.v1.VerifyTokenAuthorityResponse")
+	proto.RegisterType((*CredentialsRequest)(nil), "khulnasoft.filesync.v1.CredentialsRequest")
+	proto.RegisterType((*CredentialsResponse)(nil), "khulnasoft.filesync.v1.CredentialsResponse")
+	proto.RegisterType((*FetchTokenRequest)(nil), "khulnasoft.filesync.v1.FetchTokenRequest")
+	proto.RegisterType((*FetchTokenResponse)(nil), "khulnasoft.filesync.v1.FetchTokenResponse")
+	proto.RegisterType((*GetTokenAuthorityRequest)(nil), "khulnasoft.filesync.v1.GetTokenAuthorityRequest")
+	proto.RegisterType((*GetTokenAuthorityResponse)(nil), "khulnasoft.filesync.v1.GetTokenAuthorityResponse")
+	proto.RegisterType((*VerifyTokenAuthorityRequest)(nil), "khulnasoft.filesync.v1.VerifyTokenAuthorityRequest")
+	proto.RegisterType((*VerifyTokenAuthorityResponse)(nil), "khulnasoft.filesync.v1.VerifyTokenAuthorityResponse")
 }
 
 func init() { proto.RegisterFile("auth.proto", fileDescriptor_8bbd6f3875b0e874) }
@@ -857,7 +857,7 @@ func NewAuthClient(cc *grpc.ClientConn) AuthClient {
 
 func (c *authClient) Credentials(ctx context.Context, in *CredentialsRequest, opts ...grpc.CallOption) (*CredentialsResponse, error) {
 	out := new(CredentialsResponse)
-	err := c.cc.Invoke(ctx, "/moby.filesync.v1.Auth/Credentials", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/khulnasoft.filesync.v1.Auth/Credentials", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -866,7 +866,7 @@ func (c *authClient) Credentials(ctx context.Context, in *CredentialsRequest, op
 
 func (c *authClient) FetchToken(ctx context.Context, in *FetchTokenRequest, opts ...grpc.CallOption) (*FetchTokenResponse, error) {
 	out := new(FetchTokenResponse)
-	err := c.cc.Invoke(ctx, "/moby.filesync.v1.Auth/FetchToken", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/khulnasoft.filesync.v1.Auth/FetchToken", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -875,7 +875,7 @@ func (c *authClient) FetchToken(ctx context.Context, in *FetchTokenRequest, opts
 
 func (c *authClient) GetTokenAuthority(ctx context.Context, in *GetTokenAuthorityRequest, opts ...grpc.CallOption) (*GetTokenAuthorityResponse, error) {
 	out := new(GetTokenAuthorityResponse)
-	err := c.cc.Invoke(ctx, "/moby.filesync.v1.Auth/GetTokenAuthority", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/khulnasoft.filesync.v1.Auth/GetTokenAuthority", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -884,7 +884,7 @@ func (c *authClient) GetTokenAuthority(ctx context.Context, in *GetTokenAuthorit
 
 func (c *authClient) VerifyTokenAuthority(ctx context.Context, in *VerifyTokenAuthorityRequest, opts ...grpc.CallOption) (*VerifyTokenAuthorityResponse, error) {
 	out := new(VerifyTokenAuthorityResponse)
-	err := c.cc.Invoke(ctx, "/moby.filesync.v1.Auth/VerifyTokenAuthority", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/khulnasoft.filesync.v1.Auth/VerifyTokenAuthority", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -930,7 +930,7 @@ func _Auth_Credentials_Handler(srv interface{}, ctx context.Context, dec func(in
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/moby.filesync.v1.Auth/Credentials",
+		FullMethod: "/khulnasoft.filesync.v1.Auth/Credentials",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AuthServer).Credentials(ctx, req.(*CredentialsRequest))
@@ -948,7 +948,7 @@ func _Auth_FetchToken_Handler(srv interface{}, ctx context.Context, dec func(int
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/moby.filesync.v1.Auth/FetchToken",
+		FullMethod: "/khulnasoft.filesync.v1.Auth/FetchToken",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AuthServer).FetchToken(ctx, req.(*FetchTokenRequest))
@@ -966,7 +966,7 @@ func _Auth_GetTokenAuthority_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/moby.filesync.v1.Auth/GetTokenAuthority",
+		FullMethod: "/khulnasoft.filesync.v1.Auth/GetTokenAuthority",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AuthServer).GetTokenAuthority(ctx, req.(*GetTokenAuthorityRequest))
@@ -984,7 +984,7 @@ func _Auth_VerifyTokenAuthority_Handler(srv interface{}, ctx context.Context, de
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/moby.filesync.v1.Auth/VerifyTokenAuthority",
+		FullMethod: "/khulnasoft.filesync.v1.Auth/VerifyTokenAuthority",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AuthServer).VerifyTokenAuthority(ctx, req.(*VerifyTokenAuthorityRequest))
@@ -993,7 +993,7 @@ func _Auth_VerifyTokenAuthority_Handler(srv interface{}, ctx context.Context, de
 }
 
 var _Auth_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "moby.filesync.v1.Auth",
+	ServiceName: "khulnasoft.filesync.v1.Auth",
 	HandlerType: (*AuthServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

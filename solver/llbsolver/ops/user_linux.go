@@ -8,7 +8,7 @@ import (
 	"github.com/khulnasoft/devkit/snapshot"
 	"github.com/khulnasoft/devkit/solver/pb"
 	"github.com/khulnasoft/devkit/worker"
-	"github.com/moby/sys/user"
+	"github.com/khulnasoft-lab/docker-sys/user"
 	"github.com/pkg/errors"
 	copy "github.com/tonistiigi/fsutil/copy"
 )

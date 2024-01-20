@@ -1930,7 +1930,7 @@ func TestNondistributableBlobs(t *testing.T) {
 
 	// Pretend like this is non-distributable
 	desc.MediaType = ocispecs.MediaTypeImageLayerNonDistributable //nolint:staticcheck // ignore SA1019: Non-distributable layers are deprecated, and not recommended for future use.
-	desc.URLs = []string{"https://devkit.moby.dev/foo"}
+	desc.URLs = []string{"https://devkit.khulnasoft.dev/foo"}
 
 	cw, err := contentBuffer.Writer(ctx)
 	require.NoError(t, err)

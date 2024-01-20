@@ -18,7 +18,7 @@ import (
 	"github.com/khulnasoft/devkit/frontend/gateway/client"
 	"github.com/khulnasoft/devkit/solver/pb"
 	"github.com/khulnasoft/devkit/util/flightcontrol"
-	"github.com/moby/patternmatcher/ignorefile"
+	"github.com/khulnasoft-lab/patternmatcher/ignorefile"
 	digest "github.com/opencontainers/go-digest"
 	ocispecs "github.com/opencontainers/image-spec/specs-go/v1"
 	"github.com/pkg/errors"

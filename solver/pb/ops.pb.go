@@ -12,6 +12,7 @@ import (
 	proto "github.com/gogo/protobuf/proto"
 	github_com_gogo_protobuf_sortkeys "github.com/gogo/protobuf/sortkeys"
 	github_com_khulnasoft_devkit_util_apicaps "github.com/khulnasoft/devkit/util/apicaps"
+	github_com_khulnasoft_devkit_util_apicaps "github.com/khulnasoft/devkit/util/apicaps"
 	github_com_opencontainers_go_digest "github.com/opencontainers/go-digest"
 	io "io"
 	math "math"
@@ -1280,9 +1281,9 @@ type OpMetadata struct {
 	Description map[string]string `protobuf:"bytes,2,rep,name=description,proto3" json:"description,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 	// index 3 reserved for WorkerConstraint in previous versions
 	// WorkerConstraint worker_constraint = 3;
-	ExportCache   *ExportCache                                             `protobuf:"bytes,4,opt,name=export_cache,json=exportCache,proto3" json:"export_cache,omitempty"`
-	Caps          map[github_com_khulnasoft_devkit_util_apicaps.CapID]bool `protobuf:"bytes,5,rep,name=caps,proto3,castkey=github.com/khulnasoft/devkit/util/apicaps.CapID" json:"caps" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"varint,2,opt,name=value,proto3"`
-	ProgressGroup *ProgressGroup                                           `protobuf:"bytes,6,opt,name=progress_group,json=progressGroup,proto3" json:"progress_group,omitempty"`
+	ExportCache   *ExportCache                                         `protobuf:"bytes,4,opt,name=export_cache,json=exportCache,proto3" json:"export_cache,omitempty"`
+	Caps          map[github_com_moby_devkit_util_apicaps.CapID]bool `protobuf:"bytes,5,rep,name=caps,proto3,castkey=github.com/khulnasoft/devkit/util/apicaps.CapID" json:"caps" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"varint,2,opt,name=value,proto3"`
+	ProgressGroup *ProgressGroup                                       `protobuf:"bytes,6,opt,name=progress_group,json=progressGroup,proto3" json:"progress_group,omitempty"`
 }
 
 func (m *OpMetadata) Reset()         { *m = OpMetadata{} }

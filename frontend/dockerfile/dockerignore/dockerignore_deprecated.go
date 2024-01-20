@@ -3,7 +3,7 @@ package dockerignore
 import (
 	"io"
 
-	"github.com/moby/patternmatcher/ignorefile"
+	"github.com/khulnasoft-lab/patternmatcher/ignorefile"
 )
 
 // ReadAll is an alias for [ignorefile.ReadAll].

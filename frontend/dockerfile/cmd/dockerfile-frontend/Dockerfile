@@ -30,8 +30,8 @@ RUN --mount=target=. --mount=type=cache,target=/root/.cache \
   xx-verify --static /dockerfile-frontend
 
 FROM scratch AS release
-LABEL moby.devkit.frontend.network.none="true"
-LABEL moby.devkit.frontend.caps="moby.devkit.frontend.inputs,moby.devkit.frontend.subrequests,moby.devkit.frontend.contexts"
+LABEL khulnasoft.devkit.frontend.network.none="true"
+LABEL khulnasoft.devkit.frontend.caps="khulnasoft.devkit.frontend.inputs,khulnasoft.devkit.frontend.subrequests,khulnasoft.devkit.frontend.contexts"
 COPY --from=build /dockerfile-frontend /bin/dockerfile-frontend
 ENTRYPOINT ["/bin/dockerfile-frontend"]
 

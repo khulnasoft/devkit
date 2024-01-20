@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package moby.devkit.v1.sourcepolicy;
+package khulnasoft.devkit.v1.sourcepolicy;
 
 // Rule defines the action(s) to take when a source is matched
 message Rule {

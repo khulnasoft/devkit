@@ -1222,7 +1222,7 @@ func (tc verifyContents) Run(t *testing.T, sb integration.Sandbox) {
 
 	switch tc.name {
 	case "TestDiffUpperScratch":
-		if workers.IsTestDockerdMoby(sb) {
+		if workers.IsTestDockerdKhulnasoft(sb) {
 			t.Skip("failed to handle changes: lstat ... no such file or directory: https://github.com/khulnasoft/devkit/pull/2726#issuecomment-1070978499")
 		}
 	}

@@ -204,7 +204,7 @@ disabled_plugins = ["cri"]
 		"--containerd-worker-gc=false",
 		"--containerd-worker=true",
 		"--containerd-worker-addr", address,
-		"--containerd-worker-labels=org.mobyproject.devkit.worker.sandbox=true", // Include use of --containerd-worker-labels to trigger https://github.com/khulnasoft/devkit/pull/603
+		"--containerd-worker-labels=org.khulnasoftproject.devkit.worker.sandbox=true", // Include use of --containerd-worker-labels to trigger https://github.com/khulnasoft/devkit/pull/603
 	}
 	devkitdArgs = applyDevkitdPlatformFlags(devkitdArgs)
 	devkitdArgs = append(devkitdArgs, snDevkitdArgs...)

@@ -47,7 +47,7 @@ import (
 	"github.com/khulnasoft/devkit/util/stack"
 	"github.com/khulnasoft/devkit/util/tracing"
 	"github.com/khulnasoft/devkit/worker"
-	"github.com/moby/sys/signal"
+	"github.com/khulnasoft-lab/docker-sys/signal"
 	digest "github.com/opencontainers/go-digest"
 	ocispecs "github.com/opencontainers/image-spec/specs-go/v1"
 	"github.com/pkg/errors"
@@ -262,17 +262,17 @@ func (gf *gatewayFrontend) Solve(ctx context.Context, llbBridge frontend.Fronten
 		RemoveMountStubsRecursive: true,
 	}
 
-	if v, ok := img.Config.Labels["moby.devkit.frontend.network.none"]; ok {
+	if v, ok := img.Config.Labels["khulnasoft.devkit.frontend.network.none"]; ok {
 		if ok, _ := strconv.ParseBool(v); ok {
 			meta.NetMode = opspb.NetMode_NONE
 		}
 	}
 
-	curCaps := getCaps(img.Config.Labels["moby.devkit.frontend.caps"])
+	curCaps := getCaps(img.Config.Labels["khulnasoft.devkit.frontend.caps"])
 	addCapsForKnownFrontends(curCaps, mfstDigest)
 	reqCaps := getCaps(opts["frontend.caps"])
 	if len(inputs) > 0 {
-		reqCaps["moby.devkit.frontend.inputs"] = struct{}{}
+		reqCaps["khulnasoft.devkit.frontend.inputs"] = struct{}{}
 	}
 
 	for c := range reqCaps {
@@ -1553,6 +1553,6 @@ func addCapsForKnownFrontends(caps map[string]struct{}, dgst digest.Digest) {
 		"sha256:de85b2f3a3e8a2f7fe48e8e84a65f6fdd5cd5183afa6412fff9caa6871649c44": {}, // docker/dockerfile:1.1.7-experimental
 	}
 	if _, ok := defaults[dgst]; ok {
-		caps["moby.devkit.frontend.inputs"] = struct{}{}
+		caps["khulnasoft.devkit.frontend.inputs"] = struct{}{}
 	}
 }

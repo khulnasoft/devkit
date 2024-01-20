@@ -31,11 +31,11 @@ Corresponds to [SLSA `buildType`](https://slsa.dev/provenance/v0.2#buildType).
 
 Included with `mode=min` and `mode=max`.
 
-The `buildType` field is set to `https://mobyproject.org/devkit@v1` can be
+The `buildType` field is set to `https://khulnasoftproject.org/devkit@v1` can be
 used to determine the structure of the provenance content.
 
 ```json
-    "buildType": "https://mobyproject.org/devkit@v1",
+    "buildType": "https://khulnasoftproject.org/devkit@v1",
 ```
 
 ## `invocation.configSource`
@@ -320,7 +320,7 @@ value can be set by the user with the `reproducible=true` attestation parameter.
     },
 ```
 
-## `metadata.https://mobyproject.org/devkit@v1#hermetic`
+## `metadata.https://khulnasoftproject.org/devkit@v1#hermetic`
 
 Included with `mode=min` and `mode=max`.
 
@@ -330,12 +330,12 @@ commands or disables network with `--network=none` flag.
 
 ```json
     "metadata": {
-      "https://mobyproject.org/devkit@v1#hermetic": true,
+      "https://khulnasoftproject.org/devkit@v1#hermetic": true,
       ...
     },
 ```
 
-## `metadata.https://mobyproject.org/devkit@v1#metadata`
+## `metadata.https://khulnasoftproject.org/devkit@v1#metadata`
 
 Partially included with `mode=min`.
 
@@ -344,7 +344,7 @@ part of the SLSA provenance spec.
 
 ```json
     "metadata": {
-      "https://mobyproject.org/devkit@v1#metadata": {
+      "https://khulnasoftproject.org/devkit@v1#metadata": {
         "source": {...},
         "layers": {...},
         "vcs": {...},
@@ -414,7 +414,7 @@ in a provenance attestation similar to the following, for a `mode=min` build:
     "builder": {
       "id": ""
     },
-    "buildType": "https://mobyproject.org/devkit@v1",
+    "buildType": "https://khulnasoftproject.org/devkit@v1",
     "materials": [
       {
         "uri": "pkg:docker/alpine@latest?platform=linux%2Famd64",
@@ -453,7 +453,7 @@ in a provenance attestation similar to the following, for a `mode=min` build:
         "environment": true,
         "materials": false
       },
-      "https://mobyproject.org/devkit@v1#metadata": {}
+      "https://khulnasoftproject.org/devkit@v1#metadata": {}
     }
   }
 }
@@ -477,7 +477,7 @@ For a similar build, but with `mode=max`:
     "builder": {
       "id": ""
     },
-    "buildType": "https://mobyproject.org/devkit@v1",
+    "buildType": "https://khulnasoftproject.org/devkit@v1",
     "materials": [
       {
         "uri": "pkg:docker/alpine@latest?platform=linux%2Famd64",
@@ -542,7 +542,7 @@ For a similar build, but with `mode=max`:
         "environment": true,
         "materials": false
       },
-      "https://mobyproject.org/devkit@v1#metadata": {
+      "https://khulnasoftproject.org/devkit@v1#metadata": {
         "source": {
           "locations": {
             "step0": {
